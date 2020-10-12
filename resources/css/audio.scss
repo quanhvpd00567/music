@@ -1,0 +1,149 @@
+$width-audio-process: 70%;
+#mix-player{
+    background-repeat: no-repeat;
+    background-size: cover;
+    //-webkit-filter: blur(10px);
+    //-moz-filter: blur(10px);
+    //-o-filter: blur(10px);
+    //-ms-filter: blur(10px);
+    //filter: blur(10px);
+    #jp_container_1 {
+        .jp-interface {
+            background-color:rgba(24, 68, 88, 0.5);
+
+        .jp-controls{
+            a {
+                color: #ffffff;
+                width: 16px;
+                height: 16px;
+                display: inline-block;
+                //padding: unset !important;
+                background: none !important;
+                margin-left: 8px !important;
+                text-indent: unset !important;
+            }
+        };
+        .jp-progress{
+            left: 120px !important;
+            top: 30px !important;
+            background: #ffffff;
+            width: $width-audio-process !important;
+            .jp-play-bar{
+                background: green;
+            }
+        };
+        .jp-volume-controls {
+            left: calc(70% + 120px + 20px);
+            top: 22px;
+            #mix-mute, #mix-unmute{
+                width: 16px;
+                height: 16px;
+                display: inline-block;
+                background-size: 16px 16px;
+                cursor: pointer;
+                background-repeat: no-repeat;
+            };
+            .jp-volume-bar{
+                margin-left: 5px;
+                top: 8px;
+                width: 100px;
+                cursor: pointer;
+                background: #ffffff;
+                .jp-volume-bar-value{
+                    background: green;
+                }
+            }
+        };
+        .jp-time-holder{
+            width: $width-audio-process !important;
+            color: #ffffff;
+        }
+
+    }
+}
+}
+body{
+    //font-family: "Times New Roman", Times, serif !important;
+    font-family: Arial, sans-serif !important;
+}
+
+.song_list{
+    color: #ffffff;
+    padding-top: 20px;
+
+    h2{
+        text-transform: uppercase;
+        padding-top: 20px;
+        a{
+            color: #2f7488 !important;
+            text-shadow: 0 0 15px #2f7488 !important;
+            text-decoration: none;
+        }
+    };
+    ul {
+        padding-left: 0px;
+        li {
+            ul {
+                padding-left: 20px;
+                li{
+                    list-style: none;
+                    padding-bottom: 10px;
+                    padding-top: 10px;
+                    border-bottom: 1px dotted #822626;
+                    a{
+                        color: #ffffff;
+                        text-decoration: none;
+                    }
+                    .song-title:hover{
+                        color: green;
+                    }
+                    .song-listen{
+                        color: #cccccc;
+                        font-size: 12px;
+                        opacity: .5;
+                        cursor: default;
+                    }
+                }
+            }
+        }
+    }
+
+}
+.mix-pagination{
+    nav {
+        ul {
+            li {
+                a {
+                    background: none;
+                    color: green;
+                    border: 1px dotted #822626;
+                    &:hover{
+                        background: none;
+                        color: green;
+                    }
+                };
+                span{
+                    background: none;
+                }
+            }
+            .disabled{
+                span{
+                    background: none;
+                    border: 1px dotted #822626;
+                    color: green;
+                    &:hover{
+                        background: none;
+                    }
+                }
+            }
+            .active{
+                span{
+                    color: #ffffff;
+                    background: #18698F;
+                    border: 1px dotted #822626;
+                }
+            }
+        }
+    }
+}
+
