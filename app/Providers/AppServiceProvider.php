@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
@@ -31,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         view()->composer('endUser.layouts.side-bar', 'App\Http\Composer\CategoryComposer');
-
+        Schema::defaultStringLength(191);
 //
 //        View::composer('*', function ($view) {
 //
