@@ -25,9 +25,17 @@ $(document).ready(function () {
             let $j_0 = $("#jp_audio_0");
             $j_0.attr('crossOrigin', 'anonymous')
         },
-        supplied: "mp3",
+        swfPath: "player/jplayer",
+        supplied: "m4a,mp3",
+        wmode: "window",
         useStateClassSkin: true,
+        volume:1.0,
+        loop: true,
+        autoBlur: false,
+        smoothPlayBar: true,
         keyEnabled: true,
+        remainingDuration: true,
+        toggleDuration: true,
         timeupdate: function(event) {
             audio.currentTime = event.jPlayer.status.currentTime
         },
