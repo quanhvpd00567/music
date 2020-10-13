@@ -24,7 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+         $schedule->command('command:clone_link')->dailyAt('1:00');
+         $schedule->command('command:clear_cache')->dailyAt('00:00');
+         $schedule->command('command:clear_cache')->dailyAt('1:00');
     }
 
     /**

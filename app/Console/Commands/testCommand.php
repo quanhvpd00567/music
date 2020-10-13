@@ -4,17 +4,16 @@ namespace App\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
-use Webpatser\Uuid\Uuid;
+use Illuminate\Support\Facades\Log;
 
-class ClearCacheCommand extends Command
+class testCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:clear_cache';
+    protected $signature = 'command:test';
 
     /**
      * The console command description.
@@ -40,8 +39,7 @@ class ClearCacheCommand extends Command
      */
     public function handle()
     {
-        $this->info('Start clear cache');
-        Artisan::call('cache:clear');
-        $this->info('End clear cache');
+        Log::error('EEEEE: '. Carbon::now()->toString());
+        return 0;
     }
 }
