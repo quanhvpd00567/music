@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Music;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
@@ -39,7 +40,7 @@ class testCommand extends Command
      */
     public function handle()
     {
-        Log::error('EEEEE: '. Carbon::now()->toString());
+        Music::query()->where('id', 1)->update(['name' => 'quan']);
         return 0;
     }
 }

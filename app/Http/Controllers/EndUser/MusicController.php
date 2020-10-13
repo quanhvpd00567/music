@@ -73,14 +73,14 @@ class MusicController extends BaseController
             $linkUpdate = Carbon::parse($music->link_updated_at)->format('Y-m-d');
             $currentDay = Carbon::now()->format('Y-m-d');
             $id = $music->id;
-//            dd($id);
+            $urlAudio = null;
             if (Cache::has("music_$id")) {
                 $urlAudio = Cache::get("music_$id");
             }else{
                 if (!is_null($music->link_updated_at) && !is_null($music->link_mp3)) {
                     if ($linkUpdate == $currentDay) {
-                        $urlUAudio = $music->link_mp3;
-                        Cache::put("music_$id", $urlUAudio, Carbon::now()->endOfDay());
+                        $urlAudio = $music->link_mp3;
+                        Cache::put("music_$id", $urlAudio, Carbon::now()->endOfDay());
                     }else {
                         $urlAudio = $this->cloneService->cloneMp3FormNhacDj($client, $music, $currentDay);
                     }
@@ -102,7 +102,6 @@ class MusicController extends BaseController
 
             return view('endUser.music.detail', compact('urlAudio', 'songs', 'songsNew', 'bg'));
         }catch (\Exception $exception) {
-            dd($exception->getMessage());
             return abort(404);
         }
 
