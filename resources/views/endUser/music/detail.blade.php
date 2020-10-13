@@ -68,39 +68,10 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div id="mix-player">
-                    <div id="jquery_jplayer_2"></div>
-                    <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
-                        <div class="jp-type-single">
-                            <div class="jp-gui jp-interface">
-                                <div class="jp-controls">
-                                    <a href="javascript:void(0)" id="mix-" title="Bài trước"><i class="fa fa-backward" aria-hidden="true"></i></a>
-                                    <a href="javascript:void(0)" id="mix-play" title="Chạy"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                    <a href="javascript:void(0)" id="mix-pause" title="Dừng"><i class="fa fa-pause" aria-hidden="true"></i></a>
-                                    <a href="javascript:void(0)" id="mix-" title="Bài tiếp"><i class="fa fa-forward" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="jp-progress">
-                                    <div class="jp-seek-bar">
-                                        <div class="jp-play-bar"></div>
-                                    </div>
-                                </div>
-                                <div class="jp-volume-controls">
-                                    <div style="background-image: url('end_user/images/mute.png')" id="mix-mute"></div>
-                                    <div style="background-image: url('end_user/images/volume.png')" id="mix-unmute"></div>
-                                    <div class="jp-volume-bar">
-                                        <div class="jp-volume-bar-value"></div>
-                                    </div>
-                                </div>
-                                <div class="jp-time-holder">
-                                    <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
-                                    <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
-                                    <div class="jp-toggles">
-                                        <button class="jp-repeat" role="button" tabindex="0">repeat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div style="background: #f1f3f4; height: 50px;">
+                    <audio autoplay="" id="audio_xx" crossorigin="anonymous" controls="" controlslist="nodownload" loop="" style="width:100%; height: 100%">
+                        <source src="{{$urlAudio}}" type="audio/mpeg">
+                    </audio>
                 </div>
                 <div class="song_list">
                     <ul>
@@ -171,10 +142,14 @@
 
 @section('scripts')
     <script>
-        let urlAudio = '{{$urlAudio}}'
+        
+
     </script>
-    <script type="text/javascript" src="end_user/js/jquery.jplayer.js"></script>
-    <script type="text/javascript" src="end_user/js/audio-animation.js"></script>
-    <link href="end_user/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css">
+{{--    <script>--}}
+{{--        let urlAudio = '{{$urlAudio}}'--}}
+{{--    </script>--}}
+{{--    <script type="text/javascript" src="end_user/js/jquery.jplayer.js"></script>--}}
+    <script type="text/javascript" src="end_user/js/audio-animation2.js"></script>
+{{--    <link href="end_user/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css">--}}
 
 @endsection

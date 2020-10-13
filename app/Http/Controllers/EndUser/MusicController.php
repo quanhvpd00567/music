@@ -53,60 +53,6 @@ class MusicController extends BaseController
         }
     }
 
-    public function musicDetail($slug)
-    {
-        try {
-            $uuid = Helper::decodeUrlSong($slug);
-
-            if (is_null($uuid) ) {
-                return abort(404);
-            }
-            $music = $this->musicService->getMusicDetailByUuid($uuid);
-
-            if (is_null($music) ){
-                return abort(404);
-            }
-
-            $categoryId = $music->masterCategory->category->id;
-
-            $client = new Client(HttpClient::create(['timeout' => 60]));
-            $linkUpdate = Carbon::parse($music->link_updated_at)->format('Y-m-d');
-            $currentDay = Carbon::now()->format('Y-m-d');
-            $id = $music->id;
-            $urlAudio = null;
-            if (Cache::has("music_$id")) {
-                $urlAudio = Cache::get("music_$id");
-            }else{
-                if (!is_null($music->link_updated_at) && !is_null($music->link_mp3)) {
-                    if ($linkUpdate == $currentDay) {
-                        $urlAudio = $music->link_mp3;
-                        Cache::put("music_$id", $urlAudio, Carbon::now()->endOfDay());
-                    }else {
-                        $urlAudio = $this->cloneService->cloneMp3FormNhacDj($client, $music, $currentDay);
-                    }
-                }else{
-                    $urlAudio = $this->cloneService->cloneMp3FormNhacDj($client, $music, $currentDay);
-                }
-            }
-
-            $songs = $this->musicService->getSongBySongIdAndCategory($categoryId, $music->id);
-
-            $params['page'] = 10;
-            $songsNew = $this->musicService->getAll($params);
-
-
-            $bg = $this->masterService->getAllImage()->pluck('url')->toArray();
-
-            $bg = $bg[random_int(0, count($bg) - 1)];
-
-
-            return view('endUser.music.detail', compact('urlAudio', 'songs', 'songsNew', 'bg'));
-        }catch (\Exception $exception) {
-            return abort(404);
-        }
-
-    }
-
     public function musicDetail2($slug)
     {
         try {
@@ -155,6 +101,60 @@ class MusicController extends BaseController
 
 
             return view('endUser.music.detail2', compact('urlAudio', 'songs', 'songsNew', 'bg'));
+        }catch (\Exception $exception) {
+            return abort(404);
+        }
+
+    }
+
+    public function musicDetail($slug)
+    {
+        try {
+            $uuid = Helper::decodeUrlSong($slug);
+
+            if (is_null($uuid) ) {
+                return abort(404);
+            }
+            $music = $this->musicService->getMusicDetailByUuid($uuid);
+
+            if (is_null($music) ){
+                return abort(404);
+            }
+
+            $categoryId = $music->masterCategory->category->id;
+
+            $client = new Client(HttpClient::create(['timeout' => 60]));
+            $linkUpdate = Carbon::parse($music->link_updated_at)->format('Y-m-d');
+            $currentDay = Carbon::now()->format('Y-m-d');
+            $id = $music->id;
+            $urlAudio = null;
+            if (Cache::has("music_$id")) {
+                $urlAudio = Cache::get("music_$id");
+            }else{
+                if (!is_null($music->link_updated_at) && !is_null($music->link_mp3)) {
+                    if ($linkUpdate == $currentDay) {
+                        $urlAudio = $music->link_mp3;
+                        Cache::put("music_$id", $urlAudio, Carbon::now()->endOfDay());
+                    }else {
+                        $urlAudio = $this->cloneService->cloneMp3FormNhacDj($client, $music, $currentDay);
+                    }
+                }else{
+                    $urlAudio = $this->cloneService->cloneMp3FormNhacDj($client, $music, $currentDay);
+                }
+            }
+
+            $songs = $this->musicService->getSongBySongIdAndCategory($categoryId, $music->id);
+
+            $params['page'] = 10;
+            $songsNew = $this->musicService->getAll($params);
+
+
+            $bg = $this->masterService->getAllImage()->pluck('url')->toArray();
+
+            $bg = $bg[random_int(0, count($bg) - 1)];
+
+
+            return view('endUser.music.detail', compact('urlAudio', 'songs', 'songsNew', 'bg'));
         }catch (\Exception $exception) {
             return abort(404);
         }

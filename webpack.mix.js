@@ -18,5 +18,6 @@ const mix = require('laravel-mix');
 mix.js('resources/js/ajaxSetup.js', 'public/assets/js')
 mix.js('resources/js/wa.js', 'public/end_user/js')
 mix.js('resources/js/audio-animation.js', 'public/end_user/js')
+mix.js('resources/js/audio-animation2.js', 'public/end_user/js')
     .sass('resources/css/common.scss', 'public/css')
     .sass('resources/css/audio.scss', 'public/end_user/css')

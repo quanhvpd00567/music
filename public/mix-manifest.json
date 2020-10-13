@@ -3,5 +3,6 @@
     "/css/common.css": "/css/common.css",
     "/end_user/css/audio.css": "/end_user/css/audio.css",
     "/end_user/js/audio-animation.js": "/end_user/js/audio-animation.js",
+    "/end_user/js/audio-animation2.js": "/end_user/js/audio-animation2.js",
     "/end_user/js/wa.js": "/end_user/js/wa.js"
 }

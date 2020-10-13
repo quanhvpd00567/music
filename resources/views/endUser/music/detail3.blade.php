@@ -68,10 +68,39 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div style="background: #f1f3f4; height: 50px;">
-                    <audio autoplay="" id="audio_xx" crossorigin="anonymous" controls="" controlslist="nodownload" loop="" style="width:100%; height: 100%">
-                        <source src="{{$urlAudio}}" type="audio/mpeg">
-                    </audio>
+                <div id="mix-player">
+                    <div id="jquery_jplayer_2"></div>
+                    <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+                        <div class="jp-type-single">
+                            <div class="jp-gui jp-interface">
+                                <div class="jp-controls">
+                                    <a href="javascript:void(0)" id="mix-" title="Bài trước"><i class="fa fa-backward" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)" id="mix-play" title="Chạy"><i class="fa fa-play" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)" id="mix-pause" title="Dừng"><i class="fa fa-pause" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)" id="mix-" title="Bài tiếp"><i class="fa fa-forward" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="jp-progress">
+                                    <div class="jp-seek-bar">
+                                        <div class="jp-play-bar"></div>
+                                    </div>
+                                </div>
+                                <div class="jp-volume-controls">
+                                    <div style="background-image: url('end_user/images/mute.png')" id="mix-mute"></div>
+                                    <div style="background-image: url('end_user/images/volume.png')" id="mix-unmute"></div>
+                                    <div class="jp-volume-bar">
+                                        <div class="jp-volume-bar-value"></div>
+                                    </div>
+                                </div>
+                                <div class="jp-time-holder">
+                                    <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+                                    <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+                                    <div class="jp-toggles">
+                                        <button class="jp-repeat" role="button" tabindex="0">repeat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="song_list">
                     <ul>
@@ -142,95 +171,10 @@
 
 @section('scripts')
     <script>
-        var eAudio = document.getElementById("audio_xx");
-        let $element = $('#canvas')
-
-        eAudio.onplay = function() {
-            start(eAudio)
-            $element.addClass('addAnimation')
-        };
-        eAudio.onpause = function () {
-            $element.removeClass('addAnimation')
-        }
-
-
-        eAudio.addEventListener('volumechange',function(e){
-            if(this.muted) {
-                $element.removeClass('addAnimation')
-            }
-        }, false);
-
-        window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
-
-        function start (audio) {
-            try  {
-                let ctx = new AudioContext();
-                let analyser = ctx.createAnalyser();
-                let audioSrc = ctx.createMediaElementSource(audio);
-                audioSrc.connect(analyser);
-                analyser.connect(ctx.destination);
-                let canvas = document.getElementById('canvas')
-
-                let cwidth = canvas.width
-                let cheight = canvas.height
-                let meterWidth = 15
-                let capHeight = 1
-                let capStyle = '#AD1717'
-                let meterNum = 800 / (10 + 1)
-                let capYPositionArray = []
-                ctx = canvas.getContext('2d')
-
-                let gradient = ctx.createLinearGradient(200, 100, 300, 500);
-                gradient.addColorStop(1, '#fff');
-                gradient.addColorStop(0.5, '#fff');
-                gradient.addColorStop(0, '#fff');
-
-                // loop
-                function renderFrame() {
-                    let array = new Uint8Array(analyser.frequencyBinCount);
-                    analyser.getByteFrequencyData(array);
-                    let step = Math.round(array.length / meterNum)
-                    ctx.clearRect(0, 0, cwidth, cheight);
-
-                    for (let i = 0; i < meterNum; i++) {
-                        let value = array[i * step] ;
-                        if (capYPositionArray.length < Math.round(meterNum)) {
-                            capYPositionArray.push(value);
-                        }
-                        ctx.fillStyle = capStyle;
-
-                        if (value < capYPositionArray[i]) {
-                            ctx.fillRect(i * 25, cheight - (--capYPositionArray[i]), meterWidth, capHeight);
-                        } else {
-                            ctx.fillRect(i * 25, cheight - value, meterWidth, capHeight);
-                            capYPositionArray[i] = value;
-                        }
-                        ctx.fillStyle = gradient;
-
-                        ctx.fillRect(i * 25, cheight - value + capHeight, meterWidth, cheight)
-
-                        ctx.font = '28px serif';
-                        ctx.fillStyle = 'red'
-                        ctx.fillText('vietmix.vn', cwidth/2 - 40, 50);
-                    }
-
-                    requestAnimationFrame(renderFrame);
-                }
-
-                renderFrame();
-            } catch (e) {
-
-            }
-        }
-
-
-
+        let urlAudio = '{{$urlAudio}}'
     </script>
-{{--    <script>--}}
-{{--        let urlAudio = '{{$urlAudio}}'--}}
-{{--    </script>--}}
-{{--    <script type="text/javascript" src="end_user/js/jquery.jplayer.js"></script>--}}
-{{--    <script type="text/javascript" src="end_user/js/audio-animation.js"></script>--}}
-{{--    <link href="end_user/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css">--}}
+    <script type="text/javascript" src="end_user/js/jquery.jplayer.js"></script>
+    <script type="text/javascript" src="end_user/js/audio-animation.js"></script>
+    <link href="end_user/css/jplayer.blue.monday.min.css" rel="stylesheet" type="text/css">
 
 @endsection
