@@ -19,9 +19,9 @@
             animation-iteration-count: infinite;
         }
 
-        #mix-player{
-            background-image: url('end_user/images/bg-play.png')
-        }
+        /*#mix-player{*/
+        /*    background-image: url('end_user/images/bg-play.png')*/
+        /*}*/
 
         @keyframes shake {
             0% {

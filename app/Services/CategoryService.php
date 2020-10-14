@@ -38,11 +38,10 @@ class CategoryService
         if (isset($params['id'])){
             $query = $query->where('categories.id', '=' , $params['id']);
         }
-
-//        dd();
-
         return $query->get();
     }
+
+
 
 
 

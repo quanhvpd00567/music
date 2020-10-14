@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class MasterCategory extends Model
 {
+    protected $table = 'master_categories';
+
+    public $timestamps = true;
 
     public function masterSite()
     {

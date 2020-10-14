@@ -31,6 +31,13 @@
                 </a>
                 <span class="icon-thumbnail "><i class="pg-icon">social</i></span>
             </li>
+
+            <li class="">
+                <a href="{{route('admin.master.images.list')}}">
+                    <span class="title">Image</span>
+                </a>
+                <span class="icon-thumbnail "><i class="pg-icon">grid</i></span>
+            </li>
             <li class="">
                 <a href="javascript:void(0)">
                     <span class="title">File</span>

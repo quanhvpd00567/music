@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MasterCategoryRequest;
 use App\Models\Image;
+use App\Models\MasterCategory;
+use App\Services\CategoryService;
 use App\Services\MasterService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -12,10 +15,12 @@ use Illuminate\Support\Facades\Validator;
 class MasterController extends Controller
 {
     protected $masterService;
+    protected $categoryService;
 
-    public function __construct(MasterService $masterService)
+    public function __construct(MasterService $masterService, CategoryService $categoryService)
     {
         $this->masterService = $masterService;
+        $this->categoryService = $categoryService;
     }
 
     public function index(Request $request)
@@ -34,10 +39,78 @@ class MasterController extends Controller
         ];
         $categories = $this->masterService->getListMasterCategory($params);
         $data = [
-            'categories' => $categories
+            'categories' => $categories,
+            'idWebsite' => $idWebsite
         ];
-        return view('admin.master.category', $data);
+        return view('admin.master.categories.category', $data);
     }
+
+    public function createMasterCategory($idWebsite)
+    {
+        $data = [
+            'listCategories' => $this->categoryService->getList(),
+            'idWebsite' => $idWebsite,
+            'category' => new MasterCategory()
+        ];
+        return view('admin.master.categories.create', $data);
+    }
+
+    public function postMasterCategory($idWebsite, MasterCategoryRequest $request)
+    {
+        $params = $request->only([
+            'category_clone',
+            'category_id',
+            'is_run_batch'
+        ]);
+
+        $params['is_run_batch'] = isset($params['is_run_batch']) ? 0 : 1;
+        $params['master_site_id'] = $idWebsite;
+        $params['slug'] = $params['category_clone'];
+
+        $isSave = $this->masterService->createMasterCategory($params);
+        if ($isSave) {
+            return redirect()
+                ->route('admin.master.category_list', ['id' => $idWebsite])
+                ->with('create_success', 'Create new a category clone successfully!');;
+        }
+        return redirect()
+            ->route('admin.master.category_list',  ['id' => $idWebsite])
+            ->with('create_failed', 'Create new a category clone failed!');
+    }
+
+    public function editMasterCategory($idSite, $idCategory)
+    {
+        $data = [
+            'listCategories' => $this->categoryService->getList(),
+            'idWebsite' => $idSite,
+            'category' => $this->masterService->getMasterCategoryDetail($idCategory)
+        ];
+        return view('admin.master.categories.edit', $data);
+    }
+
+    public function updateMasterCategory($idWebsite, $idCategory, MasterCategoryRequest $request)
+    {
+        $params = $request->only([
+            'category_clone',
+            'category_id',
+            'is_run_batch'
+        ]);
+
+        $params['is_run_batch'] = isset($params['is_run_batch']) ? 0 : 1;
+        $params['master_site_id'] = $idWebsite;
+        $params['slug'] = $params['category_clone'];
+
+        $isSave = $this->masterService->updateMasterCategory($params, $idCategory);
+        if ($isSave) {
+            return redirect()
+                ->route('admin.master.category_list', ['id' => $idWebsite])
+                ->with('create_success', 'Update category clone successfully!');;
+        }
+        return redirect()
+            ->route('admin.master.category_list',  ['id' => $idWebsite])
+            ->with('create_failed', 'Update category clone failed!');
+    }
+
 
     public function changeBatch(Request $request)
     {

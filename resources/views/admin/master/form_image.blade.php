@@ -5,9 +5,6 @@
     }
 ?>
 @extends('admin.layouts.application')
-
-
-
 @section('content')
     <div data-pages="parallax">
         <div class=" container-fluid container-fixed-lg sm-p-l-0 sm-p-r-0">

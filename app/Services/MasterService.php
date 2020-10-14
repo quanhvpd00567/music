@@ -19,6 +19,11 @@ class MasterService
 
     protected $_imageModel;
 
+    public function _modelMasterCategory()
+    {
+        return MasterCategory::class;
+    }
+
     public function __construct(MasterSite $masterSite, MasterCategory $category, Image $image)
     {
         $this->_masterSiteModel = $masterSite;
@@ -51,6 +56,11 @@ class MasterService
             $category = $category->where('master_site_id', $params['idSite']);
         }
         return $category->get();
+    }
+
+    public function getMasterCategoryDetail($id)
+    {
+       return $this->_masterCategoryModel->where('id', $id)->first();
     }
 
     public function updateSiteUseBatchClone($params)
@@ -116,6 +126,29 @@ class MasterService
             ]);
             return true;
         } catch (\Exception $exception){
+            return false;
+        }
+    }
+
+
+    public function createMasterCategory($params)
+    {
+        try {
+            MasterCategory::insert($params);
+            return true;
+        } catch (\Exception $exception) {
+            Log::error('CREATE MASTER CATEGORY: '.$exception );
+            return false;
+        }
+    }
+
+    public function updateMasterCategory($params, $id)
+    {
+        try {
+            $this->_masterCategoryModel->where('id', $id)->update($params);
+            return true;
+        } catch (\Exception $exception) {
+            Log::error('UPDATE MASTER CATEGORY: '.$exception );
             return false;
         }
     }

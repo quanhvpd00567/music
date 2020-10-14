@@ -1,14 +1,14 @@
 @extends('admin.layouts.application')
 
 @section('content')
-
     <div data-pages="parallax">
         <div class=" container-fluid container-fixed-lg sm-p-l-0 sm-p-r-0">
             <div class="inner">
                 <div class="row" style="padding-left: 10px">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Website clone</li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.master.site_list')}}">Sites</a></li>
+                        <li class="breadcrumb-item active">Categories</li>
                     </ol>
                 </div>
             </div>
@@ -19,50 +19,52 @@
             <div class="card card-transparent">
                 <div class="card-body no-padding">
                     <div id="card-advance" class="card card-default">
+                        <div class="card-header">
+                            <a href="{{route('admin.master.category.add', ['id' => $idWebsite])}}"
+                               class="btn btn-primary">
+                                Create new a category
+                            </a>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-hover table-condensed" id="condensedTable">
                                     <thead>
                                     <tr>
                                         <th style="width:5%">No.</th>
-                                        <th style="width:15%">
-                                            Name
-                                            <i class="fa fa-question-circle-o text-danger"
-                                               data-toggle="tooltip"
-                                               data-placement="top"
-                                               title="Click name redirect to category list">
-                                            </i>
-                                        </th>
-                                        <th>Link Site</th>
+                                        <th style="width:15%">Site name</th>
+                                        <th>Category clone</th>
+                                        <th>Category</th>
                                         <th>Status</th>
                                         <th>Run batch</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if(count($sites) == 0)
+                                    @if(count($categories) == 0)
                                         <tr>
                                             <td colspan="9" class="text-center">
                                                 <h3>Data not found</h3>
                                             </td>
                                         </tr>
                                     @else
-                                        @foreach($sites as $key => $site)
+                                        @foreach($categories as $key => $category)
                                             <tr>
                                                 <td class="v-align-middle semi-bold">{{$key + 1}}</td>
                                                 <td class="v-align-middle">
-                                                    <a href="{{ route('admin.master.category_list', ['id' => $site->id] )}}">
-                                                        {{$site->name}}
-                                                    </a>
-                                                    <span class="badge badge-success">{{count($site->masterCategories)}}</span>
+                                                    {{$category->masterSite->name}}
+                                                    {{--                                    <span class="badge badge-success">{{count($site->masterCategories)}}</span>--}}
+                                                </td>
+                                                <td>
+                                                    {{$category->category->name}}
                                                 </td>
                                                 <td class="v-align-middle">
-                                                    <a href="{{$site->website}}" target="_blank" class="text-link">
-                                                        {{$site->website}}
+                                                    <a href="{{$category->masterSite->website . '/'. $category->category_clone}}"
+                                                       target="_blank" class="text-link">
+                                                        {{$category->category_clone}}
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    @if($site->status == \App\Models\MasterSite::$status['clone'])
+                                                    @if($category->status == \App\Models\MasterSite::$status['clone'])
                                                         <span class="label label-success">Active</span>
                                                     @else
                                                         <span class="label label-important">Not Active</span>
@@ -71,18 +73,14 @@
                                                 <td>
                                                     <div class="form-check form-check-inline switch">
                                                         <input type="checkbox" class="remix-run-batch"
-                                                               id="{{'pagesSwitch' . $site->id}}"
-                                                               data-id="{{$site->id}}"
-                                                            {{$site->is_run_batch == \App\Models\MasterSite::$batch['run'] ? 'checked' : ''}}>
-                                                        <label for="{{'pagesSwitch' . $site->id}}">
-                                                            {{$site->is_run_batch == \App\Models\MasterSite::$batch['run'] ? 'Running' : 'Stopped' }}
+                                                               id="{{'pagesSwitch' . $category->id}}" {{$category->is_run_batch == \App\Models\MasterSite::$batch['run'] ? 'checked' : ''}}>
+                                                        <label for="{{'pagesSwitch' . $category->id}}">
+                                                            {{$category->is_run_batch == \App\Models\MasterSite::$batch['run'] ? 'Running' : 'Stopped' }}
                                                         </label>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a href="">
-                                                        <i class="fa fa-edit">  Edit</i>
-                                                    </a>
+                                                    <a href="{{route('admin.master.category.edit', ['id' => $idWebsite, 'idCategory' => $category->id] )}}" >Edit</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -101,48 +99,32 @@
 @endsection
 @section('scripts')
     <script>
+        $(function () {
+            @if(session('create_success'))
+                let options = {
+                    'message': '{{session('create_success')}}',
+                    'position': 'top-right',
+                    'type': 'success',
+                }
+                showNotification(options)
+            @endif
 
+            @if(session('create_failed'))
+                let options = {
+                    'message': '{{session('create_failed')}}',
+                    'position': 'top-right',
+                    'type': 'error',
+                }
+                showNotification(options)
+            @endif
+        })
         $(document).on('change', '.remix-run-batch', function () {
-            let id = $(this).attr('data-id');
-            let returnVal = confirm("Are you sure?");
+            var returnVal = confirm("Are you sure?");
             if ($(this).is(":checked")) {
-                if (returnVal) {
-                    onChangeUsingBatch(id, true)
-                } else {
-                    $(this).prop('checked', false)
-                    return false;
-                }
+                $(this).prop("checked", returnVal);
             } else {
-                if (returnVal) {
-                    onChangeUsingBatch(id, false)
-                } else {
-                    $(this).prop('checked', true)
-                    return false;
-                }
+                $(this).prop("checked", !returnVal);
             }
         })
-
-        function onChangeUsingBatch(id, isUseBatch) {
-            $.ajax({
-                method: 'POST',
-                url: '{{route('admin.master.change_status_batch')}}',
-                data: {
-                    id: id,
-                    is_use_batch: isUseBatch,
-                    _token: '{{ csrf_token() }}',
-                },
-                success: function (data) {
-                    $('#pagesSwitch' + id).prop("checked", isUseBatch);
-                    let options = {
-                        'message': data.message,
-                        'position': 'top-right',
-                        'type': 'success',
-                    }
-                    showNotification(options)
-                    location.reload()
-                }
-            })
-        }
-
     </script>
 @endsection
