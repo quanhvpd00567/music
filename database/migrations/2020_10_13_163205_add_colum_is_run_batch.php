@@ -13,12 +13,12 @@ class AddColumIsRunBatch extends Migration
      */
     public function up()
     {
-        Schema::table('master_sites', function (Blueprint $table) {
-            $table->integer('is_run_batch')->default(0);
-        });
-        Schema::table('master_categories', function (Blueprint $table) {
-            $table->integer('is_run_batch')->default(0);
-        });
+//        Schema::table('master_sites', function (Blueprint $table) {
+//            $table->integer('is_run_batch')->default(0);
+//        });
+//        Schema::table('master_categories', function (Blueprint $table) {
+//            $table->integer('is_run_batch')->default(0);
+//        });
     }
 
     /**

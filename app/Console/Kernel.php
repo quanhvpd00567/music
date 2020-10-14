@@ -26,7 +26,8 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('command:clone_link')->dailyAt('1:00');
          $schedule->command('command:clear_cache')->dailyAt('00:00');
-         $schedule->command('command:clear_cache')->dailyAt('1:00');
+//         $schedule->command('command:clear_cache')->dailyAt('1:00');
+         $schedule->command('command:clear_cache')->everyMinute();
 //         $schedule->command('command:test')->everyMinute();
     }
 
