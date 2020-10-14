@@ -14,4 +14,10 @@ Route::group([], function () {
         Route::post('image/{id}', [Admin\MasterController::class, 'updateImages'])->name('images.update');
     });
     Route::get('music', [Admin\MusicController::class, 'getAll'])->name('admin.music.all');
+
 });
+
+Route::get('login', [Admin\AuthController::class, 'login'])->name('admin.login');
+
+
+

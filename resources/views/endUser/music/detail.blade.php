@@ -1,7 +1,6 @@
 @extends('endUser.layouts.application')
 
-<?php
-?>
+@section('title') Vietx Mix @endsection
 
 @section('styles')
     <style>
