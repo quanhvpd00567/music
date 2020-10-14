@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div style="background: #f1f3f4; height: 50px;">
-                    <audio autoplay="" id="audio_xx" crossorigin="anonymous" controls="" controlslist="nodownload" loop="" style="width:100%; height: 100%">
+                    <audio autoplay="" id="audio_xx" crossorigin="anonymous" controls="" style="width:100%; height: 100%">
                         <source src="{{$urlAudio}}" type="audio/mpeg">
                     </audio>
                 </div>
@@ -142,7 +142,7 @@
 
 @section('scripts')
     <script>
-        
+
 
     </script>
 {{--    <script>--}}
