@@ -24,11 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('command:clone_link')->dailyAt('1:00');
-         $schedule->command('command:clear_cache')->dailyAt('00:00');
-//         $schedule->command('command:clear_cache')->dailyAt('1:00');
-         $schedule->command('command:clear_cache')->everyMinute();
-//         $schedule->command('command:test')->everyMinute();
+         $schedule->command('command:clone_link')->dailyAt('1:00')->onOneServer();
+         $schedule->command('command:clear_cache')->dailyAt('00:00')->onOneServer();
+//         $schedule->command('command:clear_cache')->dailyAt('1:00')->onOneServer();
+         $schedule->command('command:clone_link')->everyMinute()->onOneServer();
+         $schedule->command('command:xxxx')->everyMinute()->onOneServer();
     }
 
     /**
