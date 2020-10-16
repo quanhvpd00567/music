@@ -69,7 +69,7 @@
                 </div>
                 <div style="background: #f1f3f4; height: 50px;">
                     <audio autoplay="" id="audio_xx" crossorigin="anonymous" controls="" style="width:100%; height: 100%">
-                        <source src="{{$urlAudio}}" type="audio/mpeg">
+                        <source src="https://nhacdj-data.nyc3.digitaloceanspaces.com/music/NhacDJ.vn_5f7b03abcce8f.mp3?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=F2PASBFOVFAKT65YUYA3%2F20201016%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20201016T025938Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=3351b4a2074436e1affffe72e8a91c6d44cc00a3b11af5dcd2d27bbce402f9dc"" type="audio/mpeg">
                     </audio>
                 </div>
                 <div class="song_list">
