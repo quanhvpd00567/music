@@ -15,18 +15,25 @@ use Illuminate\Support\Facades\View;
 |
 */
 
+    Route::get('/test', [EndUser\MusicController::class, 'index']);
+    Route::prefix('music')->middleware('cors')->group(function () {
+        Route::get('detail/{slug}.htm', [EndUser\MusicController::class, 'musicDetail'])->name('song.detail');
+    //    Route::get('detail2/{slug}.htm', [EndUser\MusicController::class, 'musicDetail2'])->name('song.detail2');
+    });
+Route::middleware('basic_auth')->group(function () {
 
-Route::get('/', [EndUser\MusicController::class, 'index']);
 
+    Route::prefix('category')->group(function () {
+        Route::get('{slug}.htm', [EndUser\CategoryController::class, 'categoryDetail'])->name('category.detail');
+    });
 
-Route::prefix('music')->middleware('cors')->group(function () {
-    Route::get('detail/{slug}.htm', [EndUser\MusicController::class, 'musicDetail'])->name('song.detail');
-//    Route::get('detail2/{slug}.htm', [EndUser\MusicController::class, 'musicDetail2'])->name('song.detail2');
+    View::composer(['music/*'], function ($view) {
+        dd(111);
+    });
+
 });
-Route::prefix('category')->group(function () {
-    Route::get('{slug}.htm', [EndUser\CategoryController::class, 'categoryDetail'])->name('category.detail');
+
+Route::get('/', function () {
+   return \view('coming_soon');
 });
 
-View::composer(['music/*'], function ($view) {
-    dd(111);
-});
