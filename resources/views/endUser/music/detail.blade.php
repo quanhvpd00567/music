@@ -69,7 +69,7 @@
                 </div>
                 <div style="background: #f1f3f4; height: 50px;">
                     <audio autoplay="" id="audio_xx" crossorigin="anonymous" controls="" style="width:100%; height: 100%">
-                        <source src="https://ewr1.vultrobjects.com/hoangquan94/vietmix/dau-boi-vi-ai-remix.mp3" type="audio/mpeg">
+                        <source src="{{$urlAudio}}" type="audio/mpeg">
                     </audio>
                 </div>
                 <div class="song_list">
