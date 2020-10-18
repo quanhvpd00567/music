@@ -203,11 +203,11 @@ class MusicController extends BaseController
 //            $song = Song::query()->where('id', 4)->first();
 //            dd($song->file_name);
             $file = "vietmix/vietmix_36165302_a01a_4cb6_b869_3855ad6ea672.mp3";
-//            $urlAudio = Storage::disk('vietmix')->temporaryUrl(
-//                $file, now()->addMinutes(5)
-//            );
+            $urlAudio = Storage::disk('vietmix')->temporaryUrl(
+                $file, now()->addMinutes(5)
+            );
 
-            $urlAudio = Storage::disk('vietmix')->url( $file);
+//            $urlAudio = Storage::disk('vietmix')->url( $file);
 //            dd($urlAudio);
 
             $songs = $this->musicService->getSongBySongIdAndCategory($categoryId, $music->id);
