@@ -27,6 +27,12 @@ Route::group(['middleware' => 'checkAdminLogin'], function () {
         });
 
     });
+
+    Route::prefix('songs')->name('song.')->group(function () {
+        Route::get('add', [Admin\SongController::class, 'add'])->name('add');
+        Route::post('create', [Admin\SongController::class, 'create'])->name('create');
+    });
+
     Route::get('music', [Admin\MusicController::class, 'getAll'])->name('admin.music.all');
 
     Route::get('logout', [Admin\AuthController::class, 'logOut'])->name('admin.logout');

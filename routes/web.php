@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\View;
 Route::get('/', [EndUser\MusicController::class, 'index']);
 
 
-Route::prefix('music')->group(function () {
+Route::prefix('music')->middleware('cors')->group(function () {
     Route::get('detail/{slug}.htm', [EndUser\MusicController::class, 'musicDetail'])->name('song.detail');
-    Route::get('detail2/{slug}.htm', [EndUser\MusicController::class, 'musicDetail2'])->name('song.detail2');
+//    Route::get('detail2/{slug}.htm', [EndUser\MusicController::class, 'musicDetail2'])->name('song.detail2');
 });
 Route::prefix('category')->group(function () {
     Route::get('{slug}.htm', [EndUser\CategoryController::class, 'categoryDetail'])->name('category.detail');

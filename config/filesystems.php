@@ -65,6 +65,15 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'vietmix' => [
+            'driver' => 's3',
+            'key' => 'FAG1RA7Y2G37KDLK17RO',
+            'secret' => 'fmIsKHTzQtmwA4Xr0GXsL9v8hOlVRoA7PEE635ps',
+            'region' => 's3',
+            'bucket' => 'hoangquan94',
+            'url' => 'ewr1.vultrobjects.com',
+            'endpoint' => 'https://ewr1.vultrobjects.com'
+        ],
     ],
 
     /*
