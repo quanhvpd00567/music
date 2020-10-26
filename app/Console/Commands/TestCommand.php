@@ -47,7 +47,6 @@ class TestCommand extends Command
 //        $url = Storage::disk('vietmix')->temporaryUrl(
 //            'uploads/h4yjnykpVnvcAy7YDYwHO6CCp5glynl4AIz51hZL.txt', now()->addMinutes(5)
 //        );
-        dd($url);
 
 //        Storage
         return 0;

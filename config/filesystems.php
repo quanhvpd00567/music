@@ -67,12 +67,12 @@ return [
 
         'vietmix' => [
             'driver' => 's3',
-            'key' => 'FAG1RA7Y2G37KDLK17RO',
-            'secret' => 'fmIsKHTzQtmwA4Xr0GXsL9v8hOlVRoA7PEE635ps',
-            'region' => 's3',
-            'bucket' => 'hoangquan94',
-            'url' => 'ewr1.vultrobjects.com',
-            'endpoint' => 'https://ewr1.vultrobjects.com'
+            'key' => 'UP2UQPISVMARUXVN7H4Q',
+            'secret' => 'UePgZLp/TKxVLy51QGfs/6KjnYhVvumfopr0MK+OzDg',
+            'region' => 'sfo2',
+            'bucket' => 'vietmix',
+//            'url' => 'https://vietmix.sfo2.digitaloceanspaces.com',
+            'endpoint' => 'https://sfo2.digitaloceanspaces.com'
         ],
     ],
 

@@ -198,23 +198,16 @@ class MusicController extends BaseController
 //                }
 //            }
 
-//            $urlAudio =ß
-
-//            $song = Song::query()->where('id', 4)->first();
-//            dd($song->file_name);
-            $file = "vietmix/vietmix_36165302_a01a_4cb6_b869_3855ad6ea672.mp3";
+            $file = "vietmix/NhacDJ.vn_5f844c0b489b7.mp3";
             $urlAudio = Storage::disk('vietmix')->temporaryUrl(
                 $file, now()->addMinutes(5)
             );
 
-//            $urlAudio = Storage::disk('vietmix')->url( $file);
-//            dd($urlAudio);
 
             $songs = $this->musicService->getSongBySongIdAndCategory($categoryId, $music->id);
 
             $params['page'] = 10;
             $songsNew = $this->musicService->getAll($params);
-
 
             $bg = $this->masterService->getAllImage()->pluck('url')->toArray();
 
