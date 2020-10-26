@@ -72,7 +72,7 @@ return [
             'region' => 'sfo2',
             'bucket' => 'vietmix',
 //            'url' => 'https://vietmix.sfo2.digitaloceanspaces.com',
-            'endpoint' => 'https://sfo2.digitaloceanspaces.com'
+            'endpoint' => 'https://audio.vietmix.vn'
         ],
     ],
 
