@@ -26,8 +26,8 @@
                 <span class="icon-thumbnail "><i class="pg-icon">inbox</i></span>
             </li>
             <li class="">
-                <a href="{{route('admin.master.site_list')}}">
-                    <span class="title">Website clone</span>
+                <a href="{{route('song.list')}}">
+                    <span class="title">Songs</span>
                 </a>
                 <span class="icon-thumbnail "><i class="pg-icon">social</i></span>
             </li>

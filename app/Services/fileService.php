@@ -11,22 +11,28 @@ class fileService
 {
     protected $storage;
     const  FOLDER = 'vietmix';
+    const  IMAGE = 'images';
     public function __construct()
     {
 //        $this->storage = new Storage();
     }
 
-    public function checkExists()
-    {
-//        Storage::disk('vietmix')->
-    }
-
-    public function updateFile($file, $name)
+    public function updateImage($file, $name)
     {
         try {
-            return Storage::disk('vietmix')->putFileAs(self::FOLDER, $file, $name);
+            return Storage::disk('vietmix')->putFileAs(self::IMAGE, $file, $name, 'public');
         } catch (\Exception $exception) {
             Log::error('Upload file failed: '. $exception);
+            return false;
+        }
+    }
+
+    public function deleteImage($file)
+    {
+        try {
+            return Storage::disk('vietmix')->delete($file);
+        } catch (\Exception $exception) {
+            Log::error('Delete file failed: '. $exception);
             return false;
         }
     }

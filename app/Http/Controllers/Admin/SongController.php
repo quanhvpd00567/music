@@ -9,6 +9,8 @@ use App\Services\CategoryService;
 use App\Services\fileService;
 use App\Services\SongService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Webpatser\Uuid\Uuid;
 
@@ -26,6 +28,20 @@ class SongController extends Controller
         $this->songService = $songService;
     }
 
+    public function index(Request $request)
+    {
+        $params = $request->only([
+            'title', 'category'
+        ]);
+        $currentPage = isset($request['page']) ? $request['page'] : 1;
+        $page = 15;
+        $index = ($currentPage * $page) - $page + 1;
+        $params['page'] = $page;
+        $songs = $this->songService->getList($params);
+        $categories = [0 => 'All'];
+        $categories = array_merge($categories, $this->categoryService->getList());
+        return view('admin.song.index', compact('songs', 'index', 'categories', 'params'));
+    }
 
     public function add()
     {
@@ -40,30 +56,75 @@ class SongController extends Controller
     {
         try {
             $params = $request->only([
-                'title', 'category_id', 'liked', 'view', 'author'
+                'title', 'category_id', 'liked', 'view', 'author', 'file_name'
             ]);
-
-            if ($request->hasFile('file')) {
-                $file = $request->file;
+            if ($request->hasFile('image')) {
+                $file = $request->image;
                 $extension = $file->getClientOriginalExtension();
-                $slugFile = Str::slug($request->title);
+                $slugFile = Str::slug($params['title']);
                 $uuid = Uuid::generate(4)->string;
-                $uuid = 'vietmix_' . str_replace('-', '_', $uuid);
-                $pathFile = $this->fileService->updateFile($file, "$uuid.$extension");
+                $fileImage = $slugFile . '-' . $uuid;
+                $pathFile = $this->fileService->updateImage($file, "$fileImage.$extension");
                 if ($pathFile != false) {
-                    $params['path'] = $pathFile;
+                    $params['image'] = 'https://www.vietmix.vn/'. $pathFile;
                     $params['slug'] = $slugFile;
-                    $this->songService->createSong($params);
-                    return abort(500);
+                    $isSave = $this->songService->createSong($params);
+                    if ($isSave) {
+                        return \redirect()->route('song.list');
+                    }
                 }
                 return abort(401);
             }
         }catch (\Exception $exception) {
-            dd($exception);
+            return abort(401);
         }
+    }
 
-//
+    public function edit($id)
+    {
+        $song = $this->songService->getDetail($id);
+        $data = [
+            'song' => $song,
+            'listCategories' => $this->categoryService->getList()
+        ];
+        return view('admin.song.edit', $data);
+    }
 
-//        dd($request);
+    public function update($id, SongRequest $request)
+    {
+        $paramsUpdate = $request->only([
+            'title', 'author', 'view', 'liked', 'file_name', 'category_id'
+        ]);
+
+        $song = $this->songService->getDetail($id);
+
+        $slugFile = Str::slug($request->title);
+
+        if ($request->hasFile('image')) {
+            $validator = Validator::make($request->all(), [
+                'image' => 'required|image|mimes:jpg,png,jpeg',
+            ]);
+            if ($validator->fails()) {
+                return Redirect::back()->withErrors($validator)->withInput();
+            }
+            $file = $request->image;
+            $extension = $file->getClientOriginalExtension();
+            $uuid = Uuid::generate(4)->string;
+            $fileImage = $slugFile . '-' . $uuid;
+            $pathImage = str_replace('https://www.vietmix.vn/', '', $song->image);
+            $this->fileService->deleteImage($pathImage);
+            $pathFile = $this->fileService->updateImage($file, "$fileImage.$extension");
+            if ($pathFile != false) {
+                $pathFileFull = 'https://www.vietmix.vn/'. $pathFile;
+                $paramsUpdate['image'] = $pathFileFull;
+            }
+        }else{
+            $paramsUpdate['image'] = $song->image;
+        }
+        $paramsUpdate['slug'] = $slugFile;
+        $isSave = $this->songService->update($paramsUpdate, $id);
+        if ($isSave) {
+            return \redirect()->route('song.list');
+        }
     }
 }

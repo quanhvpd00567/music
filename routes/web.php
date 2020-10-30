@@ -15,11 +15,15 @@ use Illuminate\Support\Facades\View;
 |
 */
 
-    Route::get('/test', [EndUser\MusicController::class, 'index']);
-    Route::prefix('music')->middleware('cors')->group(function () {
-        Route::get('detail/{slug}.htm', [EndUser\MusicController::class, 'musicDetail'])->name('song.detail');
-    //    Route::get('detail2/{slug}.htm', [EndUser\MusicController::class, 'musicDetail2'])->name('song.detail2');
-    });
+Route::get('xxxx', function () {
+   return 111;
+});
+
+Route::get('/test', [EndUser\MusicController::class, 'index']);
+Route::get('detail/{slug}.html', [EndUser\MusicController::class, 'musicDetail'])->name('song.detailx');
+Route::prefix('music')->group(function () {
+    Route::get('detail/{slug}.html', [EndUser\MusicController::class, 'musicDetail'])->name('song.detail');
+});
 Route::middleware('basic_auth')->group(function () {
 
 

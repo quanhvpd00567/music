@@ -12,4 +12,8 @@ class Category extends Model
     public function masterCategories() {
         return $this->hasMany('App\Models\MasterCategory', 'category_id', 'id');
     }
+
+    public function songs() {
+        return $this->hasMany(Song::class);
+    }
 }

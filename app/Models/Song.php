@@ -11,4 +11,9 @@ class Song extends Model
     protected $table = 'songs';
 
     public $timestamps = true;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

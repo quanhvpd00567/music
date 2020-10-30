@@ -1,7 +1,19 @@
+<?php
+use Illuminate\Support\Facades\URL;
+?>
 @extends('endUser.layouts.application')
 
-@section('title') Vietx Mix @endsection
-
+@section('title') {{$song->title}}] @endsection
+@section('metas')
+    <meta property="og:url"                content="{{URL::current()}}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="{{$song->title}}" />
+    <meta property="og:description"        content="{{$song->title}}" />
+    <meta property="og:image"              content="{{$song->image}}" />
+    <meta name="description" content="{{$song->title}}">
+    <meta name="keywords" content="{{$song->title}}">
+    <meta name="author" content="{{$song->author}}">
+@endsection
 @section('styles')
     <style>
         canvas{
@@ -68,40 +80,40 @@
                     </div>
                 </div>
                 <div style="background: #f1f3f4; height: 50px;">
-                    <audio autoplay="" id="audio_xx" crossorigin="anonymous" controls="" style="width:100%; height: 100%">
+                    <audio autoplay="" id="audio_xx" loop controlsList="nodownload" crossorigin="anonymous" controls="" style="width:100%; height: 100%">
                         <source src="{{$urlAudio}}" type="audio/mpeg">
                     </audio>
                 </div>
-                <div class="song_list">
-                    <ul>
-                        <li style="list-style: none">
-                            @if(count($songs) == 0)
-                                <p class="text-center">Data nor found</p>
-                            @else
-                                <ul class="show-songs">
-                                    @foreach($songs as $key => $song)
-                                        <li>
-                                            <a href="{{route('song.detail', ['slug' => \App\Http\Helpers\Helper::createUrlSong($song)])}}"
-                                               class="song-title"
-                                               data-toggle="tooltip"
-                                               data-placement="top"
-                                               title=" {{$song->name}}"
-                                               style="width: 60%">
-                                                {{$song->name}}
-                                            </a>
-                                            <a class="song-listen" href="javascript:void(0)" style="width: 38%">
-                                            <span style="float: right">
-                                                <i class="fa fa-headphones" aria-hidden="true"></i>
-                                                {{number_format($song->view)}}
-                                            </span>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </li>
-                    </ul>
-                </div>
+{{--                <div class="song_list">--}}
+{{--                    <ul>--}}
+{{--                        <li style="list-style: none">--}}
+{{--                            @if(count($songs) == 0)--}}
+{{--                                <p class="text-center">Data nor found</p>--}}
+{{--                            @else--}}
+{{--                                <ul class="show-songs">--}}
+{{--                                    @foreach($songs as $key => $song)--}}
+{{--                                        <li>--}}
+{{--                                            <a href="{{route('song.detail', ['slug' => \App\Http\Helpers\Helper::createUrlSong($song)])}}"--}}
+{{--                                               class="song-title"--}}
+{{--                                               data-toggle="tooltip"--}}
+{{--                                               data-placement="top"--}}
+{{--                                               title=" {{$song->name}}"--}}
+{{--                                               style="width: 60%">--}}
+{{--                                                {{$song->name}}--}}
+{{--                                            </a>--}}
+{{--                                            <a class="song-listen" href="javascript:void(0)" style="width: 38%">--}}
+{{--                                            <span style="float: right">--}}
+{{--                                                <i class="fa fa-headphones" aria-hidden="true"></i>--}}
+{{--                                                {{number_format($song->view)}}--}}
+{{--                                            </span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            @endif--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
             </div>
             <!--//music-left-->
             <!--/music-right-->
@@ -110,17 +122,17 @@
                 <div class="list-song">
                     <h2 style="color: #ffffff">Remix mới</h2>
                     <ul>
-                        @foreach($songsNew as $song)
+                        @foreach($songs as $song)
                             <li>
                                 <img class="icon-song" src="{{$song->image}}" alt="">
                                 <a class="song-detail"
                                    data-toggle="tooltip"
                                    data-placement="top"
-                                   title=" {{$song->name}}"
-                                   href="{{route('song.detail', ['slug' => Helper::createUrlSong($song)])}}">
-                                    <span class="song-name">{{$song->name}}</span>
+                                   title=" {{$song->title}}"
+                                   href="{{route('song.detail', ['slug' => $song->slug])}}">
+                                    <span class="song-name">{{$song->title}}</span>
                                 </a>
-                                <span class="song-author"> Vietmix.vn
+                                <span class="song-author"> {{$song->author}}
                                 <i class="fa fa-headphones" style="padding-left: 20px" aria-hidden="true"></i>
                                 {{number_format($song->view)}}
                                 </span>

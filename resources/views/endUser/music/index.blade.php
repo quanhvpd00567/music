@@ -33,43 +33,32 @@
 
                 <div class="song_list">
                     <ul>
-                        @foreach($categorySong as $category)
+                        @foreach($categories as $category)
+                            @if(count($category->songs) == 0)
+                                @continue
+                            @endif
                             <li style="list-style: none">
                                 <h2>
                                     <a href="{{route('category.detail', ['slug' => \App\Http\Helpers\Helper::createUrlCategory($category)])}}">{{$category->name}}</a>
                                 </h2>
                                 <ul class="show-songs">
-                                    <?php $count = 0; ?>
-                                    @foreach($category->masterCategories as $categoryMaster)
-                                        @foreach($categoryMaster->music as $key => $song)
-                                            <li>
-                                                <a href="{{route('song.detail', ['slug' => \App\Http\Helpers\Helper::createUrlSong($song)])}}"
-                                                   class="song-title"
-                                                   data-toggle="tooltip"
-                                                   data-placement="top"
-                                                   title=" {{$song->name}}"
-                                                   style="width: 60%">
-                                                    {{$song->name}}
-                                                </a>
-                                                <a class="song-listen" href="javascript:void(0)" style="width: 38%">
-                                                    <span style="float: right">
-                                                        {{number_format($song->view)}}
-                                                        <i class="fa fa-headphones" aria-hidden="true"></i>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <?php $count +=1; ?>
-                                            @if($count == 15)
-                                                @break
-                                            @else
-                                                @continue
-                                            @endif
-                                        @endforeach
-                                        @if($count == 15)
-                                            @break
-                                        @else
-                                            @continue
-                                        @endif
+                                    @foreach($category->songs as $key => $song)
+                                        <li>
+                                            <a href="{{route('song.detail', ['slug' => $song->slug])}}"
+                                               class="song-title"
+                                               data-toggle="tooltip"
+                                               data-placement="top"
+                                               title=" {{$song->title}}"
+                                               style="width: 60%">
+                                                {{$song->title}}
+                                            </a>
+                                            <a class="song-listen" href="javascript:void(0)" style="width: 38%">
+                                                <span style="float: right">
+                                                    {{number_format($song->view)}}
+                                                    <i class="fa fa-headphones" aria-hidden="true"></i>
+                                                </span>
+                                            </a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -87,16 +76,15 @@
                     <ul>
                         @foreach($songs as $song)
                             <li>
-
                                 <a class="song-detail"
                                    data-toggle="tooltip"
                                    data-placement="top"
-                                   title=" {{$song->name}}"
-                                   href="{{route('song.detail', ['slug' => Helper::createUrlSong($song)])}}">
+                                   title=" {{$song->title}}"
+                                   href="{{route('song.detail', ['slug' => $song->slug])}}">
                                     <img class="icon-song" src="https://www.remixviet.net/data/upload/icon/1589273690.jpg" alt="">
-                                    <span class="song-name">{{$song->name}}</span>
+                                    <span class="song-name">{{$song->title}}</span>
                                 </a>
-                                <span class="song-author"> Vietmix.vn
+                                <span class="song-author"> {{$song->author}}
                                     <i class="fa fa-headphones" style="padding-left: 20px" aria-hidden="true"></i>
                                     {{number_format($song->view)}}
                                 </span>

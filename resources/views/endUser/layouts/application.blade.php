@@ -12,7 +12,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <base href="{{url('/')}}">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content=""/>
+    <meta name="robots" content="index, follow">
+    @yield('metas')
 
     <!-- Bootstrap Core CSS -->
     <link href="end_user/css/bootstrap.css" rel='stylesheet' type='text/css'/>

@@ -20,7 +20,7 @@
                 <div class="card-body no-padding">
                     <div id="card-advance" class="card card-default">
                         <div class="card-body">
-                            @include('admin.song._form', ['url' => route('song.create')])
+                            @include('admin.song._form', ['url' => route('song.update', ['id' => $song->id])])
                         </div>
                     </div>
                 </div>

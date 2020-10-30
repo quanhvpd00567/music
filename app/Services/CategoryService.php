@@ -42,7 +42,12 @@ class CategoryService
     }
 
 
-
+    public function getCategories()
+    {
+        return $this->_modalCategory->with(['songs' => function($query) {
+            $query->limit(6);
+        }])->get();
+    }
 
 
 

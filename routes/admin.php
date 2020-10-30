@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
-Route::middleware('basic_auth')->group(function () {
+//Route::middleware('basic_auth')->group(function () {
     Route::group(['middleware' => 'checkAdminLogin'], function () {
         Route::prefix('master')->name('admin.master.')->group(function () {
 
@@ -30,17 +30,23 @@ Route::middleware('basic_auth')->group(function () {
         });
 
         Route::prefix('songs')->name('song.')->group(function () {
+            Route::get('/', [Admin\SongController::class, 'index'])->name('list');
             Route::get('add', [Admin\SongController::class, 'add'])->name('add');
             Route::post('create', [Admin\SongController::class, 'create'])->name('create');
+            Route::get('edit/{id}', [Admin\SongController::class, 'edit'])->name('edit');
+            Route::post('update/{id}', [Admin\SongController::class, 'update'])->name('update');
         });
 
         Route::get('music', [Admin\MusicController::class, 'getAll'])->name('admin.music.all');
 
         Route::get('logout', [Admin\AuthController::class, 'logOut'])->name('admin.logout');
     });
-});
+//});
 
 
+
+Route::get('login', [Admin\AuthController::class, 'login'])->name('admin.login');
+Route::post('login', [Admin\AuthController::class, 'loginPost'])->name('admin.login.post');
 
 
 
