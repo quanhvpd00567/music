@@ -15,6 +15,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="robots" content="index, follow">
     @yield('metas')
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0207C0FX3L"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0207C0FX3L');
+    </script>
+
     <!-- Bootstrap Core CSS -->
     <link href="end_user/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom CSS -->
