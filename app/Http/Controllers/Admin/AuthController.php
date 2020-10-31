@@ -19,7 +19,7 @@ class AuthController extends Controller
             'email', 'password'
         ]);
         if (Auth::attempt($params)) {
-            return redirect()->route('admin.master.site_list');
+            return redirect()->route('song.list');
         } else {
             return redirect()->back()->with('status', 'Email hoặc Password không chính xác');
         }
