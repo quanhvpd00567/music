@@ -38,7 +38,7 @@ a:focus, a:active, a:hover {
     color: #111;
 }
 a {
-    background-color:none;
+    background-color: unset;
 }
 body p{
    font-family: 'Lato-Regular';
@@ -265,15 +265,12 @@ ul.dropdown-menu.drp-mnu li {
 }
 
 .custom-nav > li.menu-list.active > a {
-    background-image: url(./../images/plus.png);
 }
 
 .custom-nav > li.nav-active.active > a {
-    background-image: url(./../images/minus.png);
 }
 
 .custom-nav > li.nav-active.active > a:hover {
-    background-image: url(./../images/minus.png);
 }
 
 .custom-nav li .fa {
@@ -870,7 +867,6 @@ footer  p a:hover{
     text-decoration: none;
         height: 79px;
     width: 30px;
-    background: transparent url("../images/arrows.png") no-repeat left top;
     margin-top:3%;
 	display:none;
 }
@@ -941,7 +937,6 @@ footer  p a:hover{
     position: absolute;
     bottom: -13%;
     right: 0%;
-    padding: 0;
     margin: 0;
     display: inline-block;
     background: rgb(230, 228, 228);
@@ -1218,7 +1213,7 @@ fieldset#body {
   padding: 6px;
   font-size: 0.8125em;
   -webkit-apperance: none;
-  outline: none
+  outline: none;
   font-family: 'Open Sans', sans-serif;
 }
 #body label i {
@@ -1568,19 +1563,16 @@ i.fb{
 	width:379px;
 	height: 150px;
 	display: block;
-	background: url(../images/fb.png)#3b5997 no-repeat 145px 25px;
 }
 i.tw{
     width: 380px;
 	height: 150px;
 	display: block;
-	background: url(../images/tw.png)#3fccfd no-repeat 145px 25px;
 }
 i.pin{
     width: 380px;
 	height: 150px;
 	display: block;
-	background: url(../images/pin.png)#cb2027 no-repeat 145px 25px;
 }
 .jp-volume-controls button {
     display: block;
@@ -1601,7 +1593,6 @@ i.pin{
 	    box-shadow:none!important;
 }
 .jp-state-playing .jp-play {
-    background: url(../images/jplayer.blue.monday.png) 0 -42px no-repeat;
     box-shadow:none!important;
 }
 .jp-toggles button {
@@ -1759,8 +1750,9 @@ img.media-object {
 /*--//play-grids--*/
 /*--footer--*/
 .footer {
-        background:#222;
-    padding: 3em 4em 5em 6em;
+    background:#222;
+    padding: 10px;
+    color: #ffffff;
 }
 .footer-grid {
 	float: left;
@@ -2848,16 +2840,12 @@ ul.side-icons li a:hover{
  opacity:0.4;
 }
 ul.side-icons li a.fb{
- background:url('../images/icons.png') no-repeat 0px 0px;
 }
 ul.side-icons li a.twitt{
- background:url('../images/icons.png') no-repeat -26px 0px;
 }
 ul.side-icons li a.goog{
- background:url('../images/icons.png') no-repeat -52px 0px;
 }
 ul.side-icons li a.drib{
- background:url('../images/icons.png') no-repeat -78px 0px;
 }
 /*-- w3l-agile --*/
 /*-- agileits --*/

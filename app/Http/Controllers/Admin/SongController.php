@@ -56,7 +56,7 @@ class SongController extends Controller
     {
         try {
             $params = $request->only([
-                'title', 'category_id', 'liked', 'view', 'author', 'file_name'
+                'title', 'category_id', 'liked', 'view', 'author', 'file_name', 'keyword', 'description'
             ]);
             if ($request->hasFile('image')) {
                 $file = $request->image;
@@ -93,7 +93,7 @@ class SongController extends Controller
     public function update($id, SongRequest $request)
     {
         $paramsUpdate = $request->only([
-            'title', 'author', 'view', 'liked', 'file_name', 'category_id'
+            'title', 'author', 'view', 'liked', 'file_name', 'category_id', 'keyword', 'description'
         ]);
 
         $song = $this->songService->getDetail($id);

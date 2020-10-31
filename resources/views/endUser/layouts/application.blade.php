@@ -60,7 +60,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="main-content">
         @yield('content')
     </div>
-
     @include('endUser.layouts.footer')
 </section>
 

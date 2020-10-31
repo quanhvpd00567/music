@@ -4,12 +4,15 @@
 namespace App\Services;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
+use Webpatser\Uuid\Uuid;
+
 class CategoryService
 {
     protected $_modalCategory;
-    public function __construct(Category $category)
+    public function __construct()
     {
-        $this->_modalCategory = $category;
+        $this->_modalCategory = app(Category::class);
     }
 
     public function getList()
@@ -49,7 +52,29 @@ class CategoryService
         }])->get();
     }
 
+    public function createCategory($params)
+    {
+        try {
+            $uuid = Uuid::generate(1)->node;
+            $params['slug'] = Str::slug($params['name']). '-' . $uuid;
+            $params['status'] = $params['status'] == 'true' ? 1 : 0;
+            $params['uuid'] = $uuid;
+            return $this->_modalCategory->create($params);
+        }catch (\Exception $exception) {
+            return false;
+        }
+    }
 
+    public function getDetailById($id, $columns = ['*'])
+    {
+        return $this->_modalCategory->where('id', $id)->select($columns)->first();
+    }
 
-
+    public function updateCategory($attrs, $category)
+    {
+        $uuid = $category->uuid;
+        $attrs['slug'] = Str::slug($attrs['name']). '-' . $uuid;
+        $attrs['status'] = $attrs['status'] == 'true' ? 1 : 0;
+        return $this->_modalCategory->where('id', $category->id)->update($attrs);
+    }
 }

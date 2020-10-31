@@ -50,6 +50,7 @@
                     <div id="card-advance" class="card card-default">
                         <div class="card-header">
                             Total: {{$songs->total()}} songs
+                            <a href="{{route('song.add')}}" class="btn btn-primary float-right">Create new</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -86,7 +87,7 @@
                                                 <td>{{number_format($song->liked)}}</td>
                                                 <td>{{$song->author}}</td>
                                                 <td>
-                                                    <a href="{{route('song.edit', ['id' => $song->id])}}">
+                                                    <a class="btn btn-primary btn-sm" href="{{route('song.edit', ['id' => $song->id])}}">
                                                         <i class="fa fa-edit">  Edit</i>
                                                     </a>
                                                 </td>

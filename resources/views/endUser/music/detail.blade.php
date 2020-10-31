@@ -7,12 +7,18 @@ use Illuminate\Support\Facades\URL;
 @section('metas')
     <meta property="og:url"                content="{{URL::current()}}" />
     <meta property="og:type"               content="article" />
+    <meta property='article:published_time' content='2020-10-15T20:30:11-02:00' />
     <meta property="og:title"              content="{{$song->title}}" />
-    <meta property="og:description"        content="{{$song->title}}" />
+    <meta property="og:description"        content="{{$song->description}}" />
     <meta property="og:image"              content="{{$song->image}}" />
-    <meta name="description" content="{{$song->title}}">
-    <meta name="keywords" content="{{$song->title}}">
-    <meta name="author" content="{{$song->author}}">
+    <meta property="og:image:url"           content="{{$song->image}}" />
+    <meta property="og:site_name"           content="Vietmix.vn" />
+    <meta name="description"                content="{{$song->description}}">
+    <meta name="keywords"                   content="{{$song->keyword}}">
+    <meta name="author"                     content="{{$song->author}}">
+    <meta name="twitter:card"               content="summary" />
+    <meta name="twitter:title"              content="{{$song->title}}" />
+    <meta name="twitter:site"               content="Vietmix.vn" />
 @endsection
 @section('styles')
     <style>
@@ -30,11 +36,6 @@ use Illuminate\Support\Facades\URL;
             animation: shake 2s;
             animation-iteration-count: infinite;
         }
-
-        /*#mix-player{*/
-        /*    background-image: url('end_user/images/bg-play.png')*/
-        /*}*/
-
         @keyframes shake {
             0% {
                 transform: translate(1px, 1px) rotate(0deg) scale(1,1);
@@ -83,6 +84,27 @@ use Illuminate\Support\Facades\URL;
                     <audio autoplay="" id="audio_xx" loop controlsList="nodownload" crossorigin="anonymous" controls="" style="width:100%; height: 100%">
                         <source src="{{$urlAudio}}" type="audio/mpeg">
                     </audio>
+                </div>
+                <div id="info-song" style="padding-top: 10px">
+                    <?php
+                        $argKeyword = explode(',', $song->keyword);
+                    ?>
+                    <div class="tag" style="padding: 10px; color: #ffffff">
+                        <i class="fa fa-info" style="padding-bottom: 10px;"> Thông tin</i>
+                        <p style="padding-left: 10px">{{$song->description}}</p>
+                    </div>
+
+                    <div class="tag" style="padding: 10px; color: #ffffff">
+                        <i class="fa fa-tags" style="padding-bottom: 10px;"> Tags</i>
+                        <ul style="padding-left: 10px">
+                            @foreach($argKeyword as $tag)
+                                <li style="list-style: none; display: inline-block; background-color: #0b7054; border-radius: 5px">
+                                    <a style="text-decoration: none; padding: 10px; color: #FFFFFF" href="">{{$tag}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
                 </div>
 {{--                <div class="song_list">--}}
 {{--                    <ul>--}}

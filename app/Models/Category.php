@@ -9,6 +9,12 @@ class Category extends Model
 {
     protected $table = 'categories';
 
+    protected $fillable = [
+        'name', 'slug', 'uuid', 'status'
+    ];
+
+    public $timestamps = true;
+
     public function masterCategories() {
         return $this->hasMany('App\Models\MasterCategory', 'category_id', 'id');
     }
