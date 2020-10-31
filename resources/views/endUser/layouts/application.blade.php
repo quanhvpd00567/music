@@ -10,7 +10,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="{{url('/')}}">
-
+{{--    <link color='#0069ff' href='/mask_icon.svg' rel='mask-icon'>--}}
+    <link href='/end_user/images/favicon.ico' rel='shortcut icon' type='image/ico'>>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="robots" content="index, follow">
     @yield('metas')
