@@ -102,4 +102,26 @@ class SongService
         return $this->_songModel->where('id', '<>', $songId)->where('category_id', $categoryId)->orderby('id', 'DESC')->limit(10)->get();
     }
 
+    public function getSongRandom($number = 10, $id = null)
+    {
+        $query = $this->_songModel;
+        if (!is_null($id)) {
+            $query = $query->where('id', '<>', $id);
+        }
+        return $query->inRandomOrder()->limit($number)->orderBy('id', 'DESC')->get();
+    }
+
+    public function searchSongsByParam($params)
+    {
+        $query = $this->_songModel;
+        if (isset($params['tag'])) {
+            $query = $query->where('keyword', 'LIKE' ,'%'. $params['tag'] . '%');
+        }
+
+        if (isset($params['keyword'])) {
+            $query = $query->where('title', 'LIKE' ,'%'. $params['keyword'] . '%');
+        }
+
+        return $query->orderBy('id', 'DESC')->limit(30)->get();
+    }
 }

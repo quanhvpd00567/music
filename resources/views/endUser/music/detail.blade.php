@@ -55,18 +55,6 @@ use Illuminate\Support\Facades\URL;
 @endsection
 
 @section('content')
-    <!-- header-starts -->
-    <div class="header-section">
-        <!--toggle button start-->
-        <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
-        <!--toggle button end-->
-        <!--notification menu start -->
-        <div class="menu-right">
-
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <!-- //header-ends -->
 
     <div id="page-wrapper">
         <div class="inner-content">
@@ -87,7 +75,7 @@ use Illuminate\Support\Facades\URL;
                 </div>
                 <div id="info-song" style="padding-top: 10px">
                     <?php
-                        $argKeyword = explode(',', $song->keyword);
+                        $argKeyword = explode(', ', $song->keyword);
                     ?>
                     <div class="tag" style="padding: 10px; color: #ffffff">
                         <i class="fa fa-info" style="padding-bottom: 10px;"> Thông tin</i>
@@ -99,50 +87,48 @@ use Illuminate\Support\Facades\URL;
                         <ul style="padding-left: 10px">
                             @foreach($argKeyword as $tag)
                                 <li style="list-style: none; display: inline-block; background-color: #0b7054; border-radius: 5px">
-                                    <a style="text-decoration: none; padding: 10px; color: #FFFFFF" href="">{{$tag}}</a>
+                                    <a style="text-decoration: none; padding: 10px; color: #FFFFFF" href="{{route('song.search', ['tag' => $tag])}}">{{$tag}}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
 
                 </div>
-{{--                <div class="song_list">--}}
-{{--                    <ul>--}}
-{{--                        <li style="list-style: none">--}}
-{{--                            @if(count($songs) == 0)--}}
-{{--                                <p class="text-center">Data nor found</p>--}}
-{{--                            @else--}}
-{{--                                <ul class="show-songs">--}}
-{{--                                    @foreach($songs as $key => $song)--}}
-{{--                                        <li>--}}
-{{--                                            <a href="{{route('song.detail', ['slug' => \App\Http\Helpers\Helper::createUrlSong($song)])}}"--}}
-{{--                                               class="song-title"--}}
-{{--                                               data-toggle="tooltip"--}}
-{{--                                               data-placement="top"--}}
-{{--                                               title=" {{$song->name}}"--}}
-{{--                                               style="width: 60%">--}}
-{{--                                                {{$song->name}}--}}
-{{--                                            </a>--}}
-{{--                                            <a class="song-listen" href="javascript:void(0)" style="width: 38%">--}}
-{{--                                            <span style="float: right">--}}
-{{--                                                <i class="fa fa-headphones" aria-hidden="true"></i>--}}
-{{--                                                {{number_format($song->view)}}--}}
-{{--                                            </span>--}}
-{{--                                            </a>--}}
-{{--                                        </li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
-{{--                            @endif--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
+                <div class="song_list">
+                    <ul>
+                        <li style="list-style: none">
+                            @if(count($randomSongs) > 0)
+                                <ul class="show-songs">
+                                    @foreach($randomSongs as $key => $song)
+                                        <li>
+                                            <a href="{{route('song.detail', ['slug' => $song->slug])}}"
+                                               class="song-title"
+                                               data-toggle="tooltip"
+                                               data-placement="top"
+                                               title=" {{$song->title}}"
+                                               style="width: 60%">
+                                                {{$song->title}}
+                                            </a>
+                                            <a class="song-listen" href="javascript:void(0)" style="width: 38%">
+                                                <span style="float: right">
+                                                    <i class="fa fa-headphones" aria-hidden="true"></i>
+                                                    {{number_format($song->view)}}
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
             </div>
             <!--//music-left-->
             <!--/music-right-->
             <div class="music-right">
                 <!--/video-main-->
                 <div class="list-song">
-                    <h2 style="color: #ffffff">Remix mới</h2>
+                    <h2 style="color: #ffffff">Remix liên quan</h2>
                     <ul>
                         @foreach($songs as $song)
                             <li>

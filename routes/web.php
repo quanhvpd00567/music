@@ -24,6 +24,9 @@ Route::get('detail/{slug}.html', [EndUser\MusicController::class, 'musicDetail']
 Route::prefix('music')->group(function () {
     Route::get('detail/{slug}.html', [EndUser\MusicController::class, 'musicDetail'])->name('song.detail');
 });
+
+Route::get('search', [EndUser\MusicController::class, 'search'])->name('song.search');
+
 Route::middleware('basic_auth')->group(function () {
 
 

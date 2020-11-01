@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -47,22 +41,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <!-- /w3layouts-agile -->
 <body class="sticky-header left-side-collapsed">
-<section>
-    <div class="left-side sticky-left-side">
-        <div class="logo">
-            <h1><a href="index.html">Vietmix</a></h1>
+    <section>
+        <div class="left-side sticky-left-side">
+            <div class="logo">
+                <h1><a href="index.html">Vietmix</a></h1>
+            </div>
+            <div class="logo-icon text-center">
+                <a href="index.html">VM</a>
+            </div>
+            @include('endUser.layouts.side-bar')
         </div>
-        <div class="logo-icon text-center">
-            <a href="index.html">VM</a>
+        <div class="main-content">
+            <div class="header-section">
+                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+                <div class="menu-right">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <form action="{{route('song.search')}}">
+                               <div class="search input-group">
+                                   <input type="text" value="{{request()->get('keyword')}}" class="form-control" name="keyword" placeholder="Tìm bài hát ...">
+                                   <div class="input-group-btn">
+                                       <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                   </div>
+                               </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            @yield('content')
         </div>
-        @include('endUser.layouts.side-bar')
-    </div>
-
-    <div class="main-content">
-        @yield('content')
-    </div>
-    @include('endUser.layouts.footer')
-</section>
+        @include('endUser.layouts.footer')
+    </section>
 
 <script src="end_user/js/jquery.nicescroll.js"></script>
 <script src="end_user/js/scripts.js"></script>

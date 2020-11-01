@@ -20,6 +20,7 @@ use Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\BaseMiddle;
+use function Composer\Autoload\includeFile;
 
 class MusicController extends BaseController
 {
@@ -50,9 +51,6 @@ class MusicController extends BaseController
         try {
             $songs = $this->songService->getSongsByViewDesc();
             $categories = $this->categoryService->getCategories();
-
-//            $categorySong = $this->categoryService->getSongByCategory();
-
             return view('endUser.music.index', compact( 'categories', 'songs'));
         }catch (\Exception $exception) {
             dd($exception);
@@ -83,19 +81,27 @@ class MusicController extends BaseController
             );
 
             $songs = $this->songService->getListSongRelated($song->id, $categoryId);
-
-//            $params['page'] = 10;
-//            $songsNew = $this->musicService->getAll($params);
+            $randomSongs = $this->songService->getSongRandom(10, $song->id);
 
             $bg = $this->masterService->getAllImage()->pluck('url')->toArray();
 
             $bg = $bg[random_int(0, count($bg) - 1)];
 
-            return view('endUser.music.detail', compact('urlAudio', 'songs', 'song', 'bg'));
+            return view('endUser.music.detail', compact('urlAudio', 'songs', 'song', 'bg', 'randomSongs'));
         }catch (\Exception $exception) {
-            dd($exception);
             return abort(404);
         }
+    }
 
+    public function search(Request $request)
+    {
+        $params = $request->only(['tag', 'keyword']);
+        $songs = $this->songService->searchSongsByParam($params);
+        $songsNew = $this->songService->getSongRandom(15, null);
+        $randomSongs = [];
+        if (count($songs) == 0) {
+            $randomSongs = $this->songService->getSongRandom(30, null);
+        }
+        return view('endUser.music.search', compact('songs', 'randomSongs', 'songsNew'));
     }
 }

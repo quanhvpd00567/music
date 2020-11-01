@@ -21,36 +21,15 @@ use Illuminate\Support\Facades\URL;
     <meta name="twitter:site"               content="Vietmix.vn" />
 @endsection
 @section('content')
-    <!-- //header-ends -->
     <div id="page-wrapper">
         <div class="inner-content">
             <div class="music-left">
-                <!--banner-section-->
-                <div class="banner-section"s>
-                    <div class="banner">
-                        <div class="callbacks_container">
-                            <ul class="rslides callbacks callbacks1" id="slider4">
-                                <li>
-                                    @include('endUser.layouts.waves')
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-
-                <div class="song_list">
-                    <ul>
-                        @foreach($categories as $category)
-                            @if(count($category->songs) == 0)
-                                @continue
-                            @endif
+                @if(count($songs) > 0)
+                    <div class="song_list">
+                        <ul>
                             <li style="list-style: none">
-                                <h2>
-                                    <a href="{{route('category.detail', ['slug' => \App\Http\Helpers\Helper::createUrlCategory($category)])}}">{{$category->name}}</a>
-                                </h2>
                                 <ul class="show-songs">
-                                    @foreach($category->songs as $key => $song)
+                                    @foreach($songs as $key => $song)
                                         <li>
                                             <a href="{{route('song.detail', ['slug' => $song->slug])}}"
                                                class="song-title"
@@ -60,20 +39,34 @@ use Illuminate\Support\Facades\URL;
                                                style="width: 60%">
                                                 {{$song->title}}
                                             </a>
-                                            <a class="song-listen" href="javascript:void(0)" style="width: 38%">
-                                                <span style="float: right">
-                                                    {{number_format($song->view)}}
-                                                    <i class="fa fa-headphones" aria-hidden="true"></i>
-                                                </span>
-                                            </a>
+                                            <span class="song-listen" style="float: right">
+                                                {{number_format($song->view)}}
+                                                <i class="fa fa-headphones" aria-hidden="true"></i>
+                                            </span>
                                         </li>
                                     @endforeach
                                 </ul>
                             </li>
-                        @endforeach
-                    </ul>
-                </div>
-
+                        </ul>
+                    </div>
+                @else
+                    <div class="text-center">
+                        <p style="color: #ffffff">Không tìm thấy kết quả nào</p>
+                    </div>
+                    <div class="nomination-song">
+                        <h2> Những bài hay cho bạn</h2>
+                        <div class="row" id="list-song">
+                            @foreach($randomSongs as $song)
+                                <div class="col-md-2 item">
+                                    <a href="{{route('song.detail', ['slug' => $song->slug])}}" title="{{$song->title . ' - '. $song->view}}">
+                                        <img src="{{$song->image}}" alt="{{$song->title}}">
+                                        <p>{{$song->title}}</p>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
             <!--/music-right-->
             <div class="music-right">
@@ -81,7 +74,7 @@ use Illuminate\Support\Facades\URL;
                 <div class="list-song">
                     <h2 style="color: #ffffff">Remix mới</h2>
                     <ul>
-                        @foreach($songs as $song)
+                        @foreach($songsNew as $song)
                             <li>
                                 <a class="song-detail"
                                    data-toggle="tooltip"
@@ -111,7 +104,6 @@ use Illuminate\Support\Facades\URL;
 @endsection
 
 @section('scripts')
-    <script src="end_user/js/wa.js"></script>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip()
