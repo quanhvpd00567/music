@@ -62,7 +62,7 @@
     </section>
 
     <!-- Modal -->
-    @if(auth()->check())
+    @if(!auth()->check())
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -106,7 +106,7 @@
         window.scrollTo(0, 1);
     }
 </script>
-    @if(auth()->check())
+    @if(!auth()->check())
         <script>
             $(function () {
                 $('#showModalConfirm').on('click', function () {
