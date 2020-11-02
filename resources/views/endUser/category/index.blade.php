@@ -3,17 +3,6 @@
 //use Helper;
 ?>
 @section('content')
-    <!-- header-starts -->
-    <div class="header-section">
-        <!--toggle button start-->
-        <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
-        <!--toggle button end-->
-        <!--notification menu start -->
-        <div class="menu-right"></div>
-        <div class="clearfix"></div>
-    </div>
-    <!-- //header-ends -->
-
     <div id="page-wrapper">
         <div class="inner-content">
             <div class="music-left">
@@ -23,26 +12,22 @@
                             <h2>
                                 <a href="{{route('category.detail', ['slug' => \App\Http\Helpers\Helper::createUrlCategory($category)])}}">{{$category->name}}</a>
                             </h2>
-                        @if(count($songs) == 0)
-                            <p class="text-center">Data nor found</p>
-                        @else
+                        @if(count($songs) > 0)
                             <ul class="show-songs">
                                 @foreach($songs as $key => $song)
                                     <li>
-                                        <a href="{{route('song.detail', ['slug' => \App\Http\Helpers\Helper::createUrlSong($song)])}}"
+                                        <a href="{{route('song.detail', ['slug' => $song->slug])}}"
                                            class="song-title"
                                            data-toggle="tooltip"
                                            data-placement="top"
-                                           title=" {{$song->name}}"
+                                           title=" {{$song->title}}"
                                            style="width: 60%">
-                                            {{$song->name}}
+                                            {{$song->title}}
                                         </a>
-                                        <a class="song-listen" href="javascript:void(0)" style="width: 38%">
-                                            <span style="float: right">
-                                                <i class="fa fa-headphones" aria-hidden="true"></i>
-                                                {{number_format($song->view)}}
-                                            </span>
-                                        </a>
+                                        <span class="song-listen"  style="float: right">
+                                            <i class="fa fa-headphones" aria-hidden="true"></i>
+                                            {{number_format($song->view)}}
+                                        </span>
                                     </li>
                                 @endforeach
                             </ul>
@@ -68,14 +53,14 @@
                                 <a class="song-detail"
                                    data-toggle="tooltip"
                                    data-placement="top"
-                                   title=" {{$song->name}}"
-                                   href="{{route('song.detail', ['slug' => Helper::createUrlSong($song)])}}">
-                                    <img class="icon-song" src="https://www.remixviet.net/data/upload/icon/1589273690.jpg" alt="">
-                                    <span class="song-name">{{$song->name}}</span>
+                                   title="{{$song->title}}"
+                                   href="{{route('song.detail', ['slug' => $song->slug])}}">
+                                    <img class="icon-song" src="{{$song->image}}" alt="{{$song->title}}">
+                                    <span class="song-name">{{$song->title}}</span>
                                 </a>
-                                <span class="song-author"> Vietmix.vn
-                                <i class="fa fa-headphones" style="padding-left: 20px" aria-hidden="true"></i>
-                                {{number_format($song->view)}}
+                                <span class="song-author">{{$song->author}}
+                                    <i class="fa fa-headphones" style="padding-left: 20px" aria-hidden="true"></i>
+                                    {{number_format($song->view)}}
                                 </span>
                             </li>
                         @endforeach

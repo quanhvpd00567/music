@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href="{{url('/')}}">
 {{--    <link color='#0069ff' href='/mask_icon.svg' rel='mask-icon'>--}}
-    <link href='/end_user/images/favicon.ico' rel='shortcut icon' type='image/ico'>>
+    <link href='/end_user/images/favicon.ico' rel='shortcut icon' type='image/ico'>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="robots" content="index, follow">
     @yield('metas')
@@ -39,15 +39,14 @@
     @yield('styles')
 
 </head>
-<!-- /w3layouts-agile -->
 <body class="sticky-header left-side-collapsed">
     <section>
         <div class="left-side sticky-left-side">
             <div class="logo">
-                <h1><a href="index.html">Vietmix</a></h1>
+                <h1><a href="/">Vietmix.vn</a></h1>
             </div>
             <div class="logo-icon text-center">
-                <a href="index.html">VM</a>
+                <a href="/">VM</a>
             </div>
             @include('endUser.layouts.side-bar')
         </div>
@@ -74,7 +73,6 @@
         </div>
         @include('endUser.layouts.footer')
     </section>
-
 <script src="end_user/js/jquery.nicescroll.js"></script>
 <script src="end_user/js/scripts.js"></script>
 <!-- Bootstrap Core JavaScript -->

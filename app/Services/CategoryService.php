@@ -77,4 +77,9 @@ class CategoryService
         $attrs['status'] = $attrs['status'] == 'true' ? 1 : 0;
         return $this->_modalCategory->where('id', $category->id)->update($attrs);
     }
+
+    public function getDetailByUuid($uuid)
+    {
+        return $this->_modalCategory->where('uuid', $uuid)->first();
+    }
 }

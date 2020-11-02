@@ -50,4 +50,10 @@ class Helper
         }
         return $idCategory;
     }
+
+    public static function getUuidOfCategory($slug)
+    {
+        $argPath = explode( '-',$slug);
+        return last($argPath);
+    }
 }

@@ -27,7 +27,7 @@ Route::prefix('music')->group(function () {
 
 Route::get('search', [EndUser\MusicController::class, 'search'])->name('song.search');
 
-Route::middleware('basic_auth')->group(function () {
+//Route::middleware('basic_auth')->group(function () {
 
 
     Route::prefix('category')->group(function () {
@@ -38,7 +38,7 @@ Route::middleware('basic_auth')->group(function () {
         dd(111);
     });
 
-});
+//});
 
 Route::get('/', function () {
    return \view('coming_soon');

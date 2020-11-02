@@ -12,7 +12,7 @@
             <a href="javascript:void(0)"><i class="lnr lnr-indent-increase"></i> <span>Categories</span></a>
             <ul class="sub-menu-list">
                 @foreach($categories as $category)
-                    <li><a href="{{route('category.detail', ['slug' => \App\Http\Helpers\Helper::createUrlCategory($category)])}}">{{$category->name}}</a></li>
+                    <li><a href="{{route('category.detail', ['slug' => $category->slug])}}">{{$category->name}}</a></li>
                 @endforeach
             </ul>
         </li>

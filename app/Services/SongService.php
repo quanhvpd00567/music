@@ -124,4 +124,11 @@ class SongService
 
         return $query->orderBy('id', 'DESC')->limit(30)->get();
     }
+
+    public function getSongByCategory($categoryId)
+    {
+        $query = $this->_songModel->where('category_id', $categoryId);
+
+        return $query->orderBy('id', 'DESC')->paginate(30);
+    }
 }

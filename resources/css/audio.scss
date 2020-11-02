@@ -155,13 +155,22 @@ body{
         height: 42px;
         border-radius: 10px 0 0 10px;
         border: 1px #822626 solid;
+        //border-right: none;
+        background-color: #cccccc;
         &::placeholder{
-            color: red !important;
+            color: #EA57A3 !important;
             opacity: 0.5;
         }
     };
     button {
-        height: 42px
+        height: 42px;
+        border: 1px #822626 solid;
+        border-radius: 0 10px 10px 0;
+        background-color: #cccccc;
+        &:hover {
+            background-color: #cccccc;
+            border: 1px #822626 solid;
+        }
     }
 }
 
