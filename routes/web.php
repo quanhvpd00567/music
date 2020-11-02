@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EndUser\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EndUser;
 use Illuminate\Support\Facades\View;
@@ -39,8 +40,15 @@ Route::get('search', [EndUser\MusicController::class, 'search'])->name('song.sea
     });
 
 //});
+Route::get('login/{provider}', [LoginController::class, 'redirectToProvider'])->name('socialite_login');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('callback/{provider}', [LoginController::class, 'handleProviderCallback'])->name('socialite_callback');
 
 Route::get('/', function () {
    return \view('coming_soon');
-});
+})->name('home');
+
+Route::get('login', function () {
+    return \view('endUser.login.login');
+})->name('login');
 

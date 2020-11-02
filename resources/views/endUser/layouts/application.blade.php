@@ -53,27 +53,48 @@
         <div class="main-content">
             <div class="header-section">
                 <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
-                <div class="menu-right">
-                    <div class="row">
-                        <div class="col-md-4 ">
-                            <form action="{{route('song.search')}}">
-                               <div class="search input-group">
-                                   <input type="text" value="{{request()->get('keyword')}}" class="form-control" name="keyword" placeholder="Tìm bài hát ...">
-                                   <div class="input-group-btn">
-                                       <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                                   </div>
-                               </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                @include('endUser.layouts.header')
                 <div class="clearfix"></div>
             </div>
             @yield('content')
         </div>
         @include('endUser.layouts.footer')
     </section>
-<script src="end_user/js/jquery.nicescroll.js"></script>
+
+    <!-- Modal -->
+    @if(auth()->check())
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Bạn chưa đăng nhập</h4>
+                </div>
+                <div class="modal-body ">
+                    <p style="padding-bottom: 10px">Bạn phải đăng nhập mới có thể đăng bài hát</p>
+
+                    <div class="text-center">
+                        <a class="btn btn-success text-center" style="width: 50%; margin-bottom: 10px" href="{{route('login')}}">
+                            <i class="fa fa-mail-forward"> Đăng nhập bằng email</i>
+                        </a>
+                        <a class="btn btn-primary" style="width: 50%; margin-bottom: 10px" href="{{route('socialite_login', ['provider' => 'facebook'])}}">
+                            <i class="fa fa-facebook"> Đăng nhập bằng facebook</i>
+                        </a>
+                        <a class="btn btn-primary" style="width: 50%" href="#">
+                            <i class="fa fa-user"> Đăng ký</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+
+    <script src="end_user/js/jquery.nicescroll.js"></script>
 <script src="end_user/js/scripts.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="end_user/js/bootstrap.js"></script>
@@ -85,6 +106,15 @@
         window.scrollTo(0, 1);
     }
 </script>
+    @if(auth()->check())
+        <script>
+            $(function () {
+                $('#showModalConfirm').on('click', function () {
+                    $('#myModal').modal('show')
+                })
+            })
+        </script>
+    @endif
 @yield('scripts')
 </body>
 </html>

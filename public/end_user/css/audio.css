@@ -181,6 +181,22 @@ body {
   border: 1px #822626 solid;
 }
 
+.item-header {
+  padding: 10px 10px 10px 0 !important;
+  border-radius: 5px;
+  color: #ffffff !important;
+  min-width: 100px;
+  width: auto;
+  margin-right: 10px;
+  background: #EA57A3 !important;
+}
+
+.item-header:hover {
+  color: #ffffff !important;
+  padding: 10px 10px 10px 0 !important;
+  line-height: unset !important;
+}
+
 .music-left {
   padding-right: 5px;
   min-height: 700px;

@@ -10,10 +10,10 @@ ul, ol {margin: 0;}
 p {margin: 0;}
 
 html, body{
-  font-family: 'Lato-Regular';
+    font-family: Arial, sans-serif;
     font-size: 100%;
-  	overflow-x: hidden;
-	background: #f9f9f9;
+    overflow-x: hidden;
+    background: #f9f9f9;
 }
 @font-face {
    font-family: 'MavenPro-Regular';
@@ -41,10 +41,10 @@ a {
     background-color: unset;
 }
 body p{
-   font-family: 'Lato-Regular';
+   font-family: Arial, sans-serif;
 }
 h1, h2, h3, h4, h5 {
-      font-family: 'MavenPro-Regular';
+      font-family: Arial, sans-serif;
 }
 /*Header Stats Start*/
 .header_stats{
@@ -147,7 +147,7 @@ div#page-wrapper {
     font-size: 2em;
     color:#9E9E9E;
     margin-top: 9px;
-	   font-family: 'MavenPro-Regular';
+	   font-family: Arial, sans-serif
 	font-weight:700;
 }
 /*-- w3layouts --*/
@@ -1632,7 +1632,7 @@ i.pin{
     font-size: 1.1em;
     display: block;
     margin-top: 6px;
-    font-family: 'MavenPro-Regular';
+    font-family: Arial, sans-serif
     font-weight: 700;
 }
 .media-body.response-text-right ul li {
