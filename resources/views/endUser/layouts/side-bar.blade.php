@@ -8,16 +8,22 @@
             <a href="#"><i class="lnr lnr-film-play"></i><span>video</span></a>
         </li>
         <li><a href="browse.html"><i class="lnr lnr-music-note"></i><span>Albums</span></a></li>
+
         <li class="menu-list">
-            <a href="javascript:void(0)"><i class="lnr lnr-indent-increase"></i> <span>Categories</span></a>
-            <ul class="sub-menu-list">
+            <a href="javascript:void(0)"><i class="lnr lnr-list"></i> <span>Categories</span></a>
+            <ul class="sub-menu-list" style="display: block;">
                 @foreach($categories as $category)
                     <li><a href="{{route('category.detail', ['slug' => $category->slug])}}">{{$category->name}}</a></li>
                 @endforeach
             </ul>
         </li>
-{{--        <li><a href="blog.html"><i class="lnr lnr-book"></i><span>Blog</span></a></li>--}}
-{{--        <li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span>Typography</span></a></li>--}}
+
+        <li class="menu-list">
+            <a href="javascript:void(0)"><i class="lnr lnr-user"></i> <span>Profile</span></a>
+            <ul class="sub-menu-list" style="display: block;">
+                <li><a href="{{route('user.songs')}}">Danh sách bài hát</a></li>
+            </ul>
+        </li>
     </ul>
     <!--sidebar nav end-->
 </div>

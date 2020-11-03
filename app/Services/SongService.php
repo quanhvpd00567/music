@@ -44,12 +44,15 @@ class SongService
             $song->category_id          = $params['category_id'];
             $song->url                  = $params['file_name'];
             $song->image                = $params['image'];
+            $song->user_id              = $params['user_id'] ?? null;
+            $song->status               = $params['status'] ?? 0;
             $song->file_name            = $params['file_name'];
             $song->description          = $params['description'];
             $song->keyword              = $params['keyword']. ',vietmix.nv, vietmix, vietmix.vn dj';
             $song->save();
             return true;
         } catch (\Exception $exception) {
+            dd($exception);
             return false;
         }
 
@@ -57,7 +60,7 @@ class SongService
 
     public function getDetail($id)
     {
-        return $this->_songModel->where('id', $id)->first();
+        return $this->_songModel->where('id', $id)->where('status', Song::$status['approved'])->first();
     }
 
     public function update($params, $id)
@@ -89,22 +92,22 @@ class SongService
 
     public function getSongsByViewDesc()
     {
-        return $this->_songModel->orderBy('view', 'DESC')->limit(10)->get();
+        return $this->_songModel->where('status', Song::$status['approved'])->orderBy('view', 'DESC')->limit(10)->get();
     }
 
     public function getDetailByUuid($uuid)
     {
-        return $this->_songModel->where('uuid', $uuid)->first();
+        return $this->_songModel->where('uuid', $uuid)->where('status', Song::$status['approved'])->first();
     }
 
     public function getListSongRelated($songId, $categoryId)
     {
-        return $this->_songModel->where('id', '<>', $songId)->where('category_id', $categoryId)->orderby('id', 'DESC')->limit(10)->get();
+        return $this->_songModel->where('id', '<>', $songId)->where('status', Song::$status['approved'])->where('category_id', $categoryId)->orderby('id', 'DESC')->limit(10)->get();
     }
 
     public function getSongRandom($number = 10, $id = null)
     {
-        $query = $this->_songModel;
+        $query = $this->_songModel->where('status', Song::$status['approved']);
         if (!is_null($id)) {
             $query = $query->where('id', '<>', $id);
         }
@@ -113,7 +116,7 @@ class SongService
 
     public function searchSongsByParam($params)
     {
-        $query = $this->_songModel;
+        $query = $this->_songModel->where('status', Song::$status['approved']);
         if (isset($params['tag'])) {
             $query = $query->where('keyword', 'LIKE' ,'%'. $params['tag'] . '%');
         }
@@ -127,8 +130,17 @@ class SongService
 
     public function getSongByCategory($categoryId)
     {
-        $query = $this->_songModel->where('category_id', $categoryId);
+        $query = $this->_songModel->where('status', Song::$status['approved'])->where('category_id', $categoryId);
 
         return $query->orderBy('id', 'DESC')->paginate(30);
+    }
+
+    public function getSongByUserId($userId, $status = null)
+    {
+        $query = $this->_songModel->where('user_id', $userId);
+        if (!is_null($status)) {
+            $query = $query->where('status', $status);
+        }
+        return $query->orderBy('created_at', 'DESC')->get();
     }
 }

@@ -39,20 +39,17 @@
     @yield('styles')
 
 </head>
-<body class="sticky-header left-side-collapsed">
+<body class="sticky-header">
     <section>
         <div class="left-side sticky-left-side">
             <div class="logo">
                 <h1><a href="/">Vietmix.vn</a></h1>
             </div>
-            <div class="logo-icon text-center">
-                <a href="/">VM</a>
-            </div>
             @include('endUser.layouts.side-bar')
         </div>
         <div class="main-content">
             <div class="header-section">
-                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+{{--                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>--}}
                 @include('endUser.layouts.header')
                 <div class="clearfix"></div>
             </div>

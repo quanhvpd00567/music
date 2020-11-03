@@ -52,3 +52,12 @@ Route::get('login', function () {
     return \view('endUser.login.login');
 })->name('login');
 
+
+Route::middleware('checkUser')->group(function () {
+    Route::get('upload-song', [EndUser\UserController::class, 'uploadFile'])->name('user.upload');
+    Route::post('upload-song', [EndUser\UserController::class, 'uploadFilePost'])->name('user.upload.post');
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('songs', [EndUser\UserController::class, 'listSong'])->name('songs');
+    });
+});
+

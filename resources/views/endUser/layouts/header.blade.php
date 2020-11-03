@@ -10,16 +10,17 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="search">
                 <ul class="nav navbar-nav navbar-right">
                     @if(auth()->check())
-                        <li><a class="item-header text-center" href="#"><span class="glyphicon glyphicon-music"></span> Đăng bài hát</a></li>
+                        <li><a class="item-header text-center" href="{{route('user.upload')}}"><span class="glyphicon glyphicon-open"></span> Đăng bài hát</a></li>
                         <li><a class="item-header text-center" href="{{route('logout')}}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     @else
                         <li>
                             <a class="item-header text-center" href="javascript:void(0)" id="showModalConfirm">
-                                <span class="glyphicon glyphicon-music"></span> Đăng bài hát</a>
+                                <span class="glyphicon glyphicon-open"></span> Đăng bài hát
+                            </a>
                         </li>
                         <li><a class="item-header text-center" href="{{route('login')}}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
                     @endif

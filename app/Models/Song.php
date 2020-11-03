@@ -10,6 +10,12 @@ class Song extends Model
 //    use HasFactory;
     protected $table = 'songs';
 
+    public static $status = [
+      'approved' => 0,
+      'pending' => 1,
+      'reject' => 2,
+    ];
+
     public $timestamps = true;
 
     public function category()

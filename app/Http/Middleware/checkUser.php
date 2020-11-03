@@ -5,9 +5,9 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
-class checkAdminLogin
+class checkUser
 {
     /**
      * Handle an incoming request.
@@ -18,20 +18,13 @@ class checkAdminLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check())
-        {
-            $user = Auth::user();
-
-            if ($user->role == User::$roles['admin'])
-            {
+        if (auth()->check()) {
+            $user = auth()->user();
+            if ($user->role == User::$roles['member']) {
                 return $next($request);
-            }else{
-                Auth::logout();
-                return redirect()->route('home');
             }
-        } else {
-            Auth::logout();
-            return redirect()->route('admin.login');
         }
+        Auth::logout();
+        return redirect()->route('home');
     }
 }

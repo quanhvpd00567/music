@@ -155,17 +155,17 @@ body {
 }
 
 .search input::-moz-placeholder {
-  color: #EA57A3 !important;
+  color: #000 !important;
   opacity: 0.5;
 }
 
 .search input:-ms-input-placeholder {
-  color: #EA57A3 !important;
+  color: #000 !important;
   opacity: 0.5;
 }
 
 .search input::placeholder {
-  color: #EA57A3 !important;
+  color: #000 !important;
   opacity: 0.5;
 }
 
@@ -238,5 +238,120 @@ body {
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+#notes {
+  padding-left: 10px;
+}
+
+#notes .item {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  margin: 25px auto;
+  padding: 60px 15px 15px 15px;
+  background: #fff no-repeat 4px 8px;
+  box-shadow: 0 1px 2px #000;
+  -webkit-transform: rotate(-0.5deg);
+  -moz-transform: rotate(-0.5deg);
+  -o-transform: rotate(-0.5deg);
+}
+
+#notes .item:nth-child(even) {
+  -webkit-transform: rotate(0.5deg);
+  -moz-transform: rotate(0.5deg);
+  -o-transform: rotate(0.5deg);
+}
+
+#notes .item.kiln {
+  background-image: url(https://rob.kilnhg.com/Content/Images/kiln_focus.gif);
+}
+
+#notes .item p {
+  text-align: center;
+  text-shadow: white 1px 1px 0px;
+  overflow: hidden;
+}
+
+#notes .item::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 40%;
+  top: -15px;
+  width: 75px;
+  height: 25px;
+  z-index: 2;
+  background-color: rgba(243, 245, 228, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 2px 2px 2px #000;
+  -webkit-transform: rotate(-6deg);
+  -moz-transform: rotate(-6deg);
+  -o-transform: rotate(-6deg);
+}
+
+#notes .item:nth-child(even)::before {
+  -webkit-transform: rotate(6deg);
+  -moz-transform: rotate(6deg);
+  -o-transform: rotate(6deg);
+}
+
+#notes .item h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#notes .item ul {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 12px;
+}
+
+#notes .item ul li {
+  padding-top: 10px;
+  list-style: none;
+  border-bottom: 1px dotted red;
+}
+
+#userUpload .form-control::-moz-placeholder {
+  opacity: 0.5;
+  color: red;
+}
+
+#userUpload .form-control:-ms-input-placeholder {
+  opacity: 0.5;
+  color: red;
+}
+
+#userUpload .form-control::placeholder {
+  opacity: 0.5;
+  color: red;
+}
+
+#userUpload label {
+  color: #ffffff;
+}
+
+.custom-nav-tabs li a {
+  margin-right: 2px !important;
+}
+
+.tab-content {
+  margin-top: 2px;
+  border: 1px #9d2232 solid;
+  border-radius: 0 10px 10px 10px;
+  padding: 10px;
+  color: #ffffff;
+}
+
+.tab-content table tbody tr:hover {
+  color: #0b0b0b;
+}
+
+.tab-content #approvedTable img,
+.tab-content #pendingSongs img,
+.tab-content #rejectSongs img {
+  width: 50px;
+  height: 50px;
 }
 
