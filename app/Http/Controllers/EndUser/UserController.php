@@ -28,7 +28,6 @@ class UserController extends Controller
         $this->songService = app(SongService::class);
     }
 
-
     public function uploadFile()
     {
         $song = new Song();
@@ -84,7 +83,7 @@ class UserController extends Controller
 
     public function listSong()
     {
-        $userId = Auth::id();
+        $userId = Auth::user()->id;
         $approvedSongs = $this->songService->getSongByUserId($userId, 0);
         $pendingSongs = $this->songService->getSongByUserId($userId, 1);
         $rejectSongs = $this->songService->getSongByUserId($userId, 2);

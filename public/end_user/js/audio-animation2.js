@@ -98,19 +98,18 @@ var $element = $('#canvas');
 var isPlayed = false;
 
 eAudio.onplay = function () {
-  start(eAudio);
-  $element.addClass('addAnimation');
+  start(eAudio); // $element.addClass('addAnimation')
+
   isPlayed = true;
 };
 
 eAudio.onpause = function () {
-  $element.removeClass('addAnimation');
+  // $element.removeClass('addAnimation')
   isPlayed = false;
 };
 
 eAudio.addEventListener('volumechange', function (e) {
-  if (this.muted) {
-    $element.removeClass('addAnimation');
+  if (this.muted) {// $element.removeClass('addAnimation')
   }
 }, false);
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
@@ -143,8 +142,7 @@ function start(audio) {
         ctx.fillStyle = gradient;
         ctx.fillRect(i * 25, cheight - value + capHeight, meterWidth, cheight);
         ctx.font = '28px serif';
-        ctx.fillStyle = 'red';
-        ctx.fillText('vietmix.vn', cwidth / 2 - 40, 50);
+        ctx.fillStyle = 'red'; // ctx.fillText('vietmix.vn', cwidth/2 - 40, 50);
       }
 
       requestAnimationFrame(renderFrame);

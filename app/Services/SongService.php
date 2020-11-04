@@ -138,7 +138,7 @@ class SongService
     public function getSongByUserId($userId, $status = null)
     {
         $query = $this->_songModel->where('user_id', $userId);
-        if (!is_null($status)) {
+        if ($status != null) {
             $query = $query->where('status', $status);
         }
         return $query->orderBy('created_at', 'DESC')->get();

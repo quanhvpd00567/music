@@ -49,7 +49,7 @@
         </div>
         <div class="main-content">
             <div class="header-section">
-{{--                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>--}}
+                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
                 @include('endUser.layouts.header')
                 <div class="clearfix"></div>
             </div>

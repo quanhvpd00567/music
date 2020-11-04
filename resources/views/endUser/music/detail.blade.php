@@ -24,32 +24,12 @@ use Illuminate\Support\Facades\URL;
     <style>
         canvas{
             background-repeat: no-repeat;
-            background-image: url('{{$bg}}');
+            {{--background-image: url('{{$bg}}');--}}
             background-size: cover;
             width: 100%;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
-        }
-
-        .addAnimation {
-            animation: shake 2s;
-            animation-iteration-count: infinite;
-        }
-        @keyframes shake {
-            0% {
-                transform: translate(1px, 1px) rotate(0deg) scale(1,1);
-            }
-            10% { transform: translate(-1px, -2px) rotate(-1deg) scale(1,1); }
-            20% { transform: translate(-3px, 0px) rotate(1deg) scale(1,1); }
-            30% { transform: translate(3px, 2px) rotate(0deg) scale(1,1); }
-            40% { transform: translate(1px, -1px) rotate(1deg) scale(1,1); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg) scale(1,1); }
-            60% { transform: translate(-3px, 1px) rotate(0deg) scale(1,1); }
-            70% { transform: translate(3px, 1px) rotate(-1deg) scale(1,1); }
-            80% { transform: translate(-1px, -1px) rotate(1deg) scale(1,1); }
-            90% { transform: translate(1px, 2px) rotate(0deg) scale(1,1); }
-            100% { transform: translate(1px, -2px) rotate(-1deg) scale(1,1); }
         }
     </style>
 @endsection
@@ -63,7 +43,7 @@ use Illuminate\Support\Facades\URL;
                 <div class="banner-section">
                     <div class="banner">
                         <div class="callbacks_container">
-                            <canvas id='canvas' width="1000" height="600"></canvas>
+                            <canvas id='canvas' width="1000" height="400"></canvas>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -75,7 +55,7 @@ use Illuminate\Support\Facades\URL;
                 </div>
                 <div id="info-song" style="padding-top: 10px">
                     <?php
-                        $argKeyword = explode(', ', $song->keyword);
+                        $argKeyword = explode(',', $song->keyword);
                     ?>
                     <div class="tag" style="padding: 10px; color: #ffffff">
                         <i class="fa fa-info" style="padding-bottom: 10px;"> Thông tin</i>
@@ -87,7 +67,7 @@ use Illuminate\Support\Facades\URL;
                         <ul style="padding-left: 10px">
                             @foreach($argKeyword as $tag)
                                 <li style="list-style: none; display: inline-block; background-color: #0b7054; border-radius: 5px">
-                                    <a style="text-decoration: none; padding: 10px; color: #FFFFFF" href="{{route('song.search', ['tag' => $tag])}}">{{$tag}}</a>
+                                    <a style="text-decoration: none; padding: 10px; color: #FFFFFF" href="{{route('song.search', ['tag' => $tag])}}">{{trim($tag)}}</a>
                                 </li>
                             @endforeach
                         </ul>
