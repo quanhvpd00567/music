@@ -40,7 +40,7 @@ class UserController extends Controller
     public function uploadFilePost(UploadSongRequest $request)
     {
 
-        dd(ini_get('post_max_size'));
+
         try {
             $params = $request->only([
                 'title', 'keyword', 'author', 'description', 'category_id'
