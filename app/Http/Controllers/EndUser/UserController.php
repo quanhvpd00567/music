@@ -40,7 +40,6 @@ class UserController extends Controller
     public function uploadFilePost(UploadSongRequest $request)
     {
 
-
         try {
             $params = $request->only([
                 'title', 'keyword', 'author', 'description', 'category_id'

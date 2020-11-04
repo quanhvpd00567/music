@@ -23,7 +23,6 @@ class UploadSongRequest extends FormRequest
      */
     public function rules()
     {
-        dd(phpinfo());
         return [
             'title' => 'required|max:255',
             'author' => 'required|max:255',
