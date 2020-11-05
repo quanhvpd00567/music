@@ -22,15 +22,7 @@ use Illuminate\Support\Facades\URL;
 @endsection
 @section('styles')
     <style>
-        canvas{
-            background-repeat: no-repeat;
-            {{--background-image: url('{{$bg}}');--}}
-            background-size: cover;
-            width: 100%;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-        }
+
     </style>
 @endsection
 
@@ -59,6 +51,11 @@ use Illuminate\Support\Facades\URL;
                     ?>
                     <div class="tag" style="padding: 10px; color: #ffffff">
                         <i class="fa fa-info" style="padding-bottom: 10px;"> Thông tin</i>
+                        <p>
+                            Nghe và tải <b class="text-danger">{{$song->title}}</b> của {{$song->author}} tại
+                            <span class="text-danger">vietmix.vn</span>
+                        </p>
+                        <p class="text-center">CHÚC CÁC BẠN NGHE NHẠC VUI VẺ</p>
                         <p style="padding-left: 10px">{{$song->description}}</p>
                     </div>
 
