@@ -3,7 +3,6 @@
 use App\Http\Controllers\EndUser\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EndUser;
-use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\View;
 
 /*
@@ -62,6 +61,3 @@ Route::middleware('checkUser')->group(function () {
     });
 });
 
-Route::domain('api.vietmix.vn')->group(function () {
-    Route::get('song', [Api\MusicController::class, 'getListSong'])->name('song.list');
-});

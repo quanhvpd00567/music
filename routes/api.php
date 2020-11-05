@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::domain(env('DOMAIN_API'))->group(function () {
+    Route::prefix('v1')->group(function () {
+        Route::prefix('songs')->name('song.')->group(function () {
+            Route::get('', [Api\MusicController::class, 'getListSong'])->name('list');
+            Route::get('detail', [Api\MusicController::class, 'detail'])->name('list');
+        });
+
+        Route::prefix('categories')->group(function () {
+
+        });
+    });
 });
