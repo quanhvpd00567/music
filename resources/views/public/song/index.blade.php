@@ -20,6 +20,7 @@
     <section class="album-single-wrap">
         <div class="container">
             <div class="col-md-4 left">
+
                 <div class="album-info">
                     <div class="image">
                         <div class="overlay">
@@ -70,6 +71,8 @@
             </div><!--/.left -->
 
             <div class="col-md-8 right">
+
+
                 <div class="content">
                     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
                     <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">

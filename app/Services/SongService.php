@@ -132,7 +132,7 @@ class SongService
     {
         $query = $this->_songModel->where('category_id', $categoryId);
 
-        return $query->orderBy('id', 'DESC')->paginate(1);
+        return $query->orderBy('id', 'DESC')->paginate(30);
     }
 
     public function getSongByUserId($userId, $status = null)
