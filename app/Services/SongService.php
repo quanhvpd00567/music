@@ -130,9 +130,9 @@ class SongService
 
     public function getSongByCategory($categoryId)
     {
-        $query = $this->_songModel->where('status', Song::$status['approved'])->where('category_id', $categoryId);
+        $query = $this->_songModel->where('category_id', $categoryId);
 
-        return $query->orderBy('id', 'DESC')->paginate(30);
+        return $query->orderBy('id', 'DESC')->paginate(1);
     }
 
     public function getSongByUserId($userId, $status = null)

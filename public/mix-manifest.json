@@ -3,7 +3,9 @@
     "/css/common.css": "/css/common.css",
     "/end_user/css/audio.css": "/end_user/css/audio.css",
     "/end_user/css/login.css": "/end_user/css/login.css",
+    "/vietmix/stylesheets/css/common.css": "/vietmix/stylesheets/css/common.css",
     "/end_user/js/audio-animation.js": "/end_user/js/audio-animation.js",
     "/end_user/js/audio-animation2.js": "/end_user/js/audio-animation2.js",
-    "/end_user/js/wa.js": "/end_user/js/wa.js"
+    "/end_user/js/wa.js": "/end_user/js/wa.js",
+    "/vietmix/stylesheets/css/all.css": "/vietmix/stylesheets/css/all.css"
 }

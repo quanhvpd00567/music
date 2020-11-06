@@ -135,17 +135,29 @@ $(document).ajaxStart(function () {
 
 /***/ }),
 
+/***/ "./resources/vietmix/stylesheets/css/common.scss":
+/*!*******************************************************!*\
+  !*** ./resources/vietmix/stylesheets/css/common.scss ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***************************************************************************************************************************!*\
-  !*** multi ./resources/js/ajaxSetup.js ./resources/css/common.scss ./resources/css/audio.scss ./resources/css/login.scss ***!
-  \***************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/ajaxSetup.js ./resources/css/common.scss ./resources/css/audio.scss ./resources/css/login.scss ./resources/vietmix/stylesheets/css/common.scss ***!
+  \***************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/macos/MyProject/php/music_all/resources/js/ajaxSetup.js */"./resources/js/ajaxSetup.js");
 __webpack_require__(/*! /Users/macos/MyProject/php/music_all/resources/css/common.scss */"./resources/css/common.scss");
 __webpack_require__(/*! /Users/macos/MyProject/php/music_all/resources/css/audio.scss */"./resources/css/audio.scss");
-module.exports = __webpack_require__(/*! /Users/macos/MyProject/php/music_all/resources/css/login.scss */"./resources/css/login.scss");
+__webpack_require__(/*! /Users/macos/MyProject/php/music_all/resources/css/login.scss */"./resources/css/login.scss");
+module.exports = __webpack_require__(/*! /Users/macos/MyProject/php/music_all/resources/vietmix/stylesheets/css/common.scss */"./resources/vietmix/stylesheets/css/common.scss");
 
 
 /***/ })

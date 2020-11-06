@@ -19,9 +19,9 @@ class CategoryService
     {
         return $this->_modalCategory->pluck('name', 'id')->toArray();
     }
-    public function getFullCategories()
+    public function getFullCategories($column = ['*'])
     {
-        return $this->_modalCategory->all();
+        return $this->_modalCategory->select($column)->withCount('songs')->get();
     }
 
     public function getDetail($id)

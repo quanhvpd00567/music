@@ -24,6 +24,5 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        dd(12121);
     }
 }

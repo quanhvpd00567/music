@@ -1,0 +1,62 @@
+.album-card .text .tracks {
+  top: 10px;
+}
+
+.title-category {
+  font-size: 22px;
+  text-align: center;
+  color: #fa4c29;
+  font-family: "Oswald", helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.list-item {
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px solid #333333;
+  list-style-type: none;
+  margin: 0;
+  font-size: .72em;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.list-item .text {
+  color: #ffffff;
+}
+
+.list-item .text::before {
+  font-family: "FontAwesome";
+  content: "\F001";
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 200;
+  text-align: center;
+  color: #ffffff;
+  line-height: 22px;
+  margin-right: 20px;
+}
+
+.list-item .vm-gr-megdia .media-item {
+  display: inline;
+  padding-left: 10px;
+}
+
+.list-item .vm-gr-megdia .loved {
+  color: #fa4c29;
+}
+
+.pagination a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.jplay-view {
+  width: 100%;
+  height: 0;
+  background-size: cover;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
