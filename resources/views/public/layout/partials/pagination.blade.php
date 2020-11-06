@@ -14,7 +14,6 @@
         </li>
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
-
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)

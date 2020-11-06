@@ -28,7 +28,9 @@
                     @endforeach
                 </ul>
             </div>
+            @if(count($songs) > 0)
             {{ $songs->links('public.layout.partials.pagination') }}
+            @endif
         </div><!--/.container -->
     </section>
 @endsection

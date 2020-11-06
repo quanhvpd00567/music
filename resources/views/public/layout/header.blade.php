@@ -13,7 +13,7 @@
 
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="index-2.html">Home</a></li>
+                <li><a href="#">Home</a></li>
 
                 <li class="dropdown active">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
@@ -31,12 +31,12 @@
                 </li>
 
                 <li>
-                    <a href="index-2.html">
+                    <a href="#">
                         <i class="fa fa-upload"></i> <span>Đăng bài</span>
                     </a>
                 </li>
                 <li>
-                    <a href="index-2.html">
+                    <a href="#">
                         <i class="fa fa-upload"></i> <span>Login</span>
                     </a>
                 </li>
