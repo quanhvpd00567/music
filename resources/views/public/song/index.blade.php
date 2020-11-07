@@ -15,6 +15,7 @@
     <meta name="twitter:card"               content="summary" />
     <meta name="twitter:title"              content="{{$song->title}}" />
     <meta name="twitter:site"               content="Vietmix.vn" />
+
 @endsection
 @section('content')
     <section class="album-single-wrap">
@@ -59,20 +60,26 @@
                         </ul>
                     </div><!--/.list -->
                 </div><!--/.album-info -->
-                <div class="album-share">
+                <div class="album-share" >
                     <div class="title"><h2>Share This Album</h2></div>
                     <div class="content">
-                        <div class="socmed-wrap">
+                        <div class="socmed-wrap" style="margin-bottom: 20px">
+                            <a href="javascript:void(0)" id="btn-share"><i class="fa fa-share-alt"></i></a>
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
                         </div><!-- /.socmed-wrap -->
+                        <div>
+                            <input style="display: none" id="show-share" type="text" class="form-control" value="{{url()->current()}}">
+                        </div>
                     </div>
                 </div><!--/.event-share -->
+
             </div><!--/.left -->
 
+            <!-- Your share button code -->
+            <div class="fb-share-button" >
+
             <div class="col-md-8 right">
-
-
                 <div class="content">
                     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
                     <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
@@ -126,7 +133,28 @@
 @endsection
 
 @section('scripts')
+
     <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script>
+        let isShowShare = false;
+        $('#btn-share').on('click', function () {
+            isShowShare = !isShowShare
+            if(isShowShare) {
+                $('#show-share').show('slow')
+            }else{
+                $('#show-share').hide(1000)
+            }
+        });
+
         $("#jquery_jplayer_1").jPlayer({
             ready: function () {
                 $(this).jPlayer("setMedia", {

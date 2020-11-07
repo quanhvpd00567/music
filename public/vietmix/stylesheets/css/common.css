@@ -96,3 +96,10 @@
   text-transform: uppercase;
 }
 
+#show-share {
+  padding: 10px;
+  background: #928181;
+  color: #000000;
+  border: 1px solid #cccccc;
+}
+
