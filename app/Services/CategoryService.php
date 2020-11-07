@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Models\Category;
+use App\Models\Song;
 use Illuminate\Support\Str;
 use Webpatser\Uuid\Uuid;
 
@@ -21,7 +22,9 @@ class CategoryService
     }
     public function getFullCategories($column = ['*'])
     {
-        return $this->_modalCategory->select($column)->withCount('songs')->get();
+        return $this->_modalCategory->select($column)->withCount(['songs' => function($q) {
+            $q->where('status', Song::$status['approved']);
+        }])->get();
     }
 
     public function getDetail($id)

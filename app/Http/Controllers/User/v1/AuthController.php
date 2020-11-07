@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\User\v1;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 use App\Services\userService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     protected $userService;
 
@@ -53,12 +54,45 @@ class AuthController extends Controller
 
     public function loginPost(LoginRequest $request)
     {
-        $credentials = $request->only([
-            'email', 'password'
-        ]);
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('home');
+        try{
+            if (Auth::check()) {
+                return redirect()->route('home');
+            }
+            $credentials = $request->only([
+                'email', 'password'
+            ]);
+            if (Auth::attempt($credentials)) {
+                return redirect()->route('home');
+            }
+        } catch (\Exception $exception) {
+            return $this->error404();
         }
-        dd(122);
+    }
+
+    public function register()
+    {
+        return view('public.auth.register', ['isShowBanner' => true]);
+    }
+
+    public function registerPost(RegisterRequest $request)
+    {
+        try {
+            $params = $request->only([
+                'name', 'phone', 'password', 'email'
+            ]);
+
+            $params['password'] = bcrypt($params['password']);
+            $params['provider'] = '';
+            $params['provider_id'] = '';
+            $params['role'] = User::$roles['member'];
+            $user = $this->userService->registerMember($params);
+            if ($user) {
+                Auth::login($user);
+                return redirect()->route('home');
+            }
+            return redirect()->route('register');
+        } catch (\Exception $exception) {
+            return redirect()->route('register');
+        }
     }
 }

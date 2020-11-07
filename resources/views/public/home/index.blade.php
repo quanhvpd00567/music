@@ -1,6 +1,7 @@
 @extends('public.layout.master')
+@section('title') Nhạc Remix | vietmix.vn @endsection
 @section('metas')
-    @include('endUser.layouts.meta-default')
+    @include('public.layout.partials.meta-default')
 @endsection
 @section('content')
     <section class="album-list-wrap">

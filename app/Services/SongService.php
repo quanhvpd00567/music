@@ -52,15 +52,19 @@ class SongService
             $song->save();
             return true;
         } catch (\Exception $exception) {
-            dd($exception);
             return false;
         }
 
     }
 
-    public function getDetail($id)
+    public function getDetail($id, $isStatus = false)
     {
-        return $this->_songModel->where('id', $id)->where('status', Song::$status['approved'])->first();
+        $query = $this->_songModel->where('id', $id);
+        if($isStatus)
+        {
+            $query = $query->where('status', Song::$status['approved']);
+        }
+        return $query->first();
     }
 
     public function update($params, $id)
@@ -125,7 +129,7 @@ class SongService
             $query = $query->where('title', 'LIKE' ,'%'. $params['keyword'] . '%');
         }
 
-        return $query->orderBy('id', 'DESC')->limit(30)->get();
+        return $query->orderBy('id', 'DESC')->paginate(30);
     }
 
     public function getSongByCategory($categoryId)
@@ -138,9 +142,9 @@ class SongService
     public function getSongByUserId($userId, $status = null)
     {
         $query = $this->_songModel->where('user_id', $userId);
-        if ($status != null) {
+        if (!is_null($status) || $status == 0) {
             $query = $query->where('status', $status);
         }
-        return $query->orderBy('created_at', 'DESC')->get();
+        return $query->orderBy('created_at', 'DESC')->paginate(30);
     }
 }

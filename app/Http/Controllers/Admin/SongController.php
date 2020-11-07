@@ -38,9 +38,9 @@ class SongController extends Controller
         $index = ($currentPage * $page) - $page + 1;
         $params['page'] = $page;
         $songs = $this->songService->getList($params);
-        $categories = [0 => 'All'];
-        $categories = array_merge($categories, $this->categoryService->getList());
-        return view('admin.song.index', compact('songs', 'index', 'categories', 'params'));
+        $categoriesAdmin = [0 => 'All'];
+        $categoriesAdmin = array_merge($categoriesAdmin, $this->categoryService->getList());
+        return view('admin.song.index', compact('songs', 'index', 'categoriesAdmin', 'params'));
     }
 
     public function add()

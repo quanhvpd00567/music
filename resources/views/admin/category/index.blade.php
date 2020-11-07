@@ -80,22 +80,26 @@
                             <form action="" id="form-category">
                                 <div class="row">
                                     <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Category name</label>
-                                                <input type="text" class="form-control" id="name-add">
-                                                <span class="text-danger" id="error-name-add"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-check primary">
-                                                    <input type="checkbox" id="status-add" checked>
-                                                    <label for="status-add">Status</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="button" id="btn-add" class="btn btn-primary">Save</button>
-                                                <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                                        <div class="form-group">
+                                            <label>Category name</label>
+                                            <input type="text" class="form-control" id="name-add">
+                                            <span class="text-danger" id="error-name-add"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <input type="text" class="form-control" id="image-add">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check primary">
+                                                <input type="checkbox" id="status-add" checked>
+                                                <label for="status-add">Status</label>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <button type="button" id="btn-add" class="btn btn-primary">Save</button>
+                                            <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -123,6 +127,10 @@
                                             <div class="form-group">
                                                 <label>Category name</label>
                                                 <input type="text" class="form-control" id="name-edit">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Image</label>
+                                                <input type="text" class="form-control" id="image-edit">
                                             </div>
                                             <div class="form-group">
                                                 <div class="form-check primary">
@@ -162,11 +170,10 @@
             $('#btn-add').on('click', function (e) {
                 e.preventDefault();
 
-                let name = $('#name-add').val();
-                let status = $('#status-add').is(":checked")
                 let data = {
                     "_token": "{{ csrf_token() }}",
                     status: $('#status-add').is(":checked"),
+                    image: $('#image-add').is(":checked"),
                     name: $('#name-add').val()
                 }
 
@@ -199,6 +206,7 @@
                     "_token": "{{ csrf_token() }}",
                     status: $('#status-edit').is(":checked"),
                     name: $('#name-edit').val(),
+                    image: $('#image-edit').val(),
                     id: $('#id-edit').val()
                 }
 
@@ -251,6 +259,7 @@
             function setDataEdit(object) {
                 $('#name-edit').val(object.name)
                 $('#id-edit').val(object.id)
+                $('#image-edit').val(object.image)
                 $('#status-edit').prop('checked', object.status)
             }
         })

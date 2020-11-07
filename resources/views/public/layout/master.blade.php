@@ -30,22 +30,14 @@
 
 @if(!isset($isShowBanner))
     <!-- Banner Title Begin -->
-    <section class="banner-title album-banner">
+    <section class="banner-title event-banner">
         <div class="overlay"></div>
         <div class="container content">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="main-title">
-                    <h1>
-                        Album List
-                        <span class="light"> 4 Columns</span>
-                    </h1>
-                    <div class="text-wrap">
-                        <div class="text">Your custom text here.</div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section><!--/.banner -->
+
+    @include('public.layout.partials.search')
     <!-- Banner Title End -->
 @endif
 

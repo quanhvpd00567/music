@@ -11,4 +11,9 @@ class BaseController extends Controller
     {
         return view('public.errors.404', ['isShowBanner' => $isShowBanner]);
     }
+
+    public function error500($isShowBanner = true)
+    {
+        return view('public.errors.500', ['isShowBanner' => $isShowBanner]);
+    }
 }

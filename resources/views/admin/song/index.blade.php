@@ -30,7 +30,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="">Category</label>
-                                {{Form::select('category', $categories, isset($params['category']) ? $params['category'] : 0, ['class' => 'form-control', 'data-init-plugin' => "select2"])}}
+                                {{Form::select('category', $categoriesAdmin, isset($params['category']) ? $params['category'] : 0, ['class' => 'form-control', 'data-init-plugin' => "select2"])}}
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -60,7 +60,8 @@
                                         <th style="width:5%">No.</th>
                                         <th>Image</th>
                                         <th style="width:40%">Song name </th>
-                                        <th style="width: 20%;">Category</th>
+                                        <th style="width: 10%;">Category</th>
+                                        <th>Status</th>
                                         <th>Viewed</th>
                                         <th>liked</th>
                                         <th>Author</th>
@@ -83,6 +84,15 @@
                                                 </td>
                                                 <td class="v-align-middle">{{$song->title}}</td>
                                                 <td class="v-align-middle"> {{$song->category->name}}</td>
+                                                <td>
+                                                    @if($song->status == \App\Models\Song::$status['approved'])
+                                                        <span class="text-success">Approved</span>
+                                                    @elseif($song->status == \App\Models\Song::$status['pending'])
+                                                        <span class="text-primary">Progress</span>
+                                                    @else
+                                                        <span class="text-danger">Cancel</span>
+                                                    @endif
+                                                </td>
                                                 <td>{{number_format($song->view)}}</td>
                                                 <td>{{number_format($song->liked)}}</td>
                                                 <td>{{$song->author}}</td>

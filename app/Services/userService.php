@@ -32,4 +32,13 @@ class userService
         }
         return $user;
     }
+
+    public function registerMember($params)
+    {
+        try {
+            return $this->userModel->create($params);
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
+    }
 }

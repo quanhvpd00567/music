@@ -10,7 +10,7 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = [
-        'name', 'slug', 'uuid', 'status'
+        'name', 'slug', 'uuid', 'status', 'image'
     ];
 
     public $timestamps = true;

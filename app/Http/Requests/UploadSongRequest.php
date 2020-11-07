@@ -28,7 +28,7 @@ class UploadSongRequest extends FormRequest
             'author' => 'required|max:255',
             'keyword' => 'max:255',
             'image' => 'required|image|mimes:jpg,png,jpeg|max:4000',
-            'file' => 'required|min:5120',
+            'file' => 'required|min:5120|max:51200',
         ];
     }
 

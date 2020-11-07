@@ -15,13 +15,11 @@
     <meta name="twitter:card"               content="summary" />
     <meta name="twitter:title"              content="{{$song->title}}" />
     <meta name="twitter:site"               content="Vietmix.vn" />
-
 @endsection
 @section('content')
     <section class="album-single-wrap">
         <div class="container">
             <div class="col-md-4 left">
-
                 <div class="album-info">
                     <div class="image">
                         <div class="overlay">
@@ -34,7 +32,6 @@
                         </div><!-- /.overlay -->
                         <img src="{{$song->image}}" alt="{{$song->title}}">
                     </div><!-- /.image -->
-
                     <div class="list">
                         <ul>
                             <li>
@@ -60,25 +57,9 @@
                         </ul>
                     </div><!--/.list -->
                 </div><!--/.album-info -->
-                <div class="album-share" >
-                    <div class="title"><h2>Share This Album</h2></div>
-                    <div class="content">
-                        <div class="socmed-wrap" style="margin-bottom: 20px">
-                            <a href="javascript:void(0)" id="btn-share"><i class="fa fa-share-alt"></i></a>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                        </div><!-- /.socmed-wrap -->
-                        <div>
-                            <input style="display: none" id="show-share" type="text" class="form-control" value="{{url()->current()}}">
-                        </div>
-                    </div>
-                </div><!--/.event-share -->
-
             </div><!--/.left -->
-
             <!-- Your share button code -->
             <div class="fb-share-button" >
-
             <div class="col-md-8 right">
                 <div class="content">
                     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
@@ -120,6 +101,19 @@
                         </div><!-- /.jp-type-playlist -->
                     </div><!-- /.jp-audio -->
                 </div><!-- /.content -->
+                <div class="album-share link-share" >
+                    <div class="title"><h2>Chia sẻ bài hát</h2></div>
+                    <div class="content" style="padding-top: 10px">
+                        <div class="socmed-wrap" style="margin-bottom: 20px">
+                            <a href="javascript:void(0)" id="btn-share"><i class="fa fa-share-alt"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </div><!-- /.socmed-wrap -->
+                        <div>
+                            <input style="display: none" id="show-share" type="text" class="form-control" value="{{url()->current()}}">
+                        </div>
+                    </div>
+                </div><!--/.event-share -->
 
                 <div class="album-detail">
                     <div class="title"><h2>Mô tả</h2></div>
@@ -127,13 +121,27 @@
                         {{$song->description}}
                     </div><!--/.content -->
                 </div><!--/.album-detail -->
+
+                <div class="detail-tag" >
+                    <div class="title"><h2>Tags</h2></div>
+                    <?php
+                        $argKeyword = explode(',', $song->keyword);
+                    ?>
+                    <div class="content">
+                        <div class="tag-wrap">
+                            @foreach($argKeyword as $tag)
+                                <a href="{{route('search', ['tag' => $tag])}}" class="tag">{{trim($tag)}}</a>
+                            @endforeach
+                        </div><!-- /.tag-wrap -->
+                    </div><!-- /.content -->
+                </div>
             </div><!--/.right -->
         </div><!-- /.container -->
     </section>
+{{--    <div id="snackbar">Đã sao chép link bài hát</div>--}}
 @endsection
 
 @section('scripts')
-
     <script>
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -143,15 +151,31 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-
     <script>
+
+        function showToast() {
+            let x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+
+        function copyUserName() {
+            //just_for_copy is my invisible extra field
+            document.getElementById('show-share').value;
+            let justForCopy = document.getElementById('show-share');
+            // justForCopy.select();
+            document.execCommand("copy");
+        }
+
         let isShowShare = false;
         $('#btn-share').on('click', function () {
             isShowShare = !isShowShare
             if(isShowShare) {
-                $('#show-share').show('slow')
+                let input = $('#show-share');
+                input.show('slow').focus().val(input.val()).select()
+                // showToast()
             }else{
-                $('#show-share').hide(1000)
+                $('#show-share').hide(500)
             }
         });
 

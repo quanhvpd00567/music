@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function create(CategoryRequest $request)
     {
         $params = $request->only([
-            'name', 'status'
+            'name', 'status', 'image'
         ]);
 
         $isSave = $this->categoryService->createCategory($params);
@@ -38,7 +38,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $columns = ['id', 'name', 'status'];
+        $columns = ['id', 'name', 'status', 'image'];
         $category = $this->categoryService->getDetailById($id, $columns);
         if ($category) {
             return response(['status' => true, 'data' => $category], 200);
@@ -49,7 +49,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request)
     {
         try {
-            $attrs = $request->only(['name', 'status', 'id']);
+            $attrs = $request->only(['name', 'status', 'id', 'image']);
             $category = $this->categoryService->getDetailById($attrs['id']);
             if (is_null($category)) {
                 return response(['status' => false], 404);
@@ -61,7 +61,6 @@ class CategoryController extends Controller
             }
             return response(['status' => false], 500);
         } catch (\Exception $exception){
-            dd($exception);
             return response(['status' => false], 500);
         }
     }

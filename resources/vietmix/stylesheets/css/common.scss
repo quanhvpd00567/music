@@ -1,4 +1,63 @@
 
+.album-list-wrap{
+    padding-top: 20px;
+
+
+}
+
+.detail-tag {
+    .content {
+        .tag-wrap {
+            a {
+                padding: 5px 10px;
+                color: #ffffff;
+                background: #222222;
+                display: inline-block;
+                margin: 0px 5px 5px 0px;
+                font-size: 12px;
+                -webkit-transition: 0.3s;
+                &:hover{
+                    background: #fa4c29;
+                }
+            }
+        }
+    }
+}
+
+.search {
+    input{
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        background: #222222;
+        border-color: #333333;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+        color: #cccccc;
+        &:focus{
+            background: #121212;
+            border-color: #333333;
+            -o-box-shadow: none;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+    }
+    .input-group-btn {
+        position: relative;
+        font-size: 0;
+        white-space: nowrap;
+        .btn {
+            border-radius: 0px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            background: #fa4c29;
+            color: #ffffff;
+        }
+    }
+}
 .album-card{
     .text{
         .tracks {
@@ -113,4 +172,200 @@ $colorPk: #fa4c29;
     background: #928181;
     color: #000000;
     border: 1px solid #cccccc;
+}
+
+
+.link-share {
+    a{
+        display: inline-block;
+        position: relative;
+        background: #333333;
+        border: 1px solid #444;
+        color: #ffffff;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        margin-right: 20px;
+        font-size: 12px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -ms-transition: 0.3s;
+        -o-transition: 0.3s;
+        i{
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            width: 30px;
+            height: 30px;
+            top: 7px;
+            left: 7px;
+            position: absolute;
+        }
+    }
+}
+
+
+    #snackbar {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+        font-size: 17px;
+    }
+
+    #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+
+
+
+#notes {
+    padding-left: 10px;
+    color: #000;
+    li {
+        list-style: none;
+        h3 {
+            color: $colorPk;
+        }
+    }
+}
+
+#notes .item {
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    margin: 25px auto;
+    padding: 60px 15px 15px 15px;
+    background: #fff no-repeat 4px 8px;
+    //background: #fff url(https://our.fogbugz.com/images/tbKiwiLogo.gif) no-repeat 4px 8px;
+    -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 2px 12px rgba(0,0,0,.5);
+    box-shadow: 0 1px 2px #000;
+    -webkit-transform: rotate(-.5deg);
+    -moz-transform: rotate(-.5deg);
+    -o-transform: rotate(-.5deg);
+}
+
+#notes .item:nth-child(even) {
+    -webkit-transform: rotate(.5deg);
+    -moz-transform: rotate(.5deg);
+    -o-transform: rotate(.5deg);
+}
+
+#notes .item.kiln
+{
+    background-image: url(https://rob.kilnhg.com/Content/Images/kiln_focus.gif);
+}
+
+#notes .item p {
+    text-align: center;
+    //font: normal normal normal 40px/48px 'Reenie Beanie', Helvetica, Arial, sans-serif;
+    text-shadow: white 1px 1px 0px;
+    overflow: hidden;
+}
+
+#notes .item::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 40%;
+    top: -15px;
+    width: 75px;
+    height: 25px;
+    z-index: 2;
+    background-color: rgba(243,245,228,0.5);
+    border: 2px solid rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0 0 5px #888;
+    -moz-box-shadow: 0 0 5px #888;
+    box-shadow: 2px 2px 2px #000;
+    -webkit-transform: rotate(-6deg);
+    -moz-transform: rotate(-6deg);
+    -o-transform: rotate(-6deg);
+}
+
+#notes .item:nth-child(even)::before {
+    -webkit-transform: rotate(6deg);
+    -moz-transform: rotate(6deg);
+    -o-transform: rotate(6deg);
+}
+
+#notes .item {
+    h3{
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    ul {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 12px;
+        li {
+            padding-top: 10px;
+            list-style: none;
+            border-bottom: 1px dotted red;
+        }
+    }
+}
+
+.rm-group-link{
+    a{
+        padding-right: 10px;
+        min-width: 100px;
+        background-color: $colorPk;
+        border: none;
+        &:hover{
+            background-color: $colorPk;
+        }
+    }
+    .active{
+        color: $colorPk;
+        background-color: #ffffff;
+        &:hover{
+            background-color: #ffffff;
+        }
+    }
+}
+.banner-title .content {
+    padding-bottom: 200px;
+}
+
+
+@media (max-width: 767px) {
+    .album-list-wrap .album-card {
+        width: 100% !important;
+    }
 }

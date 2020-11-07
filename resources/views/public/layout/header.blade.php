@@ -48,6 +48,11 @@
                         </a>
                         <ul class="dropdown-menu animated fadeIn" role="menu">
                             <li>
+                                <a href="{{route('user.song.approved')}}">
+                                    <i class="fa fa-list-alt"></i> <span> Danh sach</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{route('logout')}}">
                                     <i class="fa fa-sign-out"></i> <span> Thoát</span>
                                 </a>
