@@ -36,9 +36,15 @@
                 </li>
 
                 <li>
-                    <a href="javascript:void(0)" id="upload-song">
-                        <i class="fa fa-upload"></i> <span> Đăng bài</span>
-                    </a>
+                    @if(auth()->check())
+                        <a href="{{route('user.upload')}}" id="upload-song">
+                            <i class="fa fa-upload"></i> <span> Đăng bài</span>
+                        </a>
+                    @else
+                        <a href="javascript:void(0)" id="upload-song">
+                            <i class="fa fa-upload"></i> <span> Đăng bài</span>
+                        </a>
+                    @endif
                 </li>
                 @if(auth()->check())
                     <li class="dropdown active">
