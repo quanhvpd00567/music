@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
-//Route::middleware('basic_auth')->group(function () {
+Route::domain(env('DOMAIN_ADMIN'))->group(function () {
     Route::group(['middleware' => 'checkAdminLogin'], function () {
         Route::prefix('master')->name('admin.master.')->group(function () {
 
@@ -48,12 +48,9 @@ use App\Http\Controllers\Admin;
 
         Route::get('logout', [Admin\AuthController::class, 'logOut'])->name('admin.logout');
     });
-//});
-
-
-
-Route::get('login', [Admin\AuthController::class, 'login'])->name('admin.login');
-Route::post('login', [Admin\AuthController::class, 'loginPost'])->name('admin.login.post');
+    Route::get('login', [Admin\AuthController::class, 'login'])->name('admin.login');
+    Route::post('login', [Admin\AuthController::class, 'loginPost'])->name('admin.login.post');
+});
 
 
 
