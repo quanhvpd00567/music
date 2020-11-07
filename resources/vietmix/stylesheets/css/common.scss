@@ -6,11 +6,11 @@
         }
     }
 }
-
+$colorPk: #fa4c29;
 .title-category {
     font-size: 22px;
     text-align: center;
-    color: #fa4c29;
+    color: $colorPk;
     font-family: "Oswald", helvetica, sans-serif;
     text-transform: uppercase;
 }
@@ -43,7 +43,7 @@
             padding-left: 10px;
         }
         .loved{
-            color: #fa4c29;
+            color: $colorPk;
         }
     }
 }
@@ -57,11 +57,53 @@
 }
 
 .jplay-view{
-    width: 100%;
     height: 0;
     background-size: cover;
     z-index: 1;
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+.iconRequired{
+    color: $colorPk;
+}
+.text-error{
+    color: $colorPk;
+}
+
+.modal{
+    .modal-dialog{
+        .modal-content{
+            .modal-header {
+                .close{
+                    color: $colorPk;
+                    opacity: unset !important;
+                }
+                h4{
+                    color: #000;
+                }
+            }
+            .modal-body{
+                p{
+                    color: #000;
+                };
+                .btn-login {
+                    background: $colorPk;
+                    margin-bottom: 15px;
+                    width: 100%;
+                    border: none;
+                    text-transform: uppercase;
+                    &:hover{
+                        border-width: unset !important;
+                    }
+                }
+                .facebook-btn{
+                    text-transform: uppercase;
+                }
+            }
+            .modal-footer{
+
+            }
+        }
+    }
 }

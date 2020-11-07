@@ -13,10 +13,15 @@
 
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li>
+                    <a href="/">
+                        <i class="fa fa-home">Home</i>
+                    </a>
+                </li>
 
                 <li class="dropdown active">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                        <i class="fa fa-list"></i>
                         Danh mục <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu animated fadeIn" role="menu">
@@ -31,15 +36,31 @@
                 </li>
 
                 <li>
-                    <a href="#">
-                        <i class="fa fa-upload"></i> <span>Đăng bài</span>
+                    <a href="javascript:void(0)" id="upload-song">
+                        <i class="fa fa-upload"></i> <span> Đăng bài</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-upload"></i> <span>Login</span>
-                    </a>
-                </li>
+                @if(auth()->check())
+                    <li class="dropdown active">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            <i class="fa fa-user"></i>
+                            {{auth()->user()->name}} <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu animated fadeIn" role="menu">
+                            <li>
+                                <a href="{{route('logout')}}">
+                                    <i class="fa fa-sign-out"></i> <span> Thoát</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li><!-- /.dropdown -->
+                @else
+                    <li>
+                        <a href="{{route('login')}}">
+                            <i class="fa fa-sign-in"></i> <span> Đăng nhập</span>
+                        </a>
+                    </li>
+                @endif
             </ul><!-- /.nav -->
         </div><!--/.nav-collapse -->
     </div><!--/.container -->

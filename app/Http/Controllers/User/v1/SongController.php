@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Helpers\Helper;
 
-class SongController extends BaseControLler
+class SongController extends BaseController
 {
     protected $categoryService;
     protected $songService;
@@ -27,13 +27,13 @@ class SongController extends BaseControLler
             $uuid = Helper::decodeUrlSong($slug);
 
             if (is_null($uuid) ) {
-                return abort(404);
+                return $this->error404();
             }
 
             $song = $this->songService->getDetailByUuid($uuid);
 
             if (is_null($song) ){
-                return abort(404);
+                return $this->error404();
             }
 
             $categoryId = $song->category_id;
@@ -55,7 +55,7 @@ class SongController extends BaseControLler
 
             return view('public.song.index', $data);
         }catch (\Exception $exception) {
-            return abort(404);
+            return $this->error404();
         }
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
-class HomeController extends BaseControLler
+class HomeController extends BaseController
 {
     protected $categoryService;
 
@@ -18,7 +18,7 @@ class HomeController extends BaseControLler
 
     public function index()
     {
-        $categories = $this->categoryService->getFullCategories(['id', 'name', 'slug']);
-        return view('public.home.index', compact('categories'));
+//        $categories = $this->categoryService->getFullCategories(['id', 'name', 'slug']);
+        return view('public.home.index');
     }
 }

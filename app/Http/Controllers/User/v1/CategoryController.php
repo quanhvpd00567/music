@@ -8,7 +8,7 @@ use App\Services\CategoryService;
 use App\Services\SongService;
 use Illuminate\Http\Request;
 
-class CategoryController extends BaseControLler
+class CategoryController extends BaseController
 {
 
     protected $categoryService;
@@ -25,16 +25,14 @@ class CategoryController extends BaseControLler
         $uuid = Helper::getUuidOfCategory($slug);
 
         if (is_null($uuid)) {
-//            return $this->success(null);
+            return $this->error404();
         }
 
-        $categories = $this->categoryService->getFullCategories(['id', 'name', 'slug']);
         $category = $this->categoryService->getDetailByUuid($uuid);
         $songs = $this->songService->getSongByCategory($category->id);
 
         $data = [
             'category' => $category,
-            'categories' => $categories,
             'songs' => $songs,
         ];
         return view('public.category.index', $data);

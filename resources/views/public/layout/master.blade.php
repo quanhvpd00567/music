@@ -1,3 +1,8 @@
+<?php
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,24 +25,27 @@
 @include('public.layout.header')
 <!-- Navbar End -->
 
-<!-- Banner Title Begin -->
-<section class="banner-title album-banner">
-    <div class="overlay"></div>
-    <div class="container content">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="main-title">
-                <h1>
-                    Album List
-                    <span class="light"> 4 Columns</span>
-                </h1>
-                <div class="text-wrap">
-                    <div class="text">Your custom text here.</div>
+
+@if(!isset($isShowBanner))
+    <!-- Banner Title Begin -->
+    <section class="banner-title album-banner">
+        <div class="overlay"></div>
+        <div class="container content">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="main-title">
+                    <h1>
+                        Album List
+                        <span class="light"> 4 Columns</span>
+                    </h1>
+                    <div class="text-wrap">
+                        <div class="text">Your custom text here.</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section><!--/.banner -->
-<!-- Banner Title End -->
+    </section><!--/.banner -->
+    <!-- Banner Title End -->
+@endif
 
 <!-- Album list Begin -->
 @yield('content')
@@ -45,8 +53,43 @@
 <!-- Album list End -->
 @include('public.layout.footer')
 
+@if(!auth()->check())
+    <div class="modal fade" id="popupConfirmUpload" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Bạn chưa đăng nhập</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Bạn phải đăng nhập mới có thể đăng bài hát</p>
+                        </div>
+                        <div class="col-md-12" style="padding-top: 10px">
+                            <a href="{{route('login')}}" class="btn btn-primary btn-login">Đăng nhập</a>
+                            <a class="btn facebook-btn btn-block" style="color: white; background-color: #1877f2" href="{{route('socialite_login', ['provider' => 'facebook'])}}" >
+                                <i class="fa fa-facebook"></i> Login with facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+@endif
+
 @include('public.layout.partials.script')
 
 @yield('scripts')
+<script>
+    $(function () {
+        $('#upload-song').on('click', function () {
+            $('#popupConfirmUpload').modal('show')
+        })
+    })
+</script>
 </body>
 </html>
