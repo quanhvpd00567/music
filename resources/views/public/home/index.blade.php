@@ -10,7 +10,7 @@
                 <div class="col-md-3 col-sm-3 album-card-wrap">
                 <div class="album-card">
                     <div class="image hoverdir-target">
-                        <img src="/vietmix/images/album1.jpg" alt="image">
+                        <img src="{{$category->image}}" alt="{{$category->name}}">
                         <div class="overlay">
                             <div class="buy-wrapper">
                                 <div class="buy">

@@ -37,7 +37,7 @@
 
                 <li>
                     @if(auth()->check())
-                        <a href="{{route('user.upload')}}" id="upload-song">
+                        <a href="{{route('user.upload')}}">
                             <i class="fa fa-upload"></i> <span> Đăng bài</span>
                         </a>
                     @else
