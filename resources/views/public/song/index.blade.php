@@ -200,9 +200,9 @@
         let audio = $("#jquery_jplayer_1").jPlayer({
             ready: function () {
                 $(this).jPlayer("setMedia", {
-                    title: "Bubble",
+                    title: "{{$song->title}}",
                     mp3: '{{$urlAudio}}',
-                    poster: "https://vuonhoaviet.vn/wp-content/uploads/2017/10/92.-Hoa-h%E1%BB%93ng-ngo%E1%BA%A1i-Blue-Storm.jpg"
+                    poster: "{{$song->image}}"
                 });
             },
             swfPath: "jplayer",
@@ -216,16 +216,18 @@
             toggleDuration: true
         });
 
-        $('#onMobilePause').hide()
-        $('#onMobilePlay').on('click', function () {
-            $(this).hide()
-            audio.jPlayer('play')
-            $('#onMobilePause').show()
-        })//
-        $('#onMobilePause').on('click', function () {
-            $(this).hide()
-            audio.jPlayer('pause')
-            $('#onMobilePlay').show()
-        })
+        @if($isMobile)
+            $('#onMobilePause').hide()
+            $('#onMobilePlay').on('click', function () {
+                $(this).hide()
+                audio.jPlayer('play')
+                $('#onMobilePause').show()
+            })//
+            $('#onMobilePause').on('click', function () {
+                $(this).hide()
+                audio.jPlayer('pause')
+                $('#onMobilePlay').show()
+            })
+        @endif
     </script>
 @endsection

@@ -12,6 +12,15 @@
   }
 }
 @media (max-width: 991px) {
+    .rm-btn-custom div{
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .rm-btn-custom button, .rm-btn-custom button:hover {
+        background-color: #fa4c29;
+        border: none;
+        padding: 10px;
+    }
   .banner .jp-audio .jp-type-single .container .jp-controls {
     width: 15%;
   }
