@@ -58,10 +58,10 @@
                     </div><!--/.list -->
                 </div><!--/.album-info -->
             </div><!--/.left -->
-            <!-- Your share button code -->
-            <div class="fb-share-button" >
+
             <div class="col-md-8 right">
                 <div class="content">
+                    @if(!$isMobile)
                     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
                     <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
                         <div class="jp-type-playlist">
@@ -100,6 +100,7 @@
                             </div>
                         </div><!-- /.jp-type-playlist -->
                     </div><!-- /.jp-audio -->
+                    @endif
                 </div><!-- /.content -->
                 <div class="album-share link-share" >
                     <div class="title"><h2>Chia sẻ bài hát</h2></div>

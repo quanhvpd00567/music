@@ -6,18 +6,6 @@ Route::domain(env('DOMAIN_ADMIN'))->group(function () {
     Route::group(['middleware' => 'checkAdminLogin'], function () {
         Route::prefix('master')->name('admin.master.')->group(function () {
 
-//            Route::prefix('sites')->group(function () {
-//                Route::get('/', [Admin\MasterController::class, 'index'])->name('site_list');
-//                Route::post('change-batch', [Admin\MasterController::class, 'changeBatch'])->name('change_status_batch');
-//                Route::prefix('{id}/categories')->group(function () {
-//                    Route::get('', [Admin\MasterController::class, 'category'])->name('category_list');
-//                    Route::get('create', [Admin\MasterController::class, 'createMasterCategory'])->name('category.add');
-//                    Route::post('create', [Admin\MasterController::class, 'postMasterCategory'])->name('category.post');
-//                    Route::get('edit/{idCategory}', [Admin\MasterController::class, 'editMasterCategory'])->name('category.edit');
-//                    Route::post('edit/{idCategory}', [Admin\MasterController::class, 'updateMasterCategory'])->name('category.update');
-//                });
-//            });
-
             Route::get('images', [Admin\MasterController::class, 'images'])->name('images.list');
 
             Route::prefix('image')->group(function () {

@@ -31,6 +31,7 @@ class SongController extends BaseController
 
     public function detail($slug)
     {
+        $isMobile = $this->isMobile();
         try {
 
             $uuid = Helper::decodeUrlSong($slug);
@@ -59,7 +60,8 @@ class SongController extends BaseController
             $data = [
                 'urlAudio'      => $urlAudio,
                 'song'          => $song,
-                'categories'    => $categories
+                'categories'    => $categories,
+                'isMobile'      =>$isMobile
             ];
 
             return view('public.song.index', $data);
