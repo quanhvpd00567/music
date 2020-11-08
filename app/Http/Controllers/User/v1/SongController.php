@@ -47,7 +47,7 @@ class SongController extends BaseController
             }
 
             if ($song->is_set_link == Song::$setLink['yes']) {
-                $urlAudio = $song->$song->file_name;
+                $urlAudio = $song->file_name;
             } else {
                 // set ex 5h
                 $urlAudio = Storage::disk('vietmix')->temporaryUrl(
