@@ -56,8 +56,9 @@ class SongController extends Controller
     {
         try {
             $params = $request->only([
-                'title', 'category_id', 'liked', 'view', 'author', 'file_name', 'keyword', 'description'
+                'title', 'category_id', 'liked', 'view', 'author', 'file_name', 'keyword', 'description', 'is_set_link'
             ]);
+            $paramsUpdate['is_set_link'] = isset($paramsUpdate['is_set_link']) ? 1 : 0;
             if ($request->hasFile('image')) {
                 $file = $request->image;
                 $extension = $file->getClientOriginalExtension();
@@ -93,8 +94,10 @@ class SongController extends Controller
     public function update($id, SongRequest $request)
     {
         $paramsUpdate = $request->only([
-            'title', 'author', 'view', 'liked', 'file_name', 'category_id', 'keyword', 'description'
+            'title', 'author', 'view', 'liked', 'file_name', 'category_id', 'keyword', 'description', 'is_set_link'
         ]);
+
+        $paramsUpdate['is_set_link'] = isset($paramsUpdate['is_set_link']) ? 1 : 0;
 
         $song = $this->songService->getDetail($id);
 

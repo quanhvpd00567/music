@@ -71,11 +71,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="x">File image</label>
+                    <label for="x">Tags</label>
                     {{Form::text('keyword', $song->keyword ,['class' => 'form-control', 'id' => 'keyword'])}}
                     @error('keyword')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
+                </div>
+                <div class="form-group">
+                    <div class="form-check primary">
+                        {{Form::checkbox('is_set_link', 1, $song->is_set_link ,['class' => 'form-control', 'id' => 'is_set_link'])}}
+                        <label for="is_set_link">Set link</label>
+                    </div>
                 </div>
             </div>
         </div>

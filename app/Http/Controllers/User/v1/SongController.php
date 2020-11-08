@@ -46,13 +46,16 @@ class SongController extends BaseController
                 return $this->error404();
             }
 
-            $categoryId = $song->category_id;
+            if ($song->is_set_link == Song::$setLink['yes']) {
+                $urlAudio = $song->$song->file_name;
+            } else {
+                // set ex 5h
+                $urlAudio = Storage::disk('vietmix')->temporaryUrl(
+                    $song->file_name, now()->addMinutes(300)
+                );
+            }
 
-            // set ex 5h
-//            $urlAudio = Storage::disk('vietmix')->temporaryUrl(
-//                $song->file_name, now()->addMinutes(300)
-//            );
-            $urlAudio = 'https://s3.castbox.fm/61/9c/aa/d1de62472f906f8102e7f10003.mp3';
+//            $categoryId = $song->category_id;
 
 //            $songs = $this->songService->getListSongRelated($song->id, $categoryId);
 //            $randomSongs = $this->songService->getSongRandom(10, $song->id);

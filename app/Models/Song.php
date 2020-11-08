@@ -15,6 +15,10 @@ class Song extends Model
       'pending' => 1,
       'reject' => 2,
     ];
+    public static $setLink = [
+        'yes' => 1,
+        'no' => 0
+    ];
 
     public $timestamps = true;
 
