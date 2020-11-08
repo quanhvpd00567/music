@@ -76,7 +76,7 @@ $controllerName = explode('@', $controllerAction)[0];
                         </ul>
                     </li><!-- /.dropdown -->
                 @else
-                    <li>
+                    <li class="{{$controllerName == 'AuthController' ? 'active' : ''}}">
                         <a href="{{route('login')}}">
                             <i class="fa fa-sign-in"></i> <span> Đăng nhập</span>
                         </a>

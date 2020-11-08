@@ -1,8 +1,6 @@
 <?php
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,26 +18,28 @@
 </head>
 <body>
 <!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
 @include('public.layout.partials.loading')
 
 <!-- Navbar Begin -->
 @include('public.layout.header')
 <!-- Navbar End -->
 
+<section class="banner-title event-banner">
+    <div class="overlay"></div>
+    <div class="container content">
+
+    </div>
+</section><!--/.banner -->
 
 @if(!isset($isShowBanner))
     <!-- Banner Title Begin -->
-    <section class="banner-title event-banner">
-        <div class="overlay"></div>
-        <div class="container content">
-
-        </div>
-    </section><!--/.banner -->
 
     @include('public.layout.partials.search')
+
     <!-- Banner Title End -->
 @endif
+
+
 
 <!-- Album list Begin -->
 @yield('content')
