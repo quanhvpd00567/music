@@ -49,10 +49,10 @@ class SongController extends BaseController
             $categoryId = $song->category_id;
 
             // set ex 5h
-            $urlAudio = Storage::disk('vietmix')->temporaryUrl(
-                $song->file_name, now()->addMinutes(300)
-            );
-//            $urlAudio = 'https://s3.castbox.fm/61/9c/aa/d1de62472f906f8102e7f10003.mp3';
+//            $urlAudio = Storage::disk('vietmix')->temporaryUrl(
+//                $song->file_name, now()->addMinutes(300)
+//            );
+            $urlAudio = 'https://s3.castbox.fm/61/9c/aa/d1de62472f906f8102e7f10003.mp3';
 
 //            $songs = $this->songService->getListSongRelated($song->id, $categoryId);
 //            $randomSongs = $this->songService->getSongRandom(10, $song->id);

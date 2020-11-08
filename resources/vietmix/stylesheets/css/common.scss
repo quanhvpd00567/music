@@ -371,6 +371,20 @@ $colorPk: #fa4c29;
 .album-single-wrap {
     padding-top: 10px !important;
 }
+
+.item-song {
+    padding-left: 0 !important;
+    .list-item{
+        .text {
+            display: inline-block;
+            width: 70%;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+    }
+
+}
 @media (max-width: 767px) {
     .album-list-wrap .album-card {
         width: 100% !important;

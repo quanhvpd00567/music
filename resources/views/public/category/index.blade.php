@@ -8,7 +8,7 @@
         <div class="container">
             <h2 class="text-center title-category">{{$category->name}}</h2>
             <div class="">
-                <ul>
+                <ul class="item-song">
                     @foreach($songs as $song)
                     <li class="list-item">
                         <div>

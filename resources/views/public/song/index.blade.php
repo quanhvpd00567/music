@@ -18,6 +18,21 @@
 @endsection
 @section('content')
     <section class="album-single-wrap">
+        @if($isMobile)
+        <div class="container" style="padding-bottom: 20px">
+            <div class="col-md-4 left">
+                <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                <div class="rm-btn-custom text-center">
+                    <button class="btn btn-primary" id="onMobilePlay">
+                        <i class="fa fa-play"></i> Nghe ngay
+                    </button>
+                    <button class="btn btn-primary" id="onMobilePause">
+                        <i class="fa fa-pause"></i> Đang dừng
+                    </button>
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="container">
             <div class="col-md-4 left">
                 <div class="album-info">
@@ -160,6 +175,8 @@
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         }
 
+
+
         function copyUserName() {
             //just_for_copy is my invisible extra field
             document.getElementById('show-share').value;
@@ -180,7 +197,7 @@
             }
         });
 
-        $("#jquery_jplayer_1").jPlayer({
+        let audio = $("#jquery_jplayer_1").jPlayer({
             ready: function () {
                 $(this).jPlayer("setMedia", {
                     title: "Bubble",
@@ -198,5 +215,17 @@
             remainingDuration: true,
             toggleDuration: true
         });
+
+        $('#onMobilePause').hide()
+        $('#onMobilePlay').on('click', function () {
+            $(this).hide()
+            audio.jPlayer('play')
+            $('#onMobilePause').show()
+        })//
+        $('#onMobilePause').on('click', function () {
+            $(this).hide()
+            audio.jPlayer('pause')
+            $('#onMobilePlay').show()
+        })
     </script>
 @endsection

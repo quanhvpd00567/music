@@ -141,11 +141,33 @@
   }
 }
 @media (min-width: 768px) {
+    .rm-btn-custom div{
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .rm-btn-custom button, .rm-btn-custom button:hover {
+        background-color: #fa4c29;
+        border: none;
+        padding: 10px;
+    }
+    /*.jp-audio > .jp-controls > .jp-stop {*/
+    /*    margin-left: unset !important;*/
+    /*}*/
   .navbar-nav .dropdown:hover .dropdown-menu {
     display: block;
   }
 }
 @media (max-width: 767px) {
+    .jp-audio{
+        width: 100%;
+    }
+    .jp-audio .jp-controls {
+        width: 100%;
+    }
+    /*.jp-audio > .jp-controls > .jp-stop {*/
+    /*    margin-left: unset !important;*/
+    /*}*/
+
   .banner .carousel .carousel-inner .item .content .title h1 {
     font-size: 24px;
     line-height: 26px;
@@ -291,6 +313,17 @@
   }
 }
 @media (max-width: 640px) {
+    .rm-btn-custom div{
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .rm-btn-custom button, .rm-btn-custom button:hover {
+        background-color: #fa4c29;
+        border: none;
+        padding: 10px;
+    }
+
+
   .banner .carousel .carousel-inner .item .content {
     margin-top: 30%;
   }
@@ -355,7 +388,18 @@
   }
 }
 @media (max-width: 480px) {
-  .banner .jp-audio .jp-type-single .container .jp-controls {
+
+    .rm-btn-custom div{
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .rm-btn-custom button, .rm-btn-custom button:hover {
+        background-color: #fa4c29;
+        border: none;
+        padding: 10px;
+    }
+
+    .banner .jp-audio .jp-type-single .container .jp-controls {
     width: 25%;
   }
   .banner .jp-audio .jp-type-single .container .jp-time-holder {
@@ -457,7 +501,17 @@
   }
 }
 @media (max-width: 350px) {
-  .banner .jp-audio .jp-type-single .container .jp-controls {
+    .rm-btn-custom div{
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .rm-btn-custom button, .rm-btn-custom button:hover {
+        background-color: #fa4c29;
+        border: none;
+        padding: 10px;
+    }
+
+    .banner .jp-audio .jp-type-single .container .jp-controls {
     width: 20%;
   }
   .banner .jp-audio .jp-type-single .container .jp-controls .jp-play {
@@ -488,6 +542,9 @@
   }
 }
 @media (max-width: 320px) {
+    .jp-audio{
+        width: 100%;
+    }
   .latest-album .album-card-wrap .album-card {
     width: 75%;
   }
