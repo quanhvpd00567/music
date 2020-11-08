@@ -33,6 +33,9 @@
                         <a class="btn facebook-btn btn-block" style="color: white; background-color: #1877f2" href="{{route('socialite_login', ['provider' => 'facebook'])}}" >
                             <i class="fa fa-facebook"></i> Login with facebook
                         </a>
+                        <a class="btn def-button" style="width: 100%; margin-bottom: 20px" href="{{route('register')}}" >
+                            <i class="fa fa-registered"></i> Register
+                        </a>
                     </div>
                 </div>
                 {{ Form::close() }}

@@ -1,3 +1,23 @@
+.navbar-brand{
+    a{
+        font-size: 20px !important;
+    }
+}
+
+.navbar .navbar-nav .active a {
+    background: none;
+    color: #fa4c29;
+}
+
+#logo {
+    font-size: 30px !important;
+    font-weight: bold;
+    &:hover{
+        text-decoration: none;
+        color: #ffffff;
+    }
+}
+
 
 .album-list-wrap{
     padding-top: 20px;

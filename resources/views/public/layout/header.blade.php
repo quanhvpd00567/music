@@ -1,3 +1,11 @@
+
+<?php
+$routeArray = request()->route()->getAction();
+
+$controllerAction = class_basename($routeArray['controller']);
+$controllerName = explode('@', $controllerAction)[0];
+?>
+
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-page" role="navigation" id="home-nav">
     <div class="container">
         <div class="navbar-header">
@@ -8,18 +16,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="/vietmix/images/logo-dark.png" alt="Jukebox Logo"></a>
+{{--            <a class="navbar-brand" href="#">--}}
+{{--                VIET<span style="color: #fa4c29">MIX</span--}}
+{{--            </a>--}}
         </div><!-- /.navbar-header -->
 
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li>
+                <li class="{{$controllerName == 'HomeController' ? 'active' : ''}}">
                     <a href="/">
                         <i class="fa fa-home">Home</i>
                     </a>
                 </li>
-
-                <li class="dropdown active">
+                <li class="dropdown {{$controllerName == 'CategoryController' ? 'active' : ''}}">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                         <i class="fa fa-list"></i>
                         Danh mục <i class="fa fa-angle-down"></i>
@@ -31,9 +40,10 @@
                     </ul>
                 </li><!-- /.dropdown -->
 
-                <li>
-                    <a href="#" class="brand"><img src="/vietmix/images/logo-dark.png" alt="Jukebox Logo"></a>
-                </li>
+{{--                <li>--}}
+{{--                    <a href="/" id="logo">VIET<span style="color: #fa4c29">MIX</span></a>--}}
+{{--                    <a href="#" class="brand"><img src="/vietmix/images/logo-dark.png" alt="Jukebox Logo"></a>--}}
+{{--                </li>--}}
 
                 <li>
                     @if(auth()->check())
