@@ -42,7 +42,7 @@
                     @foreach($categories as $category)
                     <li>
                         <div class="col-md-10 col-sm-10 col-xs-10 name">
-                            <a href="#" class="buy">{{$category->name}}</a>
+                            <a href="{{route('category.detail', ['slug' => $category->slug])}}" class="buy">{{$category->name}}</a>
                         </div>
                     </li>
                     @endforeach
@@ -73,16 +73,15 @@
             <div class="title"><h4>Tags</h4></div>
             <div class="content">
                 <div class="tag-wrap">
-                    <a href="#" class="tag">Remix</a>
-                    <a href="#" class="tag">Nonstop</a>
-                    <a href="#" class="tag">Mashup</a>
-                    <a href="#" class="tag">viet remix</a>
-                    <a href="#" class="tag">nhac edm</a>
-                    <a href="#" class="tag">Vinahouse</a>
-                    <a href="#" class="tag">DJ nonstop</a>
-                    <a href="#" class="tag">vietmix.vn</a>
-                    <a href="#" class="tag">Nhac sàn</a>
-                    <a href="#" class="tag">Nhạc dj</a>
+                    <a href="{{route('search', ['tag' => 'Remix'])}}" class="tag">Remix</a>
+                    <a href="{{route('search', ['tag' => 'Mashup'])}}" class="tag">Mashup</a>
+                    <a href="{{route('search', ['tag' => 'viet remix'])}}" class="tag">viet remix</a>
+                    <a href="{{route('search', ['tag' => 'nhac edm'])}}" class="tag">nhac edm</a>
+                    <a href="{{route('search', ['tag' => 'Vinahouse'])}}" class="tag">Vinahouse</a>
+                    <a href="{{route('search', ['tag' => 'DJ nonstop'])}}" class="tag">DJ nonstop</a>
+                    <a href="{{route('search', ['tag' => 'vietmix.vn'])}}" class="tag">vietmix.vn</a>
+                    <a href="{{route('search', ['tag' => 'Nhac sàn'])}}" class="tag">Nhac sàn</a>
+                    <a href="{{route('search', ['tag' => 'Nhạc dj'])}}" class="tag">Nhạc dj</a>
                 </div><!-- /.tag-wrap -->
             </div><!-- /.content -->
         </div><!-- /.foooter-row -->

@@ -27,7 +27,7 @@
                         <i class="fa fa-play"></i> Nghe ngay
                     </button>
                     <button class="btn btn-primary" id="onMobilePause">
-                        <i class="fa fa-pause"></i> Đang dừng
+                        <i class="fa fa-pause"></i> Dừng
                     </button>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                     <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
                         <div class="jp-type-playlist">
                             <div class="jp-gui jp-interface">
-                                <div class="jp-volume-controls">
+                                <div class="jp-volume-controls" style="z-index: 99999">
                                     <button class="jp-mute" role="button" tabindex="0">mute</button>
                                     <button class="jp-volume-max" role="button" tabindex="0">max volume</button>
                                     <div class="jp-volume-bar">

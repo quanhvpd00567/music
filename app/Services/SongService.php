@@ -48,11 +48,12 @@ class SongService
             $song->status               = $params['status'] ?? 0;
             $song->file_name            = $params['file_name'];
             $song->description          = $params['description'];
-            $song->is_set_link          = $params['is_set_link'];
+            $song->is_set_link          = isset($params['is_set_link']) ? 0 : 1;
             $song->keyword              = $params['keyword']. ',vietmix.nv, vietmix, vietmix.vn dj';
             $song->save();
             return true;
         } catch (\Exception $exception) {
+            dd($exception);
             return false;
         }
 

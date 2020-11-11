@@ -17,6 +17,9 @@ Route::domain(env('DOMAIN_ADMIN'))->group(function () {
 
         });
 
+        Route::get('imports', [Admin\SongController::class, 'import'])->name('admin.import.song');
+        Route::post('imports', [Admin\SongController::class, 'importPost'])->name('admin.import.song.post');
+
         Route::prefix('songs')->name('song.')->group(function () {
             Route::get('/', [Admin\SongController::class, 'index'])->name('list');
             Route::get('add', [Admin\SongController::class, 'add'])->name('add');

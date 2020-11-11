@@ -3,8 +3,10 @@
 
 namespace App\Services;
 
+use App\Imports\SongImport;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class fileService
@@ -20,7 +22,7 @@ class fileService
     public function updateImage($file, $name)
     {
         try {
-            return Storage::disk('vietmix')->putFileAs(self::IMAGE, $file, $name, 'public');
+            return Storage::disk('vietmix')->putFileAs('dev_images', $file, $name, 'public');
         } catch (\Exception $exception) {
             Log::error('Upload file failed: '. $exception);
             return false;
@@ -41,10 +43,16 @@ class fileService
     public function uploadAudio($audio, $name)
     {
         try {
-            return Storage::disk('vietmix')->putFileAs(self::AUDIO, $audio, $name, 'public');
+            return Storage::disk('dev_songs')->putFileAs(self::AUDIO, $audio, $name, 'public');
         } catch (\Exception $exception) {
             Log::error('Upload file failed: '. $exception);
             return false;
         }
     }
+
+    public function import($file)
+    {
+        Excel::import(new SongImport(), $file);
+    }
+
 }

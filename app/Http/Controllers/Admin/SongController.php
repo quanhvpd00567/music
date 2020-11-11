@@ -74,7 +74,7 @@ class SongController extends Controller
                         return \redirect()->route('song.list');
                     }
                 }
-                return abort(401);
+                return abort(500);
             }
         }catch (\Exception $exception) {
             return abort(401);
@@ -128,6 +128,18 @@ class SongController extends Controller
         $isSave = $this->songService->update($paramsUpdate, $id);
         if ($isSave) {
             return \redirect()->route('song.list');
+        }
+    }
+
+    public function import()
+    {
+        return view('admin.imports.index');
+    }
+
+    public function importPost(Request $request)
+    {
+        if ($request->hasFile('song_file')) {
+            $this->fileService->import($request->song_file);
         }
     }
 }
