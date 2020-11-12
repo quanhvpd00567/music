@@ -12,8 +12,6 @@ use Maatwebsite\Excel\Facades\Excel;
 class fileService
 {
     protected $storage;
-    const  AUDIO = 'vietmix';
-    const  IMAGE = 'images';
     public function __construct()
     {
 //        $this->storage = new Storage();
@@ -22,7 +20,7 @@ class fileService
     public function updateImage($file, $name)
     {
         try {
-            return Storage::disk('vietmix')->putFileAs('dev_images', $file, $name, 'public');
+            return Storage::disk('vietmix')->putFileAs(env('IMAGE_STORAGE'), $file, $name, 'public');
         } catch (\Exception $exception) {
             Log::error('Upload file failed: '. $exception);
             return false;
@@ -43,7 +41,7 @@ class fileService
     public function uploadAudio($audio, $name)
     {
         try {
-            return Storage::disk('dev_songs')->putFileAs(self::AUDIO, $audio, $name, 'public');
+            return Storage::disk('vietmix')->putFileAs(env('AUDIO_STORAGE'), $audio, $name, 'public');
         } catch (\Exception $exception) {
             Log::error('Upload file failed: '. $exception);
             return false;
