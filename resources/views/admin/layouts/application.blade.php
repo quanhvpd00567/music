@@ -63,7 +63,6 @@
     }
 </script>
 @yield('scripts')
-
 <!-- END JS -->
 </body>
 </html>

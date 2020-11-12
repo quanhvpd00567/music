@@ -25,6 +25,9 @@
                                     <div class="form-group">
                                         <label>File</label>
                                         {{Form::file('song_file', ['class' => 'form-control'])}}
+                                        @error('song_file')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary" type="submit">Import</button>
@@ -41,14 +44,23 @@
     </div>
 @endsection
 @section('scripts')
-{{--    <script>--}}
-{{--        $(document).on('change', '.remix-run-batch', function () {--}}
-{{--            var returnVal = confirm("Are you sure?");--}}
-{{--            if($(this).is(":checked")) {--}}
-{{--                $(this).prop("checked", returnVal);--}}
-{{--            }else{--}}
-{{--                $(this).prop("checked", !returnVal);--}}
-{{--            }--}}
-{{--        })--}}
-{{--    </script>--}}
+    <script>
+        let options = null;
+        @if(session('alert_successfully'))
+             options = {
+                    'message': '{{session('alert_successfully')}}',
+                    'position': 'top-right',
+                    'type': 'success',
+                }
+            showNotification(options)
+        @endif
+        @if(session('alert_failed'))
+             options = {
+                    'message': '{{session('alert_failed')}}',
+                    'position': 'top-right',
+                    'type': 'error',
+                }
+            showNotification(options)
+        @endif
+    </script>
 @endsection

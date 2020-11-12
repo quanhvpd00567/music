@@ -26,4 +26,9 @@ class Song extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    protected $fillable = [
+        'title', 'slug', 'category_id', 'user_id', 'uuid', 'file_name', 'image', 'is_set_link', 'status', 'url',
+        'keyword', 'author', 'description', 'view', 'liked'
+    ];
 }

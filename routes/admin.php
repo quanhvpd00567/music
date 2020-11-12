@@ -5,20 +5,22 @@ use App\Http\Controllers\Admin;
 Route::domain(env('DOMAIN_ADMIN'))->group(function () {
     Route::group(['middleware' => 'checkAdminLogin'], function () {
 
-        Route::get('/', [Admin\SongController::class, 'index'])->name('list');
-        Route::prefix('master')->name('admin.master.')->group(function () {
+        Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard.index');
 
-            Route::get('images', [Admin\MasterController::class, 'images'])->name('images.list');
+        if (false) {
+            Route::prefix('master')->name('admin.master.')->group(function () {
 
-            Route::prefix('image')->group(function () {
-                Route::get('', [Admin\MasterController::class, 'createImages'])->name('images.get');
-                Route::post('', [Admin\MasterController::class, 'postImages'])->name('images.post');
-                Route::get('/{id}', [Admin\MasterController::class, 'editImages'])->name('images.edit');
-                Route::post('/{id}', [Admin\MasterController::class, 'updateImages'])->name('images.update');
+                Route::get('images', [Admin\MasterController::class, 'images'])->name('images.list');
+
+                Route::prefix('image')->group(function () {
+                    Route::get('', [Admin\MasterController::class, 'createImages'])->name('images.get');
+                    Route::post('', [Admin\MasterController::class, 'postImages'])->name('images.post');
+                    Route::get('/{id}', [Admin\MasterController::class, 'editImages'])->name('images.edit');
+                    Route::post('/{id}', [Admin\MasterController::class, 'updateImages'])->name('images.update');
+                });
+
             });
-
-        });
-
+        }
         Route::get('imports', [Admin\SongController::class, 'import'])->name('admin.import.song');
         Route::post('imports', [Admin\SongController::class, 'importPost'])->name('admin.import.song.post');
 

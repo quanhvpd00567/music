@@ -28,13 +28,14 @@
                 </a>
                 <span class="icon-thumbnail "><i class="pg-icon">card</i></span>
             </li>
-
-            <li class="">
-                <a href="{{route('admin.master.images.list')}}">
-                    <span class="title">Image</span>
-                </a>
-                <span class="icon-thumbnail "><i class="pg-icon">grid</i></span>
-            </li>
+            @if(false)
+                <li class="">
+                    <a href="{{route('admin.master.images.list')}}">
+                        <span class="title">Image</span>
+                    </a>
+                    <span class="icon-thumbnail "><i class="pg-icon">grid</i></span>
+                </li>
+            @endif
             <li class="">
                 <a href="{{route('category.list')}}">
                     <span class="title">Categories</span>
@@ -42,17 +43,10 @@
                 <span class="icon-thumbnail"><i class="pg-icon">note</i></span>
             </li>
             <li class="">
-                <a href="javascript:void(0)">
-                    <span class="title">File</span>
-                    <span class=" arrow"></span>
+                <a href="{{route('admin.import.song')}}">
+                    <span class="title">Import</span>
                 </a>
-                <span class="icon-thumbnail"><i class="pg-icon">brush</i></span>
-                <ul class="sub-menu">
-                    <li class="">
-                        <a href="#">All</a>
-                        <span class="icon-thumbnail">all</span>
-                    </li>
-                </ul>
+                <span class="icon-thumbnail"><i class="fa fa-upload"></i></span>
             </li>
         </ul>
         <div class="clearfix"></div>

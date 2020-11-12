@@ -19,65 +19,170 @@
                 <div class="card-body no-padding">
                     <div id="card-advance" class="card card-default">
                         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed" id="condensedTable">
-                    <thead>
-                    <tr>
-                        <th style="width:5%">No.</th>
-                        <th style="width:15%">Name</th>
-                        <th>Link Site</th>
-                        <th>Status</th>
-                        <th>Run batch</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if(count($sites) == 0)
-                        <tr>
-                            <td colspan="9" class="text-center">
-                                <h3>Data not found</h3>
-                            </td>
-                        </tr>
-                    @else
-                        @foreach($sites as $key => $site)
-                            <tr>
-                                <td class="v-align-middle semi-bold">{{$key + 1}}</td>
-                                <td class="v-align-middle">
-                                    {{$site->name}}
-                                    <span class="badge badge-success">{{count($site->masterCategories)}}</span>
-                                </td>
-                                <td class="v-align-middle">
-                                    <a href="{{$site->website}}" target="_blank" title="<%= history.coin_code %>" class="text-link">
-                                        {{$site->website}}
-                                    </a>
-                                </td>
-                                <td>
-                                    @if($site->status == \App\Models\MasterSite::$status['clone'])
-                                        <span class="label label-success">Active</span>
-                                    @else
-                                        <span class="label label-important">Not Active</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div class="form-check form-check-inline switch">
-                                        <input type="checkbox" class="remix-run-batch" id="{{'pagesSwitch' . $site->id}}" {{$site->status == \App\Models\MasterSite::$batch['run'] ? 'checked' : ''}}>
-                                        <label for="{{'pagesSwitch' . $site->id}}">
-                                            {{$site->status == \App\Models\MasterSite::$batch['run'] ? 'Running' : 'Stopped' }}
-                                        </label>
+                            <div class="row">
+                                <div class="col-md-3 m-b-10">
+                                    <!-- START WIDGET D3 widget_graphTileFlat-->
+                                    <div class="widget-8 card  bg-success no-margin widget-loader-bar">
+                                        <div class="container-xs-height full-height">
+                                            <div class="row-xs-height">
+                                                <div class="col-xs-height col-top">
+                                                    <div class="card-header  top-left top-right">
+                                                        <div class="card-title">
+                                                            <span class="font-montserrat fs-11 all-caps">Weekly Sales </span>
+                                                        </div>
+                                                        <div class="card-controls">
+                                                            <ul>
+                                                                <li>
+                                                                    <a data-toggle="refresh" class="card-refresh" href="#"><i class="card-icon card-icon-refresh"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row-xs-height ">
+                                                <div class="col-xs-height col-top relative">
+                                                    <div class="row full-height">
+                                                        <div class="col-sm-6">
+                                                            <div class="p-l-20 full-height d-flex flex-column justify-content-between">
+                                                                <h3 class="no-margin p-b-5">$14,000</h3>
+                                                                <p class="small m-t-5 m-b-20">
+                                                                    <span class="label label-white hint-text font-montserrat m-r-5">60%</span><span class="fs-12">Higher</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </td>
-                                <td>
-                                    aa
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
-                <div class="paging_custom">
-                </div>
-            </div>
-        </div>
+                                    <!-- END WIDGET -->
+                                </div>
+                                <div class="col-md-3 m-b-10">
+                                    <!-- START WIDGET D3 widget_graphTileFlat-->
+                                    <div class="widget-8 card bg-complete no-margin widget-loader-bar">
+                                        <div class="container-xs-height full-height">
+                                            <div class="row-xs-height">
+                                                <div class="col-xs-height col-top">
+                                                    <div class="card-header  top-left top-right">
+                                                        <div class="card-title">
+                                                            <span class="font-montserrat fs-11 all-caps">Weekly Sales </span>
+                                                        </div>
+                                                        <div class="card-controls">
+                                                            <ul>
+                                                                <li>
+                                                                    <a data-toggle="refresh" class="card-refresh" href="#"><i class="card-icon card-icon-refresh"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row-xs-height ">
+                                                <div class="col-xs-height col-top relative">
+                                                    <div class="row full-height">
+                                                        <div class="col-sm-6">
+                                                            <div class="p-l-20 full-height d-flex flex-column justify-content-between">
+                                                                <h3 class="no-margin p-b-5">$14,000</h3>
+                                                                <p class="small m-t-5 m-b-20">
+                                                                    <span class="label label-white hint-text font-montserrat m-r-5">60%</span><span class="fs-12">Higher</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END WIDGET -->
+                                </div>
+                                <div class="col-md-3 m-b-10">
+                                    <!-- START WIDGET D3 widget_graphTileFlat-->
+                                    <div class="widget-8 card bg-danger no-margin widget-loader-bar">
+                                        <div class="container-xs-height full-height">
+                                            <div class="row-xs-height">
+                                                <div class="col-xs-height col-top">
+                                                    <div class="card-header  top-left top-right">
+                                                        <div class="card-title">
+                                                            <span class="font-montserrat fs-11 all-caps">Weekly Sales </span>
+                                                        </div>
+                                                        <div class="card-controls">
+                                                            <ul>
+                                                                <li>
+                                                                    <a data-toggle="refresh" class="card-refresh" href="#"><i class="card-icon card-icon-refresh"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row-xs-height ">
+                                                <div class="col-xs-height col-top relative">
+                                                    <div class="row full-height">
+                                                        <div class="col-sm-6">
+                                                            <div class="p-l-20 full-height d-flex flex-column justify-content-between">
+                                                                <h3 class="no-margin p-b-5">$14,000</h3>
+                                                                <p class="small m-t-5 m-b-20">
+                                                                    <span class="label label-white hint-text font-montserrat m-r-5">60%</span><span class="fs-12">Higher</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END WIDGET -->
+                                </div>
+
+                                <div class="col-md-3 m-b-10">
+                                    <!-- START WIDGET D3 widget_graphTileFlat-->
+                                    <div class="widget-8 card bg-contrast-higher no-margin widget-loader-bar">
+                                        <div class="container-xs-height full-height">
+                                            <div class="row-xs-height">
+                                                <div class="col-xs-height col-top">
+                                                    <div class="card-header  top-left top-right">
+                                                        <div class="card-title">
+                                                            <span class="font-montserrat fs-11 all-caps">Weekly Sales </span>
+                                                        </div>
+                                                        <div class="card-controls">
+                                                            <ul>
+                                                                <li>
+                                                                    <a data-toggle="refresh" class="card-refresh" href="#"><i class="card-icon card-icon-refresh"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row-xs-height ">
+                                                <div class="col-xs-height col-top relative">
+                                                    <div class="row full-height">
+                                                        <div class="col-sm-6">
+                                                            <div class="p-l-20 full-height d-flex flex-column justify-content-between">
+                                                                <h3 class="no-margin p-b-5">$14,000</h3>
+                                                                <p class="small m-t-5 m-b-20">
+                                                                    <span class="label label-white hint-text font-montserrat m-r-5">60%</span><span class="fs-12">Higher</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END WIDGET -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,14 +190,5 @@
     </div>
 @endsection
 @section('scripts')
-<script>
-    $(document).on('change', '.remix-run-batch', function () {
-        var returnVal = confirm("Are you sure?");
-        if($(this).is(":checked")) {
-            $(this).prop("checked", returnVal);
-        }else{
-            $(this).prop("checked", !returnVal);
-        }
-    })
-</script>
+
 @endsection

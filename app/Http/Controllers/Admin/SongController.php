@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImportSongRequest;
 use App\Http\Requests\SongRequest;
 use App\Models\Song;
 use App\Services\CategoryService;
@@ -31,7 +32,7 @@ class SongController extends Controller
     public function index(Request $request)
     {
         $params = $request->only([
-            'title', 'category'
+            'title', 'category', 'status'
         ]);
         $currentPage = isset($request['page']) ? $request['page'] : 1;
         $page = 15;
@@ -136,10 +137,15 @@ class SongController extends Controller
         return view('admin.imports.index');
     }
 
-    public function importPost(Request $request)
+    public function importPost(ImportSongRequest $request)
     {
-        if ($request->hasFile('song_file')) {
-            $this->fileService->import($request->song_file);
+        try {
+            if ($request->hasFile('song_file')) {
+                $this->fileService->import($request->song_file);
+            }
+            return \redirect()->route('admin.import.song')->with('alert_successfully', 'Import file successfully');
+        } catch (\Exception $exception) {
+            return \redirect()->route('admin.import.song')->with('alert_failed', 'Import file failed');
         }
     }
 }

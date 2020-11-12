@@ -17,10 +17,7 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        $sites = $this->masterService->getListMasterSite($request);
-        $data = [
-            'sites' => $sites
-        ];
-        return view('admin.dashboard.index', $data);
+
+        return view('admin.dashboard.index');
     }
 }

@@ -50,7 +50,7 @@ class fileService
 
     public function import($file)
     {
-        Excel::import(new SongImport(), $file);
+        return Excel::import(new SongImport(), $file);
     }
 
 }

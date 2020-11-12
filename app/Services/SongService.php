@@ -26,6 +26,9 @@ class SongService
         if (isset($params['category']) && $params['category'] != 0) {
             $query = $query->where('category_id', $params['category']);
         }
+        if (isset($params['status']) &&  in_array($params['status'], array_values(Song::$status))) {
+            $query = $query->where('status', $params['status']);
+        }
 
         return $query->orderBy('id', 'DESC')->paginate($params['page']);
     }

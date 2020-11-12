@@ -33,6 +33,12 @@
                                 {{Form::select('category', $categoriesAdmin, isset($params['category']) ? $params['category'] : 0, ['class' => 'form-control', 'data-init-plugin' => "select2"])}}
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="">Status</label>
+                                {{Form::select('status', [3 => 'All', 0 => 'Approved', 1 => 'In progress', 2 => 'Reject'], isset($params['status']) ? $params['status'] : 3, ['class' => 'form-control', 'data-init-plugin' => "select2"])}}
+                            </div>
+                        </div>
                         <div class="col-md-1">
                             <div class="form-group" style="margin-top: 28%;">
                                 <button type="submit" class="btn btn-complete">Search</button>
@@ -71,7 +77,7 @@
                                     <tbody>
                                     @if(count($songs) == 0)
                                         <tr>
-                                            <td colspan="7" class="text-center">
+                                            <td colspan="9" class="text-center">
                                                 <h3>Data not found</h3>
                                             </td>
                                         </tr>

@@ -13,11 +13,31 @@
     <meta name="keywords"                   content="{{$song->keyword}}">
     <meta name="author"                     content="{{$song->author}}">
     <meta name="twitter:card"               content="summary" />
-    <meta name="twitter:title"              content="{{$song->title}}" />
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name"                   content="{{$song->title}}" />
+    <meta itemprop="description"             content="{{$song->description}}">
+    <meta itemprop="image"                   content="{{$song->author}}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site"               content="Vietmix.vn" />
+    <meta name="twitter:title"              content="{{$song->title}}" />
+    <meta name="twitter:description"        content="{{$song->description}}">
+    <meta name="twitter:creator"            content="{{$song->author}}">
+    <meta name="twitter:image:src"          content="{$song->image}}g">
+
 @endsection
 @section('content')
     <section class="album-single-wrap">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         @if($isMobile)
         <div class="container" style="padding-bottom: 20px">
             <div class="col-md-4 left">
@@ -122,10 +142,14 @@
                     <div class="content" style="padding-top: 10px">
                         <div class="socmed-wrap" style="margin-bottom: 20px">
                             <a href="javascript:void(0)" id="btn-share"><i class="fa fa-share-alt"></i></a>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/intent/tweet?text={{url()->current()}}"><i class="fa fa-twitter"></i></a>
                         </div><!-- /.socmed-wrap -->
                         <div>
+                            <div class="fb-share-button"
+                                 data-href="{{url()->current()}}"
+                                 data-layout="button_count">
+                            </div>
                             <input style="display: none" id="show-share" type="text" class="form-control" value="{{url()->current()}}">
                         </div>
                     </div>
