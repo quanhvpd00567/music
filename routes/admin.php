@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin;
 
 Route::domain(env('DOMAIN_ADMIN'))->group(function () {
     Route::group(['middleware' => 'checkAdminLogin'], function () {
+
+        Route::get('/', [Admin\SongController::class, 'index'])->name('list');
         Route::prefix('master')->name('admin.master.')->group(function () {
 
             Route::get('images', [Admin\MasterController::class, 'images'])->name('images.list');
