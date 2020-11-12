@@ -18,7 +18,6 @@ class HomeController extends BaseController
 
     public function index()
     {
-//        $categories = $this->categoryService->getFullCategories(['id', 'name', 'slug']);
         return view('public.home.index');
     }
 }

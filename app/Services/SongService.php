@@ -47,7 +47,7 @@ class SongService
             $song->user_id              = $params['user_id'] ?? null;
             $song->status               = $params['status'] ?? 0;
             $song->file_name            = $params['file_name'];
-            $song->description          = $params['description'];
+            $song->description          = $params['description'] ?? __('description.content', ['song_title' => $params['title']]);
             $song->is_set_link          = isset($params['is_set_link']) ? 0 : 1;
             $song->keyword              = $params['keyword']. ',vietmix.nv, vietmix, vietmix.vn dj';
             $song->save();
@@ -83,7 +83,7 @@ class SongService
                 'keyword'           => $params['keyword'],
                 'url'               => $params['file_name'],
                 'category_id'       => $params['category_id'],
-                'description'       => $params['description'],
+                'description'       => $params['description'] ?? __('description.content', ['song_title' => $params['title']]),
                 'is_set_link'       => $params['is_set_link'],
                 'view'              => $params['view'] ?? random_int(40000, 376899),
                 'liked'             => $params['liked'] ?? random_int(40000, 376899),
