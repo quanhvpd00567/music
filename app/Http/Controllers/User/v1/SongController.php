@@ -108,7 +108,7 @@ class SongController extends BaseController
                 $pathFileAudio = $this->fileService->uploadAudio($request->file, "$fileAudio.$extensionAudio");
 
                 if (is_string($pathFileImage) && is_string($pathFileAudio)) {
-                    $params['image'] = 'https://www.vietmix.vn/' . $pathFileImage;
+                    $params['image'] = 'https://media.vietmix.vn/' . $pathFileImage;
                     $params['slug'] = $slugFile;
                     $params['liked'] = 0;
                     $params['view'] = 0;

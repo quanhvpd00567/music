@@ -67,7 +67,7 @@ class SongController extends Controller
                 $fileImage = $slugFile . '-' . $uuid;
                 $pathFile = $this->fileService->updateImage($file, "$fileImage.$extension");
                 if ($pathFile != false) {
-                    $params['image'] = 'https://www.vietmix.vn/'. $pathFile;
+                    $params['image'] = 'https://media.vietmix.vn/'. $pathFile;
                     $params['slug'] = $slugFile;
                     $isSave = $this->songService->createSong($params);
                     if ($isSave) {
