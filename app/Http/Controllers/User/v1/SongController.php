@@ -50,10 +50,9 @@ class SongController extends BaseController
                 $urlAudio = $song->file_name;
             } else {
                 // set ex 5h
-                $urlAudio = Storage::disk('vietmix')->temporaryUrl(
-                    $song->file_name, now()->addMinutes(300)
-                );
+                $urlAudio = Storage::disk('vietmix')->url($song->file_name);
             }
+            dd($urlAudio);
 
 //            $urlAudio = 'https://s3.castbox.fm/2f/87/75/c210624c5ba639b6e50e4e33e6.mp3';
 
