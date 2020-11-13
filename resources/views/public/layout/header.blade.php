@@ -40,10 +40,9 @@ $controllerName = explode('@', $controllerAction)[0];
                     </ul>
                 </li><!-- /.dropdown -->
 
-{{--                <li>--}}
-{{--                    <a href="/" id="logo">VIET<span style="color: #fa4c29">MIX</span></a>--}}
-{{--                    <a href="#" class="brand"><img src="/vietmix/images/logo-dark.png" alt="Jukebox Logo"></a>--}}
-{{--                </li>--}}
+                <li>
+                    <a href="#" class="brand"><img src="/vietmix/images/logo.png" alt="Jukebox Logo"></a>
+                </li>
 
                 <li>
                     @if(auth()->check())
