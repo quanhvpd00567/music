@@ -47,7 +47,7 @@ class SongImport implements ToModel
             'title'             => $title,
             'author'            => $row[4] ?? 'vietmix dj',
             'slug'              => $slug,
-            'image'             => $row[3],
+            'image'             => 'https://media.vietmix.vn/' . $row[3],
             'file_name'         => $file,
             'keyword'           => $tag,
             'url'               => $file,
