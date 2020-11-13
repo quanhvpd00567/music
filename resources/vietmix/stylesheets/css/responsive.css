@@ -197,7 +197,7 @@
   }
   .navbar .navbar-header .navbar-brand {
     display: block;
-    padding: 13px 25px;
+    padding: 2px 0 2px 5px;
   }
   .navbar .navbar-nav li {
     float: none;

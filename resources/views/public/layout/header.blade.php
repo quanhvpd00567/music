@@ -16,9 +16,9 @@ $controllerName = explode('@', $controllerAction)[0];
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-{{--            <a class="navbar-brand" href="#">--}}
-{{--                VIET<span style="color: #fa4c29">MIX</span--}}
-{{--            </a>--}}
+            <a class="navbar-brand" href="#">
+                <img src="vietmix/images/logo.png" alt="Viet mix">
+            </a>
         </div><!-- /.navbar-header -->
 
         <div id="navbar" class="collapse navbar-collapse">
@@ -41,7 +41,7 @@ $controllerName = explode('@', $controllerAction)[0];
                 </li><!-- /.dropdown -->
 
                 <li>
-                    <a href="#" class="brand"><img src="/vietmix/images/logo.png" alt="Jukebox Logo"></a>
+                    <a href="#" class="brand"><img src="/vietmix/images/logo.png" alt="Viet mix"></a>
                 </li>
 
                 <li>
