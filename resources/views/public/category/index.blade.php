@@ -13,9 +13,10 @@
                     <li class="list-item">
                         <div>
                             <a href="{{route('song.detail', ['slug' => $song->slug])}}" class="text" tabindex="0">
-                                <img src="{{$song->img}}" alt="">
+{{--                                <img src="{{$song->image}}" alt="">--}}
                                 {{$song->title}}
                             </a>
+                            @if(false)
                             <span class="vm-gr-megdia" style="float: right;">
                                 <span class="media-item">
                                     <i class="fa fa-download" aria-hidden="true"></i>
@@ -27,6 +28,7 @@
                                     <i class="fa fa-headphones" aria-hidden="true"></i>
                                 </span>
                             </span>
+                            @endif
                         </div>
                     </li>
                     @endforeach

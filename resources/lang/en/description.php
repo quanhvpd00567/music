@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'content' => "Nghe và tải :song_title tại vietmix.vn."
+    'content' => "Các bạn có thể nghe và tải bài :song_title miễn phí chất lượng cao tại vietmix.vn."
 ];

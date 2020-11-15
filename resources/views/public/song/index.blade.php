@@ -1,5 +1,5 @@
 @extends('public.layout.master')
-@section('title') {{$song->title}}] @endsection
+@section('title') {{$song->title}} @endsection
 @section('metas')
     <meta property="og:url"                content="{{URL::current()}}" />
     <meta property="og:type"               content="article" />
@@ -193,42 +193,28 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
     <script>
-
-        function showToast() {
-            let x = document.getElementById("snackbar");
-            x.className = "show";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        }
-
-
-
-        function copyUserName() {
-            //just_for_copy is my invisible extra field
-            document.getElementById('show-share').value;
-            let justForCopy = document.getElementById('show-share');
-            // justForCopy.select();
-            document.execCommand("copy");
-        }
-
         let isShowShare = false;
         $('#btn-share').on('click', function () {
             isShowShare = !isShowShare
             if(isShowShare) {
                 let input = $('#show-share');
                 input.show('slow').focus().val(input.val()).select()
-                // showToast()
             }else{
                 $('#show-share').hide(500)
             }
         });
 
+        let stream = {
+            title: "{{$song->title}}",
+            mp3: '{{$urlAudio}}',
+            poster: "{{$song->image}}"
+        },
+        ready = false;
+
         let audio = $("#jquery_jplayer_1").jPlayer({
             ready: function () {
-                $(this).jPlayer("setMedia", {
-                    title: "{{$song->title}}",
-                    mp3: '{{$urlAudio}}',
-                    poster: "{{$song->image}}"
-                });
+                ready = true;
+                $(this).jPlayer("setMedia", stream).jPlayer("play")
             },
             swfPath: "jplayer",
             supplied: "mp3",
@@ -236,6 +222,7 @@
             useStateClassSkin: true,
             autoBlur: false,
             smoothPlayBar: true,
+            autoPlay: true,
             keyEnabled: true,
             remainingDuration: true,
             toggleDuration: true

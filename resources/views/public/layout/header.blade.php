@@ -30,7 +30,6 @@ $controllerName = explode('@', $controllerAction)[0];
                 </li>
                 <li class="dropdown {{$controllerName == 'CategoryController' ? 'active' : ''}}">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                        <i class="fa fa-list"></i>
                         Danh mục <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu animated fadeIn" role="menu">
@@ -47,29 +46,28 @@ $controllerName = explode('@', $controllerAction)[0];
                 <li>
                     @if(auth()->check())
                         <a href="{{route('user.upload')}}">
-                            <i class="fa fa-upload"></i> <span> Đăng bài</span>
+                            <span> Đăng bài</span>
                         </a>
                     @else
                         <a href="javascript:void(0)" id="upload-song">
-                            <i class="fa fa-upload"></i> <span> Đăng bài</span>
+                            <span> Đăng bài</span>
                         </a>
                     @endif
                 </li>
                 @if(auth()->check())
                     <li class="dropdown active">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-                            <i class="fa fa-user"></i>
                             {{auth()->user()->name}} <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu animated fadeIn" role="menu">
                             <li>
                                 <a href="{{route('user.song.approved')}}">
-                                    <i class="fa fa-list-alt"></i> <span> Danh sach</span>
+                                    <span> Danh sach</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{route('logout')}}">
-                                    <i class="fa fa-sign-out"></i> <span> Thoát</span>
+                                    <span> Thoát</span>
                                 </a>
                             </li>
                         </ul>
@@ -77,7 +75,7 @@ $controllerName = explode('@', $controllerAction)[0];
                 @else
                     <li class="{{$controllerName == 'AuthController' ? 'active' : ''}}">
                         <a href="{{route('login')}}">
-                            <i class="fa fa-sign-in"></i> <span> Đăng nhập</span>
+                            </i> <span> Đăng nhập</span>
                         </a>
                     </li>
                 @endif
