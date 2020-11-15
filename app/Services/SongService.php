@@ -140,7 +140,7 @@ class SongService
 
     public function getSongByCategory($categoryId)
     {
-        $query = $this->_songModel->where('category_id', $categoryId);
+        $query = $this->_songModel->where('category_id', $categoryId)->where('status', Song::$status['approved']);
 
         return $query->orderBy('id', 'DESC')->paginate(30);
     }
