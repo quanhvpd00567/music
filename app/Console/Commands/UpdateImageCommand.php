@@ -49,6 +49,12 @@ class UpdateImageCommand extends Command
        foreach ($songs as $song) {
            $title = str_replace('- vietmix.vn', '', $song->title);
            $song->description = __('description.content', ['song_title' => $title]);
+           $oldLiked = $song->view;
+           $oldView = $song->liked;
+           if ($song->view < $song->liked) {
+               $song->liked = $oldView;
+               $song->view = $oldLiked;
+           }
            $song->save();
        }
     }

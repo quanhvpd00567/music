@@ -43,31 +43,6 @@ class CloneCommand extends Command
      */
     public function handle()
     {
-        $masterSites = MasterSite::where('status', MasterSite::$status['clone'])->where('is_run_batch', MasterSite::$batch['run'])
-            ->with(['masterCategories' => function($q) {
-                $q->where('is_run_batch', MasterSite::$batch['run']);
-            }])
-            ->get();
 
-        if (count($masterSites) == 0) {
-            return false;
-        }
-
-        $cloneService = new cloneService();
-
-        foreach ($masterSites as $masterSite) {
-
-            if (count($masterSite->masterCategories) > 0) {
-                foreach ($masterSite->masterCategories as $category) {
-                    $url = $masterSite->website . '/'. $category->category_clone;
-                    if ($masterSite->website == Music::$website['nhac_dj_vn']) {
-                        $this->info("$url: start");
-                        $cloneService->cloneFromNhacDj($url, $category);
-                        $this->info("$url: end");
-                    }
-                }
-            }
-        }
-        return 0;
     }
 }
