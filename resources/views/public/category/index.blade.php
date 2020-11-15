@@ -12,7 +12,10 @@
                     @foreach($songs as $song)
                     <li class="list-item">
                         <div>
-                            <a href="{{route('song.detail', ['slug' => $song->slug])}}" class="text" tabindex="0">{{$song->title}}</a>
+                            <a href="{{route('song.detail', ['slug' => $song->slug])}}" class="text" tabindex="0">
+                                <img src="{{$song->img}}" alt="">
+                                {{$song->title}}
+                            </a>
                             <span class="vm-gr-megdia" style="float: right;">
                                 <span class="media-item">
                                     <i class="fa fa-download" aria-hidden="true"></i>

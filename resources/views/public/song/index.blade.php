@@ -71,7 +71,8 @@
                         <ul>
                             <li>
                                 <span class="bold">
-                                    <span class="shape"><i class="fa fa-info"></i></span> {{$song->title}}
+                                    <span class="shape"><i class="fa fa-info"></i></span>
+                                    <span>{{$song->title}} sdj cdsjc csdnf sdfndsjk sdfsd</span>
                                 </span>
                             </li>
                             <li>

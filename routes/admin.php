@@ -3,6 +3,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
 Route::domain(env('DOMAIN_ADMIN'))->group(function () {
+
+    Route::get('test', function () {
+        echo phpinfo();
+    });
+
     Route::group(['middleware' => 'checkAdminLogin'], function () {
 
         Route::get('/', [Admin\DashboardController::class, 'index'])->name('dashboard.index');
