@@ -40,15 +40,13 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        Log::error('Isssss run');
-        $url = Storage::disk('vietmix')->putFileAs('vietmix', public_path('robots.txt'), 'quan.txt');
-//        $contents =  Storage::disk('vietmix')->url('uploads/h4yjnykpVnvcAy7YDYwHO6CCp5glynl4AIz51hZL.txt');
-////        $url = Storage::url('file.jpg');
-//        $url = Storage::disk('vietmix')->temporaryUrl(
-//            'uploads/h4yjnykpVnvcAy7YDYwHO6CCp5glynl4AIz51hZL.txt', now()->addMinutes(5)
-//        );
+        try {
+            Log::error('Isssss run');
+            $url = Storage::disk('vietmix')->putFileAs('dev_images', public_path('robots.txt'), 'quan.txt');
+            return $url;
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
 
-//        Storage
-        return 0;
     }
 }

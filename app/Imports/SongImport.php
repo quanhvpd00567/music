@@ -49,15 +49,15 @@ class SongImport implements ToModel
             'slug'              => $slug,
             'image'             => 'https://media.vietmix.vn/' . $row[3],
             'file_name'         => $file,
-            'keyword'           => $tag,
+            'keyword'           => $row[5],
             'url'               => $file,
             'category_id'       => $categoryId,
             'description'       => $description,
             'status'            => 0,
             'uuid'              => $uuid,
             'is_set_link'       => 0,
-            'view'              => random_int(40000, 376899),
-            'liked'             => random_int(40000, 376899),
+            'view'              => random_int(80000, 376899),
+            'liked'             => random_int(40000, 80000),
         ]);
     }
 }

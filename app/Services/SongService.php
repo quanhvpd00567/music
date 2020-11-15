@@ -42,8 +42,8 @@ class SongService
             $uuid                       = Helper::getUuid();
             $song->slug                 = $params['slug']. '-'. $uuid;
             $song->uuid                 = $uuid;
-            $song->view                 = $params['view'] ?? random_int(40000, 376899);
-            $song->liked                = $params['liked'] ?? random_int(40000, 376899);;
+            $song->view                 = $params['view'] ?? random_int(80000, 376899);
+            $song->liked                = $params['liked'] ?? random_int(40000, 80000);;
             $song->category_id          = $params['category_id'];
             $song->url                  = $params['file_name'];
             $song->image                = $params['image'];
@@ -88,8 +88,8 @@ class SongService
                 'category_id'       => $params['category_id'],
                 'description'       => $params['description'] ?? __('description.content', ['song_title' => $params['title']]),
                 'is_set_link'       => $params['is_set_link'],
-                'view'              => $params['view'] ?? random_int(40000, 376899),
-                'liked'             => $params['liked'] ?? random_int(40000, 376899),
+                'view'              => $params['view'] ?? $song->view,
+                'liked'             => $params['liked'] ?? $song->liked,
             ];
             $this->_songModel->where('id', $id)->update($dataUpdate);
             DB::commit();

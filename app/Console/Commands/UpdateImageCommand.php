@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Music;
+use App\Models\Song;
 use App\Services\MasterService;
 use App\Services\MusicService;
 use Illuminate\Console\Command;
@@ -14,7 +15,7 @@ class UpdateImageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:update_image';
+    protected $signature = 'command:update_description';
 
     /**
      * The console command description.
@@ -44,18 +45,11 @@ class UpdateImageCommand extends Command
      */
     public function handle()
     {
-        $this->info('Start Update image');
-
-        $bgr = $this->masterService->getAllImage()->pluck('url')->toArray();
-        $count = count($bgr) ;
-//        dd(random_int(0, $count - 1));
-        $songs = Music::query()->whereNull('image')->orWhere('image', '')->get();
-        foreach ($songs as $song) {
-            $bg = $bgr[random_int(0, $count - 1)];
-            $song->image = $bg;
-            $song->save();
-        }
-
-        $this->info('End Update image');
+       $songs = Song::query()->get();
+       foreach ($songs as $song) {
+           $title = str_replace('- vietmix.vn', '', $song->title);
+           $song->description = __('description.content', ['song_title' => $title]);
+           $song->save();
+       }
     }
 }

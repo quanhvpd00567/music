@@ -71,7 +71,9 @@ return [
             'secret' => 'UePgZLp/TKxVLy51QGfs/6KjnYhVvumfopr0MK+OzDg',
             'region' => 'sfo2',
             'bucket' => 'vietmix',
-            'url'=> 'https://media.vietmix.vn'
+            'url'=> 'https://media.vietmix.vn',
+            'endpoint' => 'https://sfo2.digitaloceanspaces.com',
+            'visibility' => 'public'
         ],
     ],
 
